@@ -3,17 +3,37 @@
 
 
     
-    
+  <url>
+    <loc>https://summingyu.github.io/2016/11/16/Chapter-1-Sed-Syntax-and-Basic-Commands/</loc>
+    <lastmod>2016-11-16T09:14:31.546Z</lastmod>
+    <data>
+        <display>
+        <title>Chapter 1: Sed Syntax and Basic Commands</title>
+        <pubTime>2016-11-16T09:07:33.000Z</pubTime>
+        
+        <tag>学习</tag>
+         
+        <tag>基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="sed and awk 101 hacks" url="https://summingyu.github.io/categories/sed-and-awk-101-hacks/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
     
     
   <url>
     <loc>https://summingyu.github.io/2016/11/16/FirstNight/</loc>
-    <lastmod>2016-11-16T01:12:36.388Z</lastmod>
+    <lastmod>2016-11-16T08:37:19.593Z</lastmod>
     <data>
         <display>
         <title>First Night</title>
-        <pubTime>2016-11-16T01:12:36.388Z</pubTime>
+        <pubTime>2016-11-16T08:37:19.593Z</pubTime>
         
         <tag>PS3</tag>
          
@@ -28,6 +48,7 @@
     </data>
     </url>
 
+    
     
   <url>
     <loc>https://summingyu.github.io/2016/11/15/hello-world/</loc>
