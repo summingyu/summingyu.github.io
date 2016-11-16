@@ -317,7 +317,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-16T17:14:31+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-16T17:28:27+08:00">
               2016-11-16
             </time>
             
@@ -388,7 +388,7 @@
 <li>Read  逐行读取</li>
 <li>Execute 逐行执行命令 <strong>one by one</strong></li>
 <li>Print 可以是空匹配</li>
-<li>Repeat  重复步骤<br><img src="./1469504159382.png" alt="Alt text"></li>
+<li>Repeat  重复步骤<br><img src="/images/1469504159382.png" alt="执行步骤"></li>
 </ul>
 <h2 id="3-Print-Pattern-Space-p-command"><a href="#3-Print-Pattern-Space-p-command" class="headerlink" title="3. Print Pattern Space (p command)"></a>3. Print Pattern Space (p command)</h2><p>Using the sed p command, you can print the current pattern space.<br>使用p命令，你可以输出当前的模式</p>
 <h3 id="The-following-example-prints-every-line-of-employee-txt-twice"><a href="#The-following-example-prints-every-line-of-employee-txt-twice" class="headerlink" title="The following example prints every line of employee.txt twice:"></a>The following example prints every line of employee.txt twice:</h3><p>单独使用p命令会使每行都输出两次<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ sed <span class="string">'p'</span> employee.txt</div><div class="line"><span class="number">101</span>,John Doe,CEO</div><div class="line"><span class="number">101</span>,John Doe,CEO</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">13</span>Sed <span class="built_in">and</span> Awk <span class="number">101</span> Hacks</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div></pre></td></tr></table></figure></p>
