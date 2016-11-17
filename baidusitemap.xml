@@ -4,11 +4,11 @@
 
     
   <url>
-    <loc>https://summingyu.github.io/2016/11/16/Chapter-1-Sed-Syntax-and-Basic-Commands/</loc>
-    <lastmod>2016-11-17T03:24:01.797Z</lastmod>
+    <loc>https://summingyu.github.io/2016/11/16/Chapter2-Sed-Substitute-%E4%BB%A3%E6%9B%BF-Command/</loc>
+    <lastmod>2016-11-17T03:30:51.784Z</lastmod>
     <data>
         <display>
-        <title>Chapter 1: Sed Syntax and Basic Commands</title>
+        <title>Chapter2 Sed Substitute 代替 Command</title>
         <pubTime>2016-11-16T09:07:33.000Z</pubTime>
         
         <tag>学习</tag>
@@ -26,15 +26,22 @@
 
     
   <url>
-    <loc>https://summingyu.github.io/2016/11/17/Chapter2-Sed-Substitute-%E4%BB%A3%E6%9B%BF-Command/</loc>
-    <lastmod>2016-11-17T01:46:47.754Z</lastmod>
+    <loc>https://summingyu.github.io/2016/11/16/Chapter-1-Sed-Syntax-and-Basic-Commands/</loc>
+    <lastmod>2016-11-17T03:24:01.797Z</lastmod>
     <data>
         <display>
-        <title>Chapter2. Sed Substitute(代替)Command</title>
-        <pubTime>2016-11-17T01:46:47.000Z</pubTime>
+        <title>Chapter 1: Sed Syntax and Basic Commands</title>
+        <pubTime>2016-11-16T09:07:33.000Z</pubTime>
         
+        <tag>学习</tag>
+         
+        <tag>基础</tag>
+         
          
            
+             
+              <breadCrumb title="sed and awk 101 hacks" url="https://summingyu.github.io/categories/sed-and-awk-101-hacks/"/>
+          
         </display>
     </data>
     </url>

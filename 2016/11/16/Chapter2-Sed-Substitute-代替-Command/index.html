@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="学习,基础," />
 
 
 
@@ -84,15 +84,18 @@
 
 
 
-<meta name="description" content="“Talk is cheap. Show me the code.”————多说无益，看代码">
-<meta property="og:type" content="website">
-<meta property="og:title" content="余苏明的幻想乡">
-<meta property="og:url" content="https://summingyu.github.io/index.html">
+<meta name="description" content="Chapter 2. Sed Substitute（代替） Command6. Sed Substitute Command Syntax123sed &apos;[address-range|pattern-range] s/originalstring/replacement-string/[substitute-flags]&apos; inputfile#sed &apos;[地址范围|模板范围] s/原始字符串/替换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter2 Sed Substitute 代替 Command">
+<meta property="og:url" content="https://summingyu.github.io/2016/11/16/Chapter2-Sed-Substitute-代替-Command/index.html">
 <meta property="og:site_name" content="余苏明的幻想乡">
-<meta property="og:description" content="“Talk is cheap. Show me the code.”————多说无益，看代码">
+<meta property="og:description" content="Chapter 2. Sed Substitute（代替） Command6. Sed Substitute Command Syntax123sed &apos;[address-range|pattern-range] s/originalstring/replacement-string/[substitute-flags]&apos; inputfile#sed &apos;[地址范围|模板范围] s/原始字符串/替换">
+<meta property="og:image" content="https://summingyu.github.io/./1471403501349.png">
+<meta property="og:updated_time" content="2016-11-17T03:30:51.784Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="余苏明的幻想乡">
-<meta name="twitter:description" content="“Talk is cheap. Show me the code.”————多说无益，看代码">
+<meta name="twitter:title" content="Chapter2 Sed Substitute 代替 Command">
+<meta name="twitter:description" content="Chapter 2. Sed Substitute（代替） Command6. Sed Substitute Command Syntax123sed &apos;[address-range|pattern-range] s/originalstring/replacement-string/[substitute-flags]&apos; inputfile#sed &apos;[地址范围|模板范围] s/原始字符串/替换">
+<meta name="twitter:image" content="https://summingyu.github.io/./1471403501349.png">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://summingyu.github.io/"/>
+  <link rel="canonical" href="https://summingyu.github.io/2016/11/16/Chapter2-Sed-Substitute-代替-Command/"/>
 
 
 
 
 
-  <title> 余苏明的幻想乡 </title>
+  <title> Chapter2 Sed Substitute 代替 Command | 余苏明的幻想乡 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -147,9 +150,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -258,153 +259,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/11/16/Chapter-1-Sed-Syntax-and-Basic-Commands/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Summingyu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="余苏明的幻想乡">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="余苏明的幻想乡" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/16/Chapter-1-Sed-Syntax-and-Basic-Commands/" itemprop="url">
-                  Chapter 1: Sed Syntax and Basic Commands
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-16T17:07:33+08:00">
-              2016-11-16
-            </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-17T11:24:01+08:00">
-              2016-11-17
-            </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/sed-and-awk-101-hacks/" itemprop="url" rel="index">
-                    <span itemprop="name">sed and awk 101 hacks</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Chapter-1-Sed-Syntax-and-Basic-Commands"><a href="#Chapter-1-Sed-Syntax-and-Basic-Commands" class="headerlink" title="Chapter 1: Sed Syntax and Basic Commands"></a>Chapter 1: Sed Syntax and Basic Commands</h1><h2 id="sed-examples"><a href="#sed-examples" class="headerlink" title="sed examples"></a><code>sed</code> examples</h2><p>使用的<code>sed</code> 案例均为下面文件<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">vi</span> employee.txt</div><div class="line"><span class="number">101</span>,John Doe,CEO</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/16/Chapter-1-Sed-Syntax-and-Basic-Commands/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
 
   
 
@@ -437,10 +294,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/11/16/Chapter2-Sed-Substitute-代替-Command/" itemprop="url">
-                  Chapter2 Sed Substitute 代替 Command
-                </a>
+                Chapter2 Sed Substitute 代替 Command
               
             
           </h1>
@@ -512,9 +366,7 @@
       
 
       
-        
-          
-            <h1 id="Chapter-2-Sed-Substitute（代替）-Command"><a href="#Chapter-2-Sed-Substitute（代替）-Command" class="headerlink" title="Chapter 2. Sed Substitute（代替） Command"></a>Chapter 2. Sed Substitute（代替） Command</h1><h2 id="6-Sed-Substitute-Command-Syntax"><a href="#6-Sed-Substitute-Command-Syntax" class="headerlink" title="6. Sed Substitute Command Syntax"></a>6. Sed Substitute Command Syntax</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sed <span class="string">'[address-range|pattern-range] s/originalstring/replacement-string/[substitute-flags]'</span> inputfile</div><div class="line"></div><div class="line">#sed <span class="string">'[地址范围|模板范围] s/原始字符串/替换字符串/[替换flag]'</span> 输入文件</div></pre></td></tr></table></figure>
+        <h1 id="Chapter-2-Sed-Substitute（代替）-Command"><a href="#Chapter-2-Sed-Substitute（代替）-Command" class="headerlink" title="Chapter 2. Sed Substitute（代替） Command"></a>Chapter 2. Sed Substitute（代替） Command</h1><h2 id="6-Sed-Substitute-Command-Syntax"><a href="#6-Sed-Substitute-Command-Syntax" class="headerlink" title="6. Sed Substitute Command Syntax"></a>6. Sed Substitute Command Syntax</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sed <span class="string">'[address-range|pattern-range] s/originalstring/replacement-string/[substitute-flags]'</span> inputfile</div><div class="line"></div><div class="line">#sed <span class="string">'[地址范围|模板范围] s/原始字符串/替换字符串/[替换flag]'</span> 输入文件</div></pre></td></tr></table></figure>
 <ul>
 <li>地址范围或者模板范围是可选的。如果你没有选择这个选项, <code>sed</code>将会在所有行执行替换命令</li>
 <li>s – 告诉<code>sed</code>执行替换命令</li>
@@ -571,308 +423,68 @@
 <h3 id="E-replacement-string-flag"><a href="#E-replacement-string-flag" class="headerlink" title="\E replacement string flag"></a>\E replacement string flag</h3><p>这个替换flag是联合<code>\U</code>,<code>\L</code>使用的，表示大小写替换的结束处<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Change John <span class="keyword">to</span> JOHNNY BOY: </div><div class="line">$ sed -n <span class="string">'s/John/\UJohnny Boy/p'</span> employee.txt </div><div class="line"><span class="number">101</span>,JOHNNY BOY Doe,CEO</div><div class="line">#=========================#</div><div class="line">Change John <span class="keyword">to</span> JOHNNY Boy:</div><div class="line">$ sed -n <span class="string">'s/John/\UJohnny\E Boy/p'</span> employee.txt</div><div class="line"><span class="number">101</span>,JOHNNY Boy Doe,CEO</div></pre></td></tr></table></figure></p>
 <h3 id="Replacement-String-Flag-Usages"><a href="#Replacement-String-Flag-Usages" class="headerlink" title="Replacement String Flag Usages"></a>Replacement String Flag Usages</h3><h4 id="Employee-name-in-all-upper-case-and-title-in-all-lower-case"><a href="#Employee-name-in-all-upper-case-and-title-in-all-lower-case" class="headerlink" title="Employee name in all upper case, and title in all lower case:"></a>Employee name in all upper case, and title in all lower case:</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ sed <span class="string">'s/\([^,]*\),\([^,]*\),\(.*\).*/\U\2\E,\1,\L\3/g'</span> employee.txt </div><div class="line"></div><div class="line">JOHN DOE,<span class="number">101</span>,ceo</div><div class="line">JASON SMITH,<span class="number">102</span>,it manager </div><div class="line">RAJ REDDY,<span class="number">103</span>,sysadmin </div><div class="line">ANAND RAM,<span class="number">104</span>,developer</div><div class="line">JANE MILLER,<span class="number">105</span>,sales manager</div></pre></td></tr></table></figure>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/11/16/FirstNight/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Summingyu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="余苏明的幻想乡">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="余苏明的幻想乡" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/16/FirstNight/" itemprop="url">
-                  First Night
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-16T16:37:19+08:00">
-              2016-11-16
-            </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-16T16:37:19+08:00">
-              2016-11-16
-            </time>
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index">
-                    <span itemprop="name">Diary</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
+            <a href="/tags/学习/" rel="tag"># 学习</a>
           
-
+            <a href="/tags/基础/" rel="tag"># 基础</a>
           
-            
-          
-
-          
-
-          
-          
-
-          
-          
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <blockquote>
-<p>你好，世界<br>hello,world</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/11/15/hello-world/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Summingyu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.png">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="余苏明的幻想乡">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="余苏明的幻想乡" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/11/16/FirstNight/" rel="next" title="First Night">
+                <i class="fa fa-chevron-left"></i> First Night
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/11/15/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-15T09:10:04+08:00">
-              2016-11-15
-            </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-15T09:10:04+08:00">
-              2016-11-15
-            </time>
+              <a href="/2016/11/16/Chapter-1-Sed-Syntax-and-Basic-Commands/" rel="prev" title="Chapter 1: Sed Syntax and Basic Commands">
+                Chapter 1: Sed Syntax and Basic Commands <i class="fa fa-chevron-right"></i>
+              </a>
             
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-          
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -880,6 +492,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -899,8 +515,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -953,6 +578,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-2-Sed-Substitute（代替）-Command"><span class="nav-number">1.</span> <span class="nav-text">Chapter 2. Sed Substitute（代替） Command</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Sed-Substitute-Command-Syntax"><span class="nav-number">1.1.</span> <span class="nav-text">6. Sed Substitute Command Syntax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Replace-all-occurrences-of-Manager-with-Director"><span class="nav-number">1.1.1.</span> <span class="nav-text">Replace all occurrences of Manager with Director:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Replace-Manager-with-Director-only-on-lines-that-contain-the-keyword-‘Sales’"><span class="nav-number">1.1.2.</span> <span class="nav-text">Replace Manager with Director only on lines that contain the keyword ‘Sales’:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Global-Flag-g-flag"><span class="nav-number">1.2.</span> <span class="nav-text">7. Global Flag (g flag)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Number-Flag-1-2-3-flag"><span class="nav-number">1.3.</span> <span class="nav-text">8. Number Flag (1,2,3.. flag)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Print-Flag-p-flag"><span class="nav-number">1.4.</span> <span class="nav-text">9. Print Flag (p flag)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Print-only-the-line-that-was-changed-by-the-substitute-command"><span class="nav-number">1.4.1.</span> <span class="nav-text">Print only the line that was changed by the substitute command:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Write-Flag-w-flag"><span class="nav-number">1.5.</span> <span class="nav-text">10. Write Flag (w flag)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Ignore-Case-Flag-i-flag"><span class="nav-number">1.6.</span> <span class="nav-text">11. Ignore Case Flag (i flag)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Execute-Flag-e-flag"><span class="nav-number">1.7.</span> <span class="nav-text">12. Execute Flag (e flag)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Combine-Sed-Substitution-Flags"><span class="nav-number">1.8.</span> <span class="nav-text">13. Combine Sed Substitution Flags</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-Sed-Substitution-Delimiter"><span class="nav-number">1.9.</span> <span class="nav-text">14. Sed Substitution Delimiter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-Multiple-Substitute-Commands-Affecting-the-Same-Line"><span class="nav-number">1.10.</span> <span class="nav-text">15. Multiple Substitute Commands Affecting the Same Line</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Change-Developer-to-IT-Manager-then-change-Manager-to-Director"><span class="nav-number">1.10.1.</span> <span class="nav-text">Change Developer to IT Manager, then change Manager to Director:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Read"><span class="nav-number">1.10.1.1.</span> <span class="nav-text">1.Read:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Execute"><span class="nav-number">1.10.1.2.</span> <span class="nav-text">2. Execute:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Print"><span class="nav-number">1.10.1.3.</span> <span class="nav-text">3. Print:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Repeat"><span class="nav-number">1.10.1.4.</span> <span class="nav-text">4. Repeat:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更换两个命令顺序，结果不同"><span class="nav-number">1.10.2.</span> <span class="nav-text">更换两个命令顺序，结果不同</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-Power-of-amp-Get-Matched-Pattern"><span class="nav-number">1.11.</span> <span class="nav-text">16. Power of & - Get Matched Pattern</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-Substitution-Grouping-Single-Group"><span class="nav-number">1.12.</span> <span class="nav-text">17. Substitution Grouping (Single Group)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Single-grouping"><span class="nav-number">1.12.1.</span> <span class="nav-text">Single grouping:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#encloses-the-1st-letter-in-every-word-inside-if-the-1st-character-is-upper-case"><span class="nav-number">1.12.2.</span> <span class="nav-text">encloses the 1st letter in every word inside (), if the 1st character is upper case.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-Substitution-Grouping-Multiple-Group"><span class="nav-number">1.13.</span> <span class="nav-text">18. Substitution Grouping (Multiple Group)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-Gnu-Sed-Only-Replacement-String-Flags"><span class="nav-number">1.14.</span> <span class="nav-text">19. Gnu Sed Only Replacement String Flags</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#l-L-u-Ureplacement-string-flag"><span class="nav-number">1.14.1.</span> <span class="nav-text">\l ,\L,\u,\Ureplacement string flag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E-replacement-string-flag"><span class="nav-number">1.14.2.</span> <span class="nav-text">\E replacement string flag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Replacement-String-Flag-Usages"><span class="nav-number">1.14.3.</span> <span class="nav-text">Replacement String Flag Usages</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Employee-name-in-all-upper-case-and-title-in-all-lower-case"><span class="nav-number">1.14.3.1.</span> <span class="nav-text">Employee name in all upper case, and title in all lower case:</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -1051,6 +692,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
