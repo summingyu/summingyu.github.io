@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="余苏明的幻想乡">
 <meta property="og:description" content="写在前面最近几天一直在修修改改配置文件，每次hexo d都要输一遍用户名密码，心累。就到网上找了一下教程，怎么实现不要输密码，其实就是在github这个仓库里面添加公钥就行">
 <meta property="og:image" content="https://summingyu.github.io/2016/11/18/hexo/使用ssh实现hexo免输密码上传文章/1479439175405.png">
-<meta property="og:updated_time" content="2016-11-18T04:09:15.514Z">
+<meta property="og:updated_time" content="2016-11-18T04:12:50.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用ssh实现hexo免输密码上传文章">
 <meta name="twitter:description" content="写在前面最近几天一直在修修改改配置文件，每次hexo d都要输一遍用户名密码，心累。就到网上找了一下教程，怎么实现不要输密码，其实就是在github这个仓库里面添加公钥就行">
@@ -315,7 +315,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-18T12:09:15+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-18T12:12:50+08:00">
               2016-11-18
             </time>
             
@@ -374,7 +374,7 @@
 <h1 id="2、添加公钥到github页面"><a href="#2、添加公钥到github页面" class="headerlink" title="2、添加公钥到github页面"></a>2、添加公钥到github页面</h1><p>进入你的github博客仓库的设置页下面的<code>deploy keys</code>页面<br><img src="/2016/11/18/hexo/使用ssh实现hexo免输密码上传文章/1479439175405.png" alt="keploy keys页面" title="keploy keys页面"><br>看到哪个熟悉的图标了吗？点击一下你就能新建key了，如果不嫌烦的话，还可以删除了再添加(neta科技美学)<br>随便取个什么标题，将在客户端上复制的公钥粘贴到下面的key里面，勾选<code>Allow write access</code>选项，点<code>add key</code>。密钥对就添加完成了</p>
 <h1 id="3、测试"><a href="#3、测试" class="headerlink" title="3、测试"></a>3、测试</h1><p>在客户端执行命令<code>ssh -T git@github.com</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[summingyu@localhost .ssh]$ ssh -T git@github.com</div><div class="line">Hi summingyu/summingyu.github.io! You<span class="string">'ve successfully authenticated, but GitHub does not provide shell access.</span></div></pre></td></tr></table></figure></p>
 <p>如果看到上面的结果，那么就说明通了。</p>
-<h1 id="4、修改配置文件"><a href="#4、修改配置文件" class="headerlink" title="4、修改配置文件"></a>4、修改配置文件</h1><p>最后，修改站点配置文件<code>_config.yml</code><br>在上一篇文章<a href="/2016/11/17/hexo/hexo搭建自己的博客/" title="hexo搭建自己的博客">hexo搭建自己的博客</a>  中讲到最后添加的一行代码进行如下修改<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: git</div><div class="line"><span class="comment">#  repo: https://github.com/summingyu/summingyu.github.io.git</span></div><div class="line">  repo: git@github.com:summingyu/summingyu.github.io.git</div></pre></td></tr></table></figure></p>
+<h1 id="4、修改配置文件"><a href="#4、修改配置文件" class="headerlink" title="4、修改配置文件"></a>4、修改配置文件</h1><p>最后，修改站点配置文件<code>_config.yml</code><br>在上一篇文章  中讲到最后添加的一行代码进行如下修改<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: git</div><div class="line"><span class="comment">#  repo: https://github.com/summingyu/summingyu.github.io.git</span></div><div class="line">  repo: git@github.com:summingyu/summingyu.github.io.git</div></pre></td></tr></table></figure></p>
 <p>将原来的https链接修改成ssh的链接<br>进行了以上配置，基本就可以了。<br><del>反正我是这样搞好的</del></p>
 
       
