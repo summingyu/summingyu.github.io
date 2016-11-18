@@ -1,8 +1,9 @@
 # 余苏明的幻想乡
 
 # 2016-11-18
+## 添加友情链接
 ## 添加社交链接
-[next官方配置](https://github.com/iissnan/hexo-theme-next/wiki/%E8%AE%BE%E7%BD%AE%E4%BE%A7%E8%BE%B9%E6%A0%8F%E7%A4%BE%E4%BA%A4%E9%93%BE%E6%8E%A5:)
+[next官方配置](http://theme-next.iissnan.com/theme-settings.html#author-sites)
 ## 查看资料，添加多说评论系统
 [next官方配置](http://theme-next.iissnan.com/third-party-services.html)
 ##上传文章，整理了一下souce文件夹
