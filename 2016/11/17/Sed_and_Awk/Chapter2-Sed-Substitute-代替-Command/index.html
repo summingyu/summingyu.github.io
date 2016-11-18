@@ -87,15 +87,15 @@
 <meta name="description" content="Chapter 2. Sed Substitute（代替） Command6. Sed Substitute Command Syntax123sed &apos;[address-range|pattern-range] s/originalstring/replacement-string/[substitute-flags]&apos; inputfile#sed &apos;[地址范围|模板范围] s/原始字符串/替换">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chapter2 Sed Substitute 代替 Command">
-<meta property="og:url" content="https://summingyu.github.io/2016/11/17/Chapter2-Sed-Substitute-代替-Command/index.html">
+<meta property="og:url" content="https://summingyu.github.io/2016/11/17/Sed_and_Awk/Chapter2-Sed-Substitute-代替-Command/index.html">
 <meta property="og:site_name" content="余苏明的幻想乡">
 <meta property="og:description" content="Chapter 2. Sed Substitute（代替） Command6. Sed Substitute Command Syntax123sed &apos;[address-range|pattern-range] s/originalstring/replacement-string/[substitute-flags]&apos; inputfile#sed &apos;[地址范围|模板范围] s/原始字符串/替换">
-<meta property="og:image" content="https://summingyu.github.io/2016/11/17/Chapter2-Sed-Substitute-代替-Command/1471403501349.png">
+<meta property="og:image" content="https://summingyu.github.io/2016/11/17/Sed_and_Awk/Chapter2-Sed-Substitute-代替-Command/1471403501349.png">
 <meta property="og:updated_time" content="2016-11-17T03:35:44.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter2 Sed Substitute 代替 Command">
 <meta name="twitter:description" content="Chapter 2. Sed Substitute（代替） Command6. Sed Substitute Command Syntax123sed &apos;[address-range|pattern-range] s/originalstring/replacement-string/[substitute-flags]&apos; inputfile#sed &apos;[地址范围|模板范围] s/原始字符串/替换">
-<meta name="twitter:image" content="https://summingyu.github.io/2016/11/17/Chapter2-Sed-Substitute-代替-Command/1471403501349.png">
+<meta name="twitter:image" content="https://summingyu.github.io/2016/11/17/Sed_and_Awk/Chapter2-Sed-Substitute-代替-Command/1471403501349.png">
 
 
 
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="https://summingyu.github.io/2016/11/17/Chapter2-Sed-Substitute-代替-Command/"/>
+  <link rel="canonical" href="https://summingyu.github.io/2016/11/17/Sed_and_Awk/Chapter2-Sed-Substitute-代替-Command/"/>
 
 
 
@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/11/17/Chapter2-Sed-Substitute-代替-Command/">
+  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/11/17/Sed_and_Awk/Chapter2-Sed-Substitute-代替-Command/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Summingyu">
@@ -377,7 +377,7 @@
 <p>源文件不会被修改<br><a id="more"></a></p>
 <h3 id="Replace-all-occurrences-of-Manager-with-Director"><a href="#Replace-all-occurrences-of-Manager-with-Director" class="headerlink" title="Replace all occurrences of Manager with Director:"></a>Replace all occurrences of Manager with Director:</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sed <span class="string">'s/Manager/Director/'</span> employee.txt </div><div class="line"><span class="number">101</span>,John Doe,CEO </div><div class="line"><span class="number">102</span>,Jason Smith,IT Director</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer </div><div class="line"><span class="number">105</span>,Jane Miller,Sales Director</div></pre></td></tr></table></figure>
 <h3 id="Replace-Manager-with-Director-only-on-lines-that-contain-the-keyword-‘Sales’"><a href="#Replace-Manager-with-Director-only-on-lines-that-contain-the-keyword-‘Sales’" class="headerlink" title="Replace Manager with Director only on lines that contain the keyword ‘Sales’:"></a>Replace Manager with Director only on lines that contain the keyword ‘Sales’:</h3><p>根据关键字行替换。只在匹配到关键字的行替换<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sed <span class="string">'/Sales/s/Manager/Director/'</span> employee.txt </div><div class="line"><span class="number">101</span>,John Doe,CEO</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager </div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin </div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Director</div></pre></td></tr></table></figure></p>
-<h2 id="7-Global-Flag-g-flag"><a href="#7-Global-Flag-g-flag" class="headerlink" title="7. Global Flag (g flag)"></a>7. Global Flag (g flag)</h2><p>全局flag：<br><code>sed</code>默认替换模式是只替换每一行第一个匹配到的原始字符串。<br>如果你需要替换每一个字符串，则需要加上全局标志：<code>g</code> flag<br><img src="/2016/11/17/Chapter2-Sed-Substitute-代替-Command/1471403501349.png" alt="1471403501349.png" title=""></p>
+<h2 id="7-Global-Flag-g-flag"><a href="#7-Global-Flag-g-flag" class="headerlink" title="7. Global Flag (g flag)"></a>7. Global Flag (g flag)</h2><p>全局flag：<br><code>sed</code>默认替换模式是只替换每一行第一个匹配到的原始字符串。<br>如果你需要替换每一个字符串，则需要加上全局标志：<code>g</code> flag<br><img src="/2016/11/17/Sed_and_Awk/Chapter2-Sed-Substitute-代替-Command/1471403501349.png" alt="1471403501349.png" title=""></p>
 <blockquote>
 <p>Note：因为没有指定范围，所以这些实例将应用到整个文件中。</p>
 </blockquote>
@@ -456,7 +456,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/17/hexo搭建自己的博客/" rel="next" title="hexo搭建自己的博客">
+              <a href="/2016/11/17/hexo/hexo搭建自己的博客/" rel="next" title="hexo搭建自己的博客">
                 <i class="fa fa-chevron-left"></i> hexo搭建自己的博客
               </a>
             
@@ -465,6 +465,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/18/hexo/使用ssh实现hexo免输密码上传文章/" rel="prev" title="用ssh实现hexo免输密码上传文章">
+                用ssh实现hexo免输密码上传文章 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -532,7 +536,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
