@@ -1,6 +1,8 @@
 # 余苏明的幻想乡
 
 # 2016-11-18
+查看资料，添加多说评论系统
+[next官方配置](http://theme-next.iissnan.com/third-party-services.html)
 上传文章，整理了一下souce文件夹
 查了一下文档，知道怎样引用本地文件
 ```bash
