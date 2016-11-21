@@ -3,9 +3,11 @@
 ###  提交谷歌搜索
 [参考资料](http://www.jianshu.com/p/619dab2d3c08)
 > 提交验证文件后，记得在站点配置文件里面添加`skip_render:`，否则验证文件会被渲染，导致验证失败
+
 ## 2016-11-18
 ### 添加友情链接
 > 注意：修改是在主题配置文件里面修改，在站点配置文件里修改会报错的
+
 ### 添加社交链接
 [next官方配置](http://theme-next.iissnan.com/theme-settings.html#author-sites)
 ### 查看资料，添加多说评论系统
