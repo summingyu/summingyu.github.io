@@ -92,14 +92,14 @@
 <meta property="og:site_name" content="余苏明的幻想乡">
 <meta property="og:description" content="85. Pretty Printing Using printf(灵动输出使用printf)语法：1printf &quot;print format&quot;, variable1, variable2, etc.
 特殊符号">
-<meta property="og:image" content="https://summingyu.github.io/./1473669708400.png">
+<meta property="og:image" content="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter13/1473669708400.png">
 <meta property="og:image" content="https://summingyu.github.io/./1473670164788.png">
-<meta property="og:updated_time" content="2016-11-21T03:13:10.000Z">
+<meta property="og:updated_time" content="2016-11-21T03:23:50.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 13. Additional Awk Commands(附加命令)">
 <meta name="twitter:description" content="85. Pretty Printing Using printf(灵动输出使用printf)语法：1printf &quot;print format&quot;, variable1, variable2, etc.
 特殊符号">
-<meta name="twitter:image" content="https://summingyu.github.io/./1473669708400.png">
+<meta name="twitter:image" content="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter13/1473669708400.png">
 
 
 
@@ -319,7 +319,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-21T11:13:10+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-21T11:23:50+08:00">
               2016-11-21
             </time>
             
@@ -390,7 +390,7 @@
 
       
         <h2 id="85-Pretty-Printing-Using-printf-灵动输出使用printf"><a href="#85-Pretty-Printing-Using-printf-灵动输出使用printf" class="headerlink" title="85. Pretty Printing Using printf(灵动输出使用printf)"></a>85. Pretty Printing Using printf(灵动输出使用<code>printf</code>)</h2><p>语法：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">printf</span> <span class="string">"print format"</span>, variable1, variable2, etc.</div></pre></td></tr></table></figure></p>
-<p>特殊符号<br><img src="./1473669708400.png" alt="特殊符号"><br><a id="more"></a></p>
+<p>特殊符号<br><img src="/2016/11/16/Sed_and_Awk/Chapter13/1473669708400.png" alt="特殊符号" title="特殊符号"><br><a id="more"></a></p>
 <h3 id="printf将不使用OFS-ORS的值"><a href="#printf将不使用OFS-ORS的值" class="headerlink" title="printf将不使用OFS,ORS的值"></a>printf将不使用OFS,ORS的值</h3><p>使用了printf之后，OFS,ORS参数将失效<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ cat printf1.awk</div><div class="line">BEGIN &#123;</div><div class="line">	FS=",";</div><div class="line">	OFS=":";</div><div class="line">	ORS="\n--\n";</div><div class="line">&#125;</div><div class="line">&#123;</div><div class="line">	printf "%s^^%s\n\n", $2, $3</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ awk -f printf1.awk items.txt</div><div class="line"></div><div class="line">HD Camcorder^^Video</div><div class="line">Refrigerator^^Appliance</div><div class="line">MP3 Player^^Audio</div><div class="line">Tennis Racket^^Sports</div><div class="line">Laser Printer^^Office</div></pre></td></tr></table></figure></p>
 <p>定制格式符<br><img src="./1473670164788.png" alt="Alt text"></p>
 <h3 id="Print-with-Fixed-Column-Width-Basic-输出固定列宽"><a href="#Print-with-Fixed-Column-Width-Basic-输出固定列宽" class="headerlink" title="Print with Fixed Column Width (Basic)(输出固定列宽)"></a>Print with Fixed Column Width (Basic)(输出固定列宽)</h3><p>同<code>C</code>一样，在%后面加上限定宽度，e.g. </p>
@@ -461,6 +461,7 @@
 <h3 id="读取一个文件"><a href="#读取一个文件" class="headerlink" title="读取一个文件"></a>读取一个文件</h3><p>使用<code>&lt;</code></p>
 <h3 id="读取一个文件到变量"><a href="#读取一个文件到变量" class="headerlink" title="读取一个文件到变量"></a>读取一个文件到变量</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ awk -F<span class="string">","</span> <span class="string">'&#123;print $0; getline tmp &lt; "items-sold.txt"; print tmp;&#125;'</span> <span class="built_in">items</span>.txt</div><div class="line"><span class="number">101</span>,HD Camcorder,Video,<span class="number">210</span>,<span class="number">10</span></div><div class="line"><span class="number">101</span> <span class="number">2</span> <span class="number">10</span> <span class="number">5</span> <span class="number">8</span> <span class="number">10</span> <span class="number">12</span></div><div class="line"><span class="number">102</span>,Refrigerator,Appliance,<span class="number">850</span>,<span class="number">2</span></div><div class="line"><span class="number">102</span> <span class="number">0</span> <span class="number">1</span> <span class="number">4</span> <span class="number">3</span> <span class="number">0</span> <span class="number">2</span></div><div class="line"><span class="number">103</span>,MP3 Player,Audio,<span class="number">270</span>,<span class="number">15</span></div><div class="line"><span class="number">103</span> <span class="number">10</span> <span class="number">6</span> <span class="number">11</span> <span class="number">20</span> <span class="number">5</span> <span class="number">13</span></div><div class="line"><span class="number">104</span>,Tennis Racket,Sports,<span class="number">190</span>,<span class="number">20</span></div><div class="line"><span class="number">104</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">0</span> <span class="number">6</span> <span class="number">5</span></div><div class="line"><span class="number">105</span>,Laser Printer,Office,<span class="number">475</span>,<span class="number">5</span></div><div class="line"><span class="number">105</span> <span class="number">10</span> <span class="number">2</span> <span class="number">5</span> <span class="number">7</span> <span class="number">12</span> <span class="number">6</span></div></pre></td></tr></table></figure>
 <h3 id="读取一个外部命令"><a href="#读取一个外部命令" class="headerlink" title="读取一个外部命令"></a>读取一个外部命令</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">$ cat getline1.awk</div><div class="line">BEGIN &#123;</div><div class="line">	FS=",";</div><div class="line">	"date" | getline</div><div class="line">	close("date")</div><div class="line">	print "Timestamp:" $0</div><div class="line">&#125;</div><div class="line">&#123;</div><div class="line">	if ( $5 &lt;= 5 )</div><div class="line">		print "Buy More: Order", $2, "immediately!"</div><div class="line">	else</div><div class="line">		print "Sell More: Give discount on", $2, "immediately!"</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ awk -f getline1.awk items.txt</div><div class="line"></div><div class="line">Timestamp:Sat Mar 5 09:29:22 PST 2011</div><div class="line">Sell More: Give discount on HD Camcorder immediately!</div><div class="line">Buy More: Order Refrigerator immediately!</div><div class="line">Sell More: Give discount on MP3 Player immediately!</div><div class="line">Sell More: Give discount on Tennis Racket immediately!</div><div class="line">Buy More: Order Laser Printer immediately!</div></pre></td></tr></table></figure>
+
       
     </div>
 
