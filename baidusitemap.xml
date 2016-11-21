@@ -4,6 +4,181 @@
 
     
   <url>
+    <loc>https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter13/</loc>
+    <lastmod>2016-11-21T03:13:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>Chapter 13. Additional Awk Commands(附加命令)</title>
+        <pubTime>2016-11-16T09:13:35.000Z</pubTime>
+        
+        <tag>学习</tag>
+         
+        <tag>基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+             
+              <breadCrumb title="sed and awk 101 hacks" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sed-and-awk-101-hacks/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter11/</loc>
+    <lastmod>2016-11-21T03:11:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>Chapter 11. Awk Conditional Statements and Loops（条件语句和循环）</title>
+        <pubTime>2016-11-16T09:11:35.000Z</pubTime>
+        
+        <tag>学习</tag>
+         
+        <tag>基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+             
+              <breadCrumb title="sed and awk 101 hacks" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sed-and-awk-101-hacks/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter12/</loc>
+    <lastmod>2016-11-21T03:11:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Chapter 12. Awk Associative Arrays（结合数组）</title>
+        <pubTime>2016-11-16T09:12:35.000Z</pubTime>
+        
+        <tag>学习</tag>
+         
+        <tag>基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+             
+              <breadCrumb title="sed and awk 101 hacks" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sed-and-awk-101-hacks/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter10/</loc>
+    <lastmod>2016-11-21T03:06:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>Chapter 10. Awk Variables and Operators</title>
+        <pubTime>2016-11-16T09:10:35.000Z</pubTime>
+        
+        <tag>学习</tag>
+         
+        <tag>基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+             
+              <breadCrumb title="sed and awk 101 hacks" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sed-and-awk-101-hacks/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter9/</loc>
+    <lastmod>2016-11-21T03:04:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>Chapter 9. Awk Built-in Variables（内建变量）</title>
+        <pubTime>2016-11-16T09:09:35.000Z</pubTime>
+        
+        <tag>学习</tag>
+         
+        <tag>基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+             
+              <breadCrumb title="sed and awk 101 hacks" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sed-and-awk-101-hacks/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter8/</loc>
+    <lastmod>2016-11-21T03:03:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>Chapter 8. Awk Syntax and Basic Commands</title>
+        <pubTime>2016-11-16T09:08:35.000Z</pubTime>
+        
+        <tag>学习</tag>
+         
+        <tag>基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+             
+              <breadCrumb title="sed and awk 101 hacks" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sed-and-awk-101-hacks/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter7/</loc>
+    <lastmod>2016-11-21T03:00:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>Chapter 7. Sed Multi-Line Commands and loops</title>
+        <pubTime>2016-11-16T09:07:35.000Z</pubTime>
+        
+        <tag>学习</tag>
+         
+        <tag>基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+             
+              <breadCrumb title="sed and awk 101 hacks" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sed-and-awk-101-hacks/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter6/</loc>
     <lastmod>2016-11-21T02:41:20.000Z</lastmod>
     <data>

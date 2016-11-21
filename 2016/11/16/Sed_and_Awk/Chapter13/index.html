@@ -1,0 +1,829 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习,基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="85. Pretty Printing Using printf(灵动输出使用printf)语法：1printf &quot;print format&quot;, variable1, variable2, etc.
+特殊符号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 13. Additional Awk Commands(附加命令)">
+<meta property="og:url" content="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter13/index.html">
+<meta property="og:site_name" content="余苏明的幻想乡">
+<meta property="og:description" content="85. Pretty Printing Using printf(灵动输出使用printf)语法：1printf &quot;print format&quot;, variable1, variable2, etc.
+特殊符号">
+<meta property="og:image" content="https://summingyu.github.io/./1473669708400.png">
+<meta property="og:image" content="https://summingyu.github.io/./1473670164788.png">
+<meta property="og:updated_time" content="2016-11-21T03:13:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 13. Additional Awk Commands(附加命令)">
+<meta name="twitter:description" content="85. Pretty Printing Using printf(灵动输出使用printf)语法：1printf &quot;print format&quot;, variable1, variable2, etc.
+特殊符号">
+<meta name="twitter:image" content="https://summingyu.github.io/./1473669708400.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter13/"/>
+
+
+
+
+
+  <title> Chapter 13. Additional Awk Commands(附加命令) | 余苏明的幻想乡 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">余苏明的幻想乡</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">summingyu's blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter13/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Summingyu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="余苏明的幻想乡">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="余苏明的幻想乡" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Chapter 13. Additional Awk Commands(附加命令)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-16T17:13:35+08:00">
+              2016-11-16
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-21T11:13:10+08:00">
+              2016-11-21
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/sed-and-awk-101-hacks/" itemprop="url" rel="index">
+                    <span itemprop="name">sed and awk 101 hacks</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/16/Sed_and_Awk/Chapter13/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/16/Sed_and_Awk/Chapter13/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="85-Pretty-Printing-Using-printf-灵动输出使用printf"><a href="#85-Pretty-Printing-Using-printf-灵动输出使用printf" class="headerlink" title="85. Pretty Printing Using printf(灵动输出使用printf)"></a>85. Pretty Printing Using printf(灵动输出使用<code>printf</code>)</h2><p>语法：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">printf</span> <span class="string">"print format"</span>, variable1, variable2, etc.</div></pre></td></tr></table></figure></p>
+<p>特殊符号<br><img src="./1473669708400.png" alt="特殊符号"><br><a id="more"></a></p>
+<h3 id="printf将不使用OFS-ORS的值"><a href="#printf将不使用OFS-ORS的值" class="headerlink" title="printf将不使用OFS,ORS的值"></a>printf将不使用OFS,ORS的值</h3><p>使用了printf之后，OFS,ORS参数将失效<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ cat printf1.awk</div><div class="line">BEGIN &#123;</div><div class="line">	FS=",";</div><div class="line">	OFS=":";</div><div class="line">	ORS="\n--\n";</div><div class="line">&#125;</div><div class="line">&#123;</div><div class="line">	printf "%s^^%s\n\n", $2, $3</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ awk -f printf1.awk items.txt</div><div class="line"></div><div class="line">HD Camcorder^^Video</div><div class="line">Refrigerator^^Appliance</div><div class="line">MP3 Player^^Audio</div><div class="line">Tennis Racket^^Sports</div><div class="line">Laser Printer^^Office</div></pre></td></tr></table></figure></p>
+<p>定制格式符<br><img src="./1473670164788.png" alt="Alt text"></p>
+<h3 id="Print-with-Fixed-Column-Width-Basic-输出固定列宽"><a href="#Print-with-Fixed-Column-Width-Basic-输出固定列宽" class="headerlink" title="Print with Fixed Column Width (Basic)(输出固定列宽)"></a>Print with Fixed Column Width (Basic)(输出固定列宽)</h3><p>同<code>C</code>一样，在%后面加上限定宽度，e.g. </p>
+<ul>
+<li><code>%05s</code> 最少5个字符宽度，不足在前面补0</li>
+<li><code>%5s</code> 最少5个字符宽度，不足在前面补空格(右对齐)</li>
+<li><code>%-5s</code>最少5个字符宽度，不足再后面补空格(左对齐)</li>
+<li><code>%.1s</code>保留位数，浮点数是保留多少位小数<h4 id="Dot-Precision"><a href="#Dot-Precision" class="headerlink" title="Dot . Precision"></a>Dot . Precision</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">cat</span> dot.awk</div><div class="line">BEGIN &#123;</div><div class="line">	<span class="keyword">print</span> <span class="string">"----Using .1----"</span></div><div class="line">	<span class="built_in">printf</span> <span class="string">".1d--&gt; %.1d\n"</span>, <span class="number">101.23</span></div><div class="line">	<span class="built_in">printf</span> <span class="string">".1e--&gt; %.1e\n"</span>, <span class="number">101.23</span></div><div class="line">	<span class="built_in">printf</span> <span class="string">".1f--&gt; %.1f\n"</span>, <span class="number">101.23</span></div><div class="line">	<span class="built_in">printf</span> <span class="string">".1g--&gt; %.1g\n"</span>, <span class="number">101.23</span></div><div class="line">	<span class="keyword">print</span> <span class="string">"----Using .4----"</span></div><div class="line">	<span class="built_in">printf</span> <span class="string">".4d--&gt; %.4d\n"</span>, <span class="number">101.23</span></div><div class="line">	<span class="built_in">printf</span> <span class="string">".4e--&gt; %.4e\n"</span>, <span class="number">101.23</span></div><div class="line">	<span class="built_in">printf</span> <span class="string">".4f--&gt; %.4f\n"</span>, <span class="number">101.23</span></div><div class="line">	<span class="built_in">printf</span> <span class="string">".4g--&gt; %.4g\n"</span>, <span class="number">101.23</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">$ awk -<span class="keyword">f</span> dot.awk</div><div class="line"></div><div class="line">----Using .<span class="number">1</span>---</div><div class="line">.<span class="number">1</span>d--&gt; <span class="number">101</span></div><div class="line">.<span class="number">1</span><span class="keyword">e</span>--&gt; <span class="number">1.0</span><span class="keyword">e</span>+<span class="number">02</span></div><div class="line">.<span class="number">1</span><span class="keyword">f</span>--&gt; <span class="number">101.2</span></div><div class="line">.<span class="number">1</span>g--&gt; <span class="number">1</span><span class="keyword">e</span>+<span class="number">02</span></div><div class="line"></div><div class="line">----Using .<span class="number">4</span>---</div><div class="line">.<span class="number">4</span>d--&gt; <span class="number">0101</span></div><div class="line">.<span class="number">4</span><span class="keyword">e</span>--&gt; <span class="number">1.0123</span><span class="keyword">e</span>+<span class="number">02</span></div><div class="line">.<span class="number">4</span><span class="keyword">f</span>--&gt; <span class="number">101.2300</span></div><div class="line">.<span class="number">4</span>g--&gt; <span class="number">101.2</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Print-Report-to-File-输出结果到文件"><a href="#Print-Report-to-File-输出结果到文件" class="headerlink" title="Print Report to File(输出结果到文件)"></a>Print Report to File(输出结果到文件)</h4><p>同<code>shell</code>脚本一样，可以配合<code>&gt;</code> 、<code>&gt;&gt;</code>在<code>awk</code>脚本内或命令行添加输出到文件参数</p>
+<h2 id="86-Built-in-Numeric-Functions-内建数值函数"><a href="#86-Built-in-Numeric-Functions-内建数值函数" class="headerlink" title="86. Built-in Numeric Functions(内建数值函数)"></a>86. Built-in Numeric Functions(内建数值函数)</h2><h3 id="Awk-int-n-Function"><a href="#Awk-int-n-Function" class="headerlink" title="Awk int(n) Function"></a>Awk int(n) Function</h3><p>int函数，将值格式化为整数型</p>
+<blockquote>
+<p>不是四舍五入，而是截断，<code>print int(4.9)</code>结果为4。</p>
+<h3 id="Awk-log-n-Function"><a href="#Awk-log-n-Function" class="headerlink" title="Awk log(n) Function"></a>Awk log(n) Function</h3><p>$\log{n}$</p>
+<h3 id="Awk-sqrt-n-Function-平方根函数"><a href="#Awk-sqrt-n-Function-平方根函数" class="headerlink" title="Awk sqrt(n) Function(平方根函数)"></a>Awk sqrt(n) Function(平方根函数)</h3><p>$\sqrt {n}$</p>
+<h3 id="Awk-exp-n-Function-指数函数"><a href="#Awk-exp-n-Function-指数函数" class="headerlink" title="Awk exp(n) Function(指数函数)"></a>Awk exp(n) Function(指数函数)</h3><p>形如$e^n$</p>
+<h3 id="Awk-sin-n-、cos-n-Function"><a href="#Awk-sin-n-、cos-n-Function" class="headerlink" title="Awk sin(n)、cos(n) Function"></a>Awk sin(n)、cos(n) Function</h3><p>$\sin(n)$ $\cos(n)$</p>
+<h3 id="Awk-atan2-m-n-Function-反正切函数"><a href="#Awk-atan2-m-n-Function-反正切函数" class="headerlink" title="Awk atan2(m,n) Function(反正切函数)"></a>Awk atan2(m,n) Function(反正切函数)</h3><p>$\arctan m/n$</p>
+<h2 id="87-Random-Number-Generator-随机数生成器"><a href="#87-Random-Number-Generator-随机数生成器" class="headerlink" title="87. Random Number Generator(随机数生成器)"></a>87. Random Number Generator(随机数生成器)</h2><h3 id="Awk-rand-Function-随机数函数"><a href="#Awk-rand-Function-随机数函数" class="headerlink" title="Awk rand() Function(随机数函数)"></a>Awk rand() Function(随机数函数)</h3><p>该函数随机生成一个0~1之间的一个数</p>
+<h3 id="Awk-srand-n-Function-随机数初始化函数"><a href="#Awk-srand-n-Function-随机数初始化函数" class="headerlink" title="Awk srand(n) Function(随机数初始化函数)"></a>Awk srand(n) Function(随机数初始化函数)</h3><p>种子函数<code>seed</code>种子不变，每次的随机数序列都是一样的。</p>
+<h2 id="88-Generic-String-Functions-典型字符串函数"><a href="#88-Generic-String-Functions-典型字符串函数" class="headerlink" title="88. Generic String Functions(典型字符串函数)"></a>88. Generic String Functions(典型字符串函数)</h2><h3 id="Index-Function-目录函数"><a href="#Index-Function-目录函数" class="headerlink" title="Index Function(目录函数)"></a>Index Function(目录函数)</h3><p>可以查找特定字符在特定字符串的位置<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ cat index.awk</div><div class="line">BEGIN &#123;</div><div class="line">	state="CA is California"</div><div class="line">	print "String CA starts at location",index(state,"CA");</div><div class="line">	print "String Cali starts at location",index(state,"Cali");</div><div class="line">	if (index(state,"NY")==0)</div><div class="line">		print "String NY is not found in:", state</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ awk -f index.awk</div><div class="line"></div><div class="line">String CA starts at location 1</div><div class="line">String Cali starts at location 7</div><div class="line">String NY is not found in: CA is California</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="Length-Function-长度函数"><a href="#Length-Function-长度函数" class="headerlink" title="Length Function(长度函数)"></a>Length Function(长度函数)</h3><p>输出特定字符串长度<code>length(string)</code></p>
+<h3 id="Split-Function-分割函数"><a href="#Split-Function-分割函数" class="headerlink" title="Split Function(分割函数)"></a>Split Function(分割函数)</h3><p>将特定字符串按分隔符分割写入输出数组<br>语法<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">split</span>(<span class="built_in">input</span>-<span class="built_in">string</span>,output-array,separator)</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如果第三个参数没有指定，则使用默认的<code>FS</code></p>
+<h3 id="Substr-Function-截取函数"><a href="#Substr-Function-截取函数" class="headerlink" title="Substr Function(截取函数)"></a>Substr Function(截取函数)</h3><p>将指定字符串从指定位置，输出指定长度的内容<br>语法<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">substr(<span class="built_in">input</span>-<span class="built_in">string</span>, location, length)</div></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">表示是从第<span class="number">3</span>个字段里的第<span class="number">6</span>个字符开始，一直到设定的分隔符<span class="string">","</span>结束.</div><div class="line">awk -F <span class="string">','</span> <span class="string">'&#123;print substr($3,6)&#125;'</span></div><div class="line"></div><div class="line">表示是从第<span class="number">3</span>个字段里的第<span class="number">10</span>个字符开始，截取<span class="number">8</span>个字符结束.</div><div class="line">substr($<span class="number">3</span>,<span class="number">10</span>,<span class="number">8</span>)</div><div class="line"></div><div class="line">表示是从第<span class="number">3</span>个字段里的第<span class="number">6</span>个字符开始，一直到结尾</div><div class="line">substr($<span class="number">3</span>,<span class="number">6</span>)</div></pre></td></tr></table></figure>
+<h2 id="89-GAWK-NAWK-String-Functions-GAWK-NAWK特有字符串函数"><a href="#89-GAWK-NAWK-String-Functions-GAWK-NAWK特有字符串函数" class="headerlink" title="89. GAWK/NAWK String Functions(GAWK/NAWK特有字符串函数)"></a>89. GAWK/NAWK String Functions(GAWK/NAWK特有字符串函数)</h2><h3 id="Sub-Function-替换函数"><a href="#Sub-Function-替换函数" class="headerlink" title="Sub Function(替换函数)"></a>Sub Function(替换函数)</h3><p>语法<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sub(original-<span class="built_in">string</span>,replacement-<span class="built_in">string</span>,<span class="built_in">string</span>-variable)</div></pre></td></tr></table></figure></p>
+<p>将指定字符串(string-variable)的源字符串(original-string)替换成替换字符串(replacement-string)</p>
+<blockquote>
+<p>第三个参数是可选的，默认为<code>$0</code><br>当成功执行sub函数，返回的结果是1而不是0<br>每行记录值替换最左边匹配到的字符串一次</p>
+<h3 id="Gsub-Function-全局替换函数"><a href="#Gsub-Function-全局替换函数" class="headerlink" title="Gsub Function(全局替换函数)"></a>Gsub Function(全局替换函数)</h3><p>用法和<code>sub</code>一样的<br>相当于<code>sed &#39;s///g&#39;</code></p>
+<h3 id="Match-Function-and-RSTART-RLENGTH-variables-match函数和RSTART-RLENGTH参数"><a href="#Match-Function-and-RSTART-RLENGTH-variables-match函数和RSTART-RLENGTH参数" class="headerlink" title="Match Function () and RSTART, RLENGTH variables(match函数和RSTART,RLENGTH参数)"></a>Match Function () and RSTART, RLENGTH variables(match函数和RSTART,RLENGTH参数)</h3><p>查找指定字符串或正则表达式<br>语法<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">match</span>(<span class="built_in">input</span>-<span class="built_in">string</span>,<span class="built_in">search</span>-<span class="built_in">string</span>)</div></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ cat match.awk</div><div class="line">BEGIN &#123;</div><div class="line">	state="CA is California"</div><div class="line">	if (match(state,"Cali")) &#123;</div><div class="line">		print substr(state,RSTART,RLENGTH),"is present in:", state; </div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ awk -f match.awk</div><div class="line">Cali is present in: CA is California</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>RSTART</strong> 匹配字符串在源字符串开始的位置</li>
+<li><strong>RLENGTH</strong> 匹配字符串长度<h2 id="90-GAWK-String-Functions-GAWK特有的字符串函数"><a href="#90-GAWK-String-Functions-GAWK特有的字符串函数" class="headerlink" title="90. GAWK String Functions(GAWK特有的字符串函数)"></a>90. GAWK String Functions(GAWK特有的字符串函数)</h2>改变大小写函数<code>tolower</code>和<code>toupper</code>函数是只在GAWK才有效的函数</li>
+</ul>
+<h2 id="91-Argument-Processing-ARGC-ARGV-ARGIND-参数处理"><a href="#91-Argument-Processing-ARGC-ARGV-ARGIND-参数处理" class="headerlink" title="91. Argument Processing (ARGC, ARGV, ARGIND)参数处理"></a>91. Argument Processing (ARGC, ARGV, ARGIND)参数处理</h2><ul>
+<li>在命令行上，参数ARGC和ARGV将会被忽略</li>
+<li>ARGC是统计参数个数</li>
+<li>ARGV是一个数组，里面记录了参数值，index从0开始到ARGC</li>
+<li>当你有5个参数，则ARGC的值为6</li>
+<li>ARGV[0]值总是awk</li>
+<li>ARGIND是当前处理文件的序列号ARGV[ARGIND]里面的值为当前处理的文件名</li>
+<li>只有一个文件是ARGIND为1<h2 id="92-OFMT"><a href="#92-OFMT" class="headerlink" title="92. OFMT"></a>92. OFMT</h2>The OFMT built-in variable is available only in NAWK and GAWK.这个函数值只在NAWK和GAWK里有效<br>.g是全局的，.f是指☞<code>.</code>后面的<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">$ cat ofmt.awk</div><div class="line">BEGIN &#123;</div><div class="line">	total=143.123456789;</div><div class="line">	print "---using g----"</div><div class="line">	print "Default OFMT:", total;</div><div class="line">	OFMT="%.3g";</div><div class="line">	print "%.3g OFMT:", total;</div><div class="line">	OFMT="%.4g";</div><div class="line">	print "%.4g OFMT:", total;</div><div class="line">	OFMT="%.5g";</div><div class="line">	print "%.5g OFMT:", total;</div><div class="line">	OFMT="%.6g";</div><div class="line">	print "%.6g OFMT:", total;</div><div class="line">	print "---using f----"</div><div class="line">	OFMT="%.0f";</div><div class="line">	print "%.0f OFMT:", total;</div><div class="line">	OFMT="%.1f";</div><div class="line">	print "%.1f OFMT:", total;</div><div class="line">	OFMT="%.2f";</div><div class="line">	print "%.2f OFMT:", total;</div><div class="line">	OFMT="%.3f";</div><div class="line">	print "%.3f OFMT:", total;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ awk -f ofmt.awk</div><div class="line"></div><div class="line">---using g----</div><div class="line">Default OFMT: 143.123</div><div class="line">%.3g OFMT: 143</div><div class="line">%.4g OFMT: 143.1</div><div class="line">%.5g OFMT: 143.12</div><div class="line">%.6g OFMT: 143.123</div><div class="line">---using f---</div><div class="line">%.0f OFMT: 143</div><div class="line">%.1f OFMT: 143.1</div><div class="line">%.2f OFMT: 143.12</div><div class="line">%.3f OFMT: 143.123</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="93-GAWK-Built-in-Environment-Variables-内建环境变量"><a href="#93-GAWK-Built-in-Environment-Variables-内建环境变量" class="headerlink" title="93. GAWK Built-in Environment Variables(内建环境变量)"></a>93. GAWK Built-in Environment Variables(内建环境变量)</h2><p>只有GAWK有效</p>
+<h3 id="ENVIRON"><a href="#ENVIRON" class="headerlink" title="ENVIRON"></a>ENVIRON</h3><p>这个是非常有用的，当你想在awk脚本中调用shell的环境变量时。<br><code>ENVIRON</code>是一个数组，包含了所有环境变量的值的数组，而index的值则是环境变量的名字。<br>For example,<br><code>ENVIRON[&quot;PATH&quot;]</code>表示的就是环境变量<code>PATH</code>的值</p>
+<h3 id="IGNORECASE"><a href="#IGNORECASE" class="headerlink" title="IGNORECASE"></a>IGNORECASE</h3><p><code>IGNORECASE</code>默认值为<code>0</code>，表示大小写敏感，可以设置为<code>1</code>表示忽略大小写</p>
+<h3 id="ERRNO"><a href="#ERRNO" class="headerlink" title="ERRNO"></a>ERRNO</h3><p>错误输出，将错误信息写入到变量<code>ERRNO</code>中</p>
+<h2 id="94-Awk-Profiler-pgawk"><a href="#94-Awk-Profiler-pgawk" class="headerlink" title="94. Awk Profiler - pgawk"></a>94. Awk Profiler - pgawk</h2><p>这个选项会将程序文件以一种很优美的方式输出（译注：用于格式化 awk 脚本文件）。默认输出文件是 <strong>awkprof.out</strong>。<br>先创建一个awk脚本<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ cat profiler.awk</div><div class="line">BEGIN &#123;</div><div class="line">	FS=",";</div><div class="line">	print "Report Generated On:" strftime("%a %b %d %H:%M: %S %Z %Y",systime());</div><div class="line">&#125;</div><div class="line">&#123;</div><div class="line">	if ( $5 &lt;= 5 )</div><div class="line">		print "Buy More: Order", $2, "immediately!"</div><div class="line">	else</div><div class="line">		print "Sell More: Give discount on", $2, "immediately!"</div><div class="line">&#125;</div><div class="line">END &#123;</div><div class="line">	print "----"</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>执行下面命令<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pgawk --<span class="keyword">profile</span>=myprofiler.out -<span class="keyword">f</span> profiler.awk <span class="built_in">items</span>.txt</div></pre></td></tr></table></figure></p>
+<p>查看输出的格式化脚本<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">cat</span> myprofiler.out </div><div class="line">        # gawk 配置, 创建 Sun Sep <span class="number">18</span> <span class="number">12</span>:<span class="number">28</span>:<span class="number">22</span> <span class="number">2016</span></div><div class="line"></div><div class="line">        # BEGIN 块</div><div class="line"></div><div class="line">        BEGIN &#123;</div><div class="line">     <span class="number">1</span>          FS = <span class="string">","</span></div><div class="line">     <span class="number">1</span>          <span class="keyword">print</span> (<span class="string">"Report Generated On:"</span> (<span class="built_in">strftime</span>(<span class="string">"%a %b %d %H:%M: %S %Z %Y"</span>, systime())))</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        # 规则</div><div class="line"></div><div class="line">     <span class="number">3</span>  &#123;</div><div class="line">     <span class="number">3</span>          <span class="keyword">if</span> ($<span class="number">5</span> &lt;= <span class="number">5</span>) &#123; # <span class="number">3</span></div><div class="line">     <span class="number">3</span>                  <span class="keyword">print</span> <span class="string">"Buy More: Order"</span>, $<span class="number">2</span>, <span class="string">"immediately!"</span></div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="keyword">print</span> <span class="string">"Sell More: Give discount on"</span>, $<span class="number">2</span>, <span class="string">"immediately!"</span></div><div class="line">                &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        # END 块</div><div class="line"></div><div class="line">        END &#123;</div><div class="line">     <span class="number">1</span>          <span class="keyword">print</span> <span class="string">"----"</span></div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
+<p>发现进行了格式化</p>
+<h2 id="95-Bit-Manipulation-位操作"><a href="#95-Bit-Manipulation-位操作" class="headerlink" title="95. Bit Manipulation(位操作)"></a>95. Bit Manipulation(位操作)</h2><p>与或非、左移、右移<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ cat bits.awk</div><div class="line">BEGIN &#123;</div><div class="line">	number1=15</div><div class="line">	number2=25</div><div class="line">	print "AND: " and(number1,number2);</div><div class="line">	print "OR: " or(number1,number2)</div><div class="line">	print "XOR: " xor(number1,number2)</div><div class="line">	print "LSHIFT: " lshift(number1,2)</div><div class="line">	print "RSHIFT: " rshift(number1,2)</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ awk -f bits.awk</div><div class="line">AND: 9</div><div class="line">OR: 31</div><div class="line">XOR: 22</div><div class="line">LSHIFT: 60</div><div class="line">RSHIFT: 3</div></pre></td></tr></table></figure></p>
+<h2 id="96-User-Defined-Functions-用户自定义函数"><a href="#96-User-Defined-Functions-用户自定义函数" class="headerlink" title="96. User Defined Functions(用户自定义函数)"></a>96. User Defined Functions(用户自定义函数)</h2><p>语法：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>-<span class="title">name</span><span class="params">(parameters)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="function"><span class="keyword">function</span>-<span class="title">body</span></span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="97-Language-Independent-Output-Internationalization-语言独立输出-国际"><a href="#97-Language-Independent-Output-Internationalization-语言独立输出-国际" class="headerlink" title="97. Language Independent Output (Internationalization)(语言独立输出(国际))"></a>97. Language Independent Output (Internationalization)(语言独立输出(国际))</h2><h2 id="98-Two-Way-Communication"><a href="#98-Two-Way-Communication" class="headerlink" title="98. Two Way Communication"></a>98. Two Way Communication</h2><p>Awk can communication to an external process using “|&amp;”, which is two way communication.<br>使用<code>|&amp;</code>标记能调用其他命令<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ cat two-way.awk</div><div class="line">BEGIN &#123;</div><div class="line">	command = "sed 's/Awk/Sed and Awk/'"</div><div class="line">	print "Awk is Great!" |&amp; command</div><div class="line">	close(command,"to");</div><div class="line">	command |&amp; getline tmp</div><div class="line">	print tmp;</div><div class="line">	close(command);</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ awk -f two-way.awk</div><div class="line">Sed and Awk is Great!</div></pre></td></tr></table></figure></p>
+<h2 id="99-System-Function-system函数"><a href="#99-System-Function-system函数" class="headerlink" title="99. System Function(system函数)"></a>99. System Function(system函数)</h2><p>你可以在system函数里调用外部内建函数<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ awk <span class="string">'BEGIN &#123; system("date") &#125;'</span></div><div class="line"></div><div class="line">Mon Sep <span class="number">19</span> <span class="number">09</span>:<span class="number">49</span>:<span class="number">37</span> CST <span class="number">2016</span></div></pre></td></tr></table></figure></p>
+<h2 id="100-Timestamp-Functions-时间函数"><a href="#100-Timestamp-Functions-时间函数" class="headerlink" title="100. Timestamp Functions(时间函数)"></a>100. Timestamp Functions(时间函数)</h2><p>These are available only in GAWK.<code>systime()</code></p>
+<h2 id="101-getline-Command-getline命令"><a href="#101-getline-Command-getline命令" class="headerlink" title="101. getline Command(getline命令)"></a>101. getline Command(getline命令)</h2><h3 id="单独使用getline-则读取下一行-和sed的n命令一样"><a href="#单独使用getline-则读取下一行-和sed的n命令一样" class="headerlink" title="单独使用getline 则读取下一行(和sed的n命令一样)"></a>单独使用<code>getline</code> 则读取下一行(和sed的n命令一样)</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ awk -F<span class="string">","</span> <span class="string">'&#123;getline; print $0;&#125;'</span> <span class="built_in">items</span>.txt <span class="number">102</span>,Refrigerator,Appliance,<span class="number">850</span>,<span class="number">2</span></div><div class="line"><span class="number">104</span>,Tennis Racket,Sports,<span class="number">190</span>,<span class="number">20</span></div><div class="line"><span class="number">105</span>,Laser Printer,Office,<span class="number">475</span>,<span class="number">5</span></div></pre></td></tr></table></figure>
+<h3 id="getline后面带参数"><a href="#getline后面带参数" class="headerlink" title="getline后面带参数"></a><code>getline</code>后面带参数</h3><p>和sed的hold空间差不多<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ awk -F<span class="string">","</span> <span class="string">'&#123;getline tmp; print "$0-&gt;", $0; print "tmp-&gt;", tmp;&#125;'</span> <span class="built_in">items</span>.txt</div><div class="line"></div><div class="line">$<span class="number">0</span>-&gt; <span class="number">101</span>,HD Camcorder,Video,<span class="number">210</span>,<span class="number">10</span></div><div class="line">tmp-&gt; <span class="number">102</span>,Refrigerator,Appliance,<span class="number">850</span>,<span class="number">2</span></div><div class="line">$<span class="number">0</span>-&gt; <span class="number">103</span>,MP3 Player,Audio,<span class="number">270</span>,<span class="number">15</span></div><div class="line">tmp-&gt; <span class="number">104</span>,Tennis Racket,Sports,<span class="number">190</span>,<span class="number">20</span></div><div class="line">$<span class="number">0</span>-&gt; <span class="number">105</span>,Laser Printer,Office,<span class="number">475</span>,<span class="number">5</span></div><div class="line">tmp-&gt; <span class="number">104</span>,Tennis Racket,Sports,<span class="number">190</span>,<span class="number">20</span></div></pre></td></tr></table></figure></p>
+<h3 id="读取一个文件"><a href="#读取一个文件" class="headerlink" title="读取一个文件"></a>读取一个文件</h3><p>使用<code>&lt;</code></p>
+<h3 id="读取一个文件到变量"><a href="#读取一个文件到变量" class="headerlink" title="读取一个文件到变量"></a>读取一个文件到变量</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ awk -F<span class="string">","</span> <span class="string">'&#123;print $0; getline tmp &lt; "items-sold.txt"; print tmp;&#125;'</span> <span class="built_in">items</span>.txt</div><div class="line"><span class="number">101</span>,HD Camcorder,Video,<span class="number">210</span>,<span class="number">10</span></div><div class="line"><span class="number">101</span> <span class="number">2</span> <span class="number">10</span> <span class="number">5</span> <span class="number">8</span> <span class="number">10</span> <span class="number">12</span></div><div class="line"><span class="number">102</span>,Refrigerator,Appliance,<span class="number">850</span>,<span class="number">2</span></div><div class="line"><span class="number">102</span> <span class="number">0</span> <span class="number">1</span> <span class="number">4</span> <span class="number">3</span> <span class="number">0</span> <span class="number">2</span></div><div class="line"><span class="number">103</span>,MP3 Player,Audio,<span class="number">270</span>,<span class="number">15</span></div><div class="line"><span class="number">103</span> <span class="number">10</span> <span class="number">6</span> <span class="number">11</span> <span class="number">20</span> <span class="number">5</span> <span class="number">13</span></div><div class="line"><span class="number">104</span>,Tennis Racket,Sports,<span class="number">190</span>,<span class="number">20</span></div><div class="line"><span class="number">104</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">0</span> <span class="number">6</span> <span class="number">5</span></div><div class="line"><span class="number">105</span>,Laser Printer,Office,<span class="number">475</span>,<span class="number">5</span></div><div class="line"><span class="number">105</span> <span class="number">10</span> <span class="number">2</span> <span class="number">5</span> <span class="number">7</span> <span class="number">12</span> <span class="number">6</span></div></pre></td></tr></table></figure>
+<h3 id="读取一个外部命令"><a href="#读取一个外部命令" class="headerlink" title="读取一个外部命令"></a>读取一个外部命令</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">$ cat getline1.awk</div><div class="line">BEGIN &#123;</div><div class="line">	FS=",";</div><div class="line">	"date" | getline</div><div class="line">	close("date")</div><div class="line">	print "Timestamp:" $0</div><div class="line">&#125;</div><div class="line">&#123;</div><div class="line">	if ( $5 &lt;= 5 )</div><div class="line">		print "Buy More: Order", $2, "immediately!"</div><div class="line">	else</div><div class="line">		print "Sell More: Give discount on", $2, "immediately!"</div><div class="line">&#125;</div><div class="line"></div><div class="line">$ awk -f getline1.awk items.txt</div><div class="line"></div><div class="line">Timestamp:Sat Mar 5 09:29:22 PST 2011</div><div class="line">Sell More: Give discount on HD Camcorder immediately!</div><div class="line">Buy More: Order Refrigerator immediately!</div><div class="line">Sell More: Give discount on MP3 Player immediately!</div><div class="line">Sell More: Give discount on Tennis Racket immediately!</div><div class="line">Buy More: Order Laser Printer immediately!</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/基础/" rel="tag"># 基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/16/Sed_and_Awk/Chapter12/" rel="next" title="Chapter 12. Awk Associative Arrays（结合数组）">
+                <i class="fa fa-chevron-left"></i> Chapter 12. Awk Associative Arrays（结合数组）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/17/hexo/hexo搭建自己的博客/" rel="prev" title="hexo搭建自己的博客">
+                hexo搭建自己的博客 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/16/Sed_and_Awk/Chapter13/"
+           data-title="Chapter 13. Additional Awk Commands(附加命令)" data-url="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter13/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Summingyu" />
+          <p class="site-author-name" itemprop="name">Summingyu</p>
+          <p class="site-description motion-element" itemprop="description">“Talk is cheap. Show me the code.”————多说无益，看代码</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/summingyu" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1891527110" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://quericy.me/" title="quericy" target="_blank">quericy</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#85-Pretty-Printing-Using-printf-灵动输出使用printf"><span class="nav-number">1.</span> <span class="nav-text">85. Pretty Printing Using printf(灵动输出使用printf)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#printf将不使用OFS-ORS的值"><span class="nav-number">1.1.</span> <span class="nav-text">printf将不使用OFS,ORS的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Print-with-Fixed-Column-Width-Basic-输出固定列宽"><span class="nav-number">1.2.</span> <span class="nav-text">Print with Fixed Column Width (Basic)(输出固定列宽)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Dot-Precision"><span class="nav-number">1.2.1.</span> <span class="nav-text">Dot . Precision</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-Report-to-File-输出结果到文件"><span class="nav-number">1.2.2.</span> <span class="nav-text">Print Report to File(输出结果到文件)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#86-Built-in-Numeric-Functions-内建数值函数"><span class="nav-number">2.</span> <span class="nav-text">86. Built-in Numeric Functions(内建数值函数)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Awk-int-n-Function"><span class="nav-number">2.1.</span> <span class="nav-text">Awk int(n) Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Awk-log-n-Function"><span class="nav-number">2.2.</span> <span class="nav-text">Awk log(n) Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Awk-sqrt-n-Function-平方根函数"><span class="nav-number">2.3.</span> <span class="nav-text">Awk sqrt(n) Function(平方根函数)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Awk-exp-n-Function-指数函数"><span class="nav-number">2.4.</span> <span class="nav-text">Awk exp(n) Function(指数函数)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Awk-sin-n-、cos-n-Function"><span class="nav-number">2.5.</span> <span class="nav-text">Awk sin(n)、cos(n) Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Awk-atan2-m-n-Function-反正切函数"><span class="nav-number">2.6.</span> <span class="nav-text">Awk atan2(m,n) Function(反正切函数)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#87-Random-Number-Generator-随机数生成器"><span class="nav-number">3.</span> <span class="nav-text">87. Random Number Generator(随机数生成器)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Awk-rand-Function-随机数函数"><span class="nav-number">3.1.</span> <span class="nav-text">Awk rand() Function(随机数函数)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Awk-srand-n-Function-随机数初始化函数"><span class="nav-number">3.2.</span> <span class="nav-text">Awk srand(n) Function(随机数初始化函数)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#88-Generic-String-Functions-典型字符串函数"><span class="nav-number">4.</span> <span class="nav-text">88. Generic String Functions(典型字符串函数)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Index-Function-目录函数"><span class="nav-number">4.1.</span> <span class="nav-text">Index Function(目录函数)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Length-Function-长度函数"><span class="nav-number">4.2.</span> <span class="nav-text">Length Function(长度函数)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Split-Function-分割函数"><span class="nav-number">4.3.</span> <span class="nav-text">Split Function(分割函数)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Substr-Function-截取函数"><span class="nav-number">4.4.</span> <span class="nav-text">Substr Function(截取函数)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#89-GAWK-NAWK-String-Functions-GAWK-NAWK特有字符串函数"><span class="nav-number">5.</span> <span class="nav-text">89. GAWK/NAWK String Functions(GAWK/NAWK特有字符串函数)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sub-Function-替换函数"><span class="nav-number">5.1.</span> <span class="nav-text">Sub Function(替换函数)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gsub-Function-全局替换函数"><span class="nav-number">5.2.</span> <span class="nav-text">Gsub Function(全局替换函数)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Match-Function-and-RSTART-RLENGTH-variables-match函数和RSTART-RLENGTH参数"><span class="nav-number">5.3.</span> <span class="nav-text">Match Function () and RSTART, RLENGTH variables(match函数和RSTART,RLENGTH参数)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#90-GAWK-String-Functions-GAWK特有的字符串函数"><span class="nav-number">6.</span> <span class="nav-text">90. GAWK String Functions(GAWK特有的字符串函数)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#91-Argument-Processing-ARGC-ARGV-ARGIND-参数处理"><span class="nav-number">7.</span> <span class="nav-text">91. Argument Processing (ARGC, ARGV, ARGIND)参数处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#92-OFMT"><span class="nav-number">8.</span> <span class="nav-text">92. OFMT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#93-GAWK-Built-in-Environment-Variables-内建环境变量"><span class="nav-number">9.</span> <span class="nav-text">93. GAWK Built-in Environment Variables(内建环境变量)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ENVIRON"><span class="nav-number">9.1.</span> <span class="nav-text">ENVIRON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IGNORECASE"><span class="nav-number">9.2.</span> <span class="nav-text">IGNORECASE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ERRNO"><span class="nav-number">9.3.</span> <span class="nav-text">ERRNO</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#94-Awk-Profiler-pgawk"><span class="nav-number">10.</span> <span class="nav-text">94. Awk Profiler - pgawk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#95-Bit-Manipulation-位操作"><span class="nav-number">11.</span> <span class="nav-text">95. Bit Manipulation(位操作)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#96-User-Defined-Functions-用户自定义函数"><span class="nav-number">12.</span> <span class="nav-text">96. User Defined Functions(用户自定义函数)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#97-Language-Independent-Output-Internationalization-语言独立输出-国际"><span class="nav-number">13.</span> <span class="nav-text">97. Language Independent Output (Internationalization)(语言独立输出(国际))</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#98-Two-Way-Communication"><span class="nav-number">14.</span> <span class="nav-text">98. Two Way Communication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#99-System-Function-system函数"><span class="nav-number">15.</span> <span class="nav-text">99. System Function(system函数)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#100-Timestamp-Functions-时间函数"><span class="nav-number">16.</span> <span class="nav-text">100. Timestamp Functions(时间函数)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#101-getline-Command-getline命令"><span class="nav-number">17.</span> <span class="nav-text">101. getline Command(getline命令)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单独使用getline-则读取下一行-和sed的n命令一样"><span class="nav-number">17.1.</span> <span class="nav-text">单独使用getline 则读取下一行(和sed的n命令一样)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getline后面带参数"><span class="nav-number">17.2.</span> <span class="nav-text">getline后面带参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取一个文件"><span class="nav-number">17.3.</span> <span class="nav-text">读取一个文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取一个文件到变量"><span class="nav-number">17.4.</span> <span class="nav-text">读取一个文件到变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取一个外部命令"><span class="nav-number">17.5.</span> <span class="nav-text">读取一个外部命令</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Summingyu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"summingyu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
