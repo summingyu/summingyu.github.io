@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="学习,基础," />
 
 
 
@@ -84,40 +84,31 @@
 
 
 
-<meta name="description" content="title: ‘Chapter 3. Regular Expressions（正则表达式）’date: 2016-11-16 17:04:33tags: 
-
-学习
-基础categories: 
-学习笔记
-sed and awk 101 hacks
-
-
-Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundamentals（">
+<meta name="description" content="Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundamentals（正则表达式基础）
+Beginning of line (^ )
+End of line ( $)
+Single Character (.)
+Zero or more Occurrences (*)
+One or more Occurrence (\+)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="余苏明的幻想乡">
-<meta property="og:url" content="https://summingyu.github.io/2016/11/21/Sed_and_Awk/Chapter3/index.html">
+<meta property="og:title" content="Chapter 3. Regular Expressions（正则表达式）">
+<meta property="og:url" content="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter3/index.html">
 <meta property="og:site_name" content="余苏明的幻想乡">
-<meta property="og:description" content="title: ‘Chapter 3. Regular Expressions（正则表达式）’date: 2016-11-16 17:04:33tags: 
-
-学习
-基础categories: 
-学习笔记
-sed and awk 101 hacks
-
-
-Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundamentals（">
-<meta property="og:updated_time" content="2016-11-21T02:19:43.000Z">
+<meta property="og:description" content="Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundamentals（正则表达式基础）
+Beginning of line (^ )
+End of line ( $)
+Single Character (.)
+Zero or more Occurrences (*)
+One or more Occurrence (\+)">
+<meta property="og:updated_time" content="2016-11-21T02:30:18.830Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="余苏明的幻想乡">
-<meta name="twitter:description" content="title: ‘Chapter 3. Regular Expressions（正则表达式）’date: 2016-11-16 17:04:33tags: 
-
-学习
-基础categories: 
-学习笔记
-sed and awk 101 hacks
-
-
-Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundamentals（">
+<meta name="twitter:title" content="Chapter 3. Regular Expressions（正则表达式）">
+<meta name="twitter:description" content="Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundamentals（正则表达式基础）
+Beginning of line (^ )
+End of line ( $)
+Single Character (.)
+Zero or more Occurrences (*)
+One or more Occurrence (\+)">
 
 
 
@@ -145,13 +136,13 @@ Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundam
 
 
 
-  <link rel="canonical" href="https://summingyu.github.io/2016/11/21/Sed_and_Awk/Chapter3/"/>
+  <link rel="canonical" href="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter3/"/>
 
 
 
 
 
-  <title>  | 余苏明的幻想乡 </title>
+  <title> Chapter 3. Regular Expressions（正则表达式） | 余苏明的幻想乡 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -292,7 +283,7 @@ Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundam
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/11/21/Sed_and_Awk/Chapter3/">
+  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter3/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Summingyu">
@@ -316,7 +307,7 @@ Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundam
             
             
               
-                
+                Chapter 3. Regular Expressions（正则表达式）
               
             
           </h1>
@@ -328,8 +319,8 @@ Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundam
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-21T10:24:24+08:00">
-              2016-11-21
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-16T17:04:33+08:00">
+              2016-11-16
             </time>
 
             &nbsp;|&nbsp;
@@ -337,20 +328,51 @@ Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundam
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-21T10:19:43+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-21T10:30:18+08:00">
               2016-11-21
             </time>
             
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/sed-and-awk-101-hacks/" itemprop="url" rel="index">
+                    <span itemprop="name">sed and awk 101 hacks</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/21/Sed_and_Awk/Chapter3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/21/Sed_and_Awk/Chapter3/" itemprop="commentCount"></span>
+                <a href="/2016/11/16/Sed_and_Awk/Chapter3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/16/Sed_and_Awk/Chapter3/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -376,16 +398,7 @@ Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundam
       
 
       
-        <hr>
-<p>title: ‘Chapter 3. Regular Expressions（正则表达式）’<br>date: 2016-11-16 17:04:33<br>tags: </p>
-<ul>
-<li>学习</li>
-<li>基础<br>categories: </li>
-<li>学习笔记</li>
-<li>sed and awk 101 hacks</li>
-</ul>
-<hr>
-<h1 id="Chapter-3-Regular-Expressions（正则表达式）"><a href="#Chapter-3-Regular-Expressions（正则表达式）" class="headerlink" title="Chapter 3. Regular Expressions（正则表达式）"></a>Chapter 3. Regular Expressions（正则表达式）</h1><h2 id="20-Regular-Expression-Fundamentals（正则表达式基础）"><a href="#20-Regular-Expression-Fundamentals（正则表达式基础）" class="headerlink" title="20. Regular Expression Fundamentals（正则表达式基础）"></a>20. Regular Expression Fundamentals（正则表达式基础）</h2><ol>
+        <h1 id="Chapter-3-Regular-Expressions（正则表达式）"><a href="#Chapter-3-Regular-Expressions（正则表达式）" class="headerlink" title="Chapter 3. Regular Expressions（正则表达式）"></a>Chapter 3. Regular Expressions（正则表达式）</h1><h2 id="20-Regular-Expression-Fundamentals（正则表达式基础）"><a href="#20-Regular-Expression-Fundamentals（正则表达式基础）" class="headerlink" title="20. Regular Expression Fundamentals（正则表达式基础）"></a>20. Regular Expression Fundamentals（正则表达式基础）</h2><ol>
 <li>Beginning of line (<code>^</code> )</li>
 <li>End of line ( <code>$</code>)</li>
 <li>Single Character (.)</li>
@@ -423,14 +436,18 @@ Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundam
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/基础/" rel="tag"># 基础</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/11/18/hexo/使用ssh实现hexo免输密码上传文章/" rel="next" title="用ssh实现hexo免输密码上传文章">
-                <i class="fa fa-chevron-left"></i> 用ssh实现hexo免输密码上传文章
-              </a>
             
           </div>
 
@@ -438,8 +455,8 @@ Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundam
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/21/Sed_and_Awk/Chapter4/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/16/Sed_and_Awk/Chapter4/" rel="prev" title="Chapter 4. Sed Execution(执行)">
+                Chapter 4. Sed Execution(执行) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -466,8 +483,8 @@ Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundam
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/21/Sed_and_Awk/Chapter3/"
-           data-title="" data-url="https://summingyu.github.io/2016/11/21/Sed_and_Awk/Chapter3/">
+      <div class="ds-thread" data-thread-key="2016/11/16/Sed_and_Awk/Chapter3/"
+           data-title="Chapter 3. Regular Expressions（正则表达式）" data-url="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter3/">
       </div>
     
   </div>

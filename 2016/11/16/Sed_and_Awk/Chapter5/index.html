@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="学习,基础," />
 
 
 
@@ -84,43 +84,22 @@
 
 
 
-<meta name="description" content="title: ‘Chapter 5. Additional Sed Commands(扩展的sed命令)’date: 2016-11-16 17:05:35tags: 
-
-学习
-基础categories: 
-学习笔记
-sed and awk 101 hacks
-
-
-28. Append Line After (a command)你可以使用a命令在匹配到行后面添加新行
-Syntax(语法)1$">
+<meta name="description" content="28. Append Line After (a command)你可以使用a命令在匹配到行后面添加新行
+Syntax(语法)1$ sed &apos;[address] a the-line-to-append&apos; input-file
+Add a new record(记录)to the employee.txt file after line number:对employee.txt文件在指定行号后面添">
 <meta property="og:type" content="article">
-<meta property="og:title" content="余苏明的幻想乡">
-<meta property="og:url" content="https://summingyu.github.io/2016/11/21/Sed_and_Awk/Chapter5/index.html">
+<meta property="og:title" content="Chapter 5. Additional Sed Commands(扩展的sed命令)">
+<meta property="og:url" content="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter5/index.html">
 <meta property="og:site_name" content="余苏明的幻想乡">
-<meta property="og:description" content="title: ‘Chapter 5. Additional Sed Commands(扩展的sed命令)’date: 2016-11-16 17:05:35tags: 
-
-学习
-基础categories: 
-学习笔记
-sed and awk 101 hacks
-
-
-28. Append Line After (a command)你可以使用a命令在匹配到行后面添加新行
-Syntax(语法)1$">
-<meta property="og:updated_time" content="2016-11-21T02:22:51.000Z">
+<meta property="og:description" content="28. Append Line After (a command)你可以使用a命令在匹配到行后面添加新行
+Syntax(语法)1$ sed &apos;[address] a the-line-to-append&apos; input-file
+Add a new record(记录)to the employee.txt file after line number:对employee.txt文件在指定行号后面添">
+<meta property="og:updated_time" content="2016-11-21T02:32:40.492Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="余苏明的幻想乡">
-<meta name="twitter:description" content="title: ‘Chapter 5. Additional Sed Commands(扩展的sed命令)’date: 2016-11-16 17:05:35tags: 
-
-学习
-基础categories: 
-学习笔记
-sed and awk 101 hacks
-
-
-28. Append Line After (a command)你可以使用a命令在匹配到行后面添加新行
-Syntax(语法)1$">
+<meta name="twitter:title" content="Chapter 5. Additional Sed Commands(扩展的sed命令)">
+<meta name="twitter:description" content="28. Append Line After (a command)你可以使用a命令在匹配到行后面添加新行
+Syntax(语法)1$ sed &apos;[address] a the-line-to-append&apos; input-file
+Add a new record(记录)to the employee.txt file after line number:对employee.txt文件在指定行号后面添">
 
 
 
@@ -148,13 +127,13 @@ Syntax(语法)1$">
 
 
 
-  <link rel="canonical" href="https://summingyu.github.io/2016/11/21/Sed_and_Awk/Chapter5/"/>
+  <link rel="canonical" href="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter5/"/>
 
 
 
 
 
-  <title>  | 余苏明的幻想乡 </title>
+  <title> Chapter 5. Additional Sed Commands(扩展的sed命令) | 余苏明的幻想乡 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +274,7 @@ Syntax(语法)1$">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/11/21/Sed_and_Awk/Chapter5/">
+  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter5/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Summingyu">
@@ -319,7 +298,7 @@ Syntax(语法)1$">
             
             
               
-                
+                Chapter 5. Additional Sed Commands(扩展的sed命令)
               
             
           </h1>
@@ -331,8 +310,8 @@ Syntax(语法)1$">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-21T10:24:26+08:00">
-              2016-11-21
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-16T17:05:35+08:00">
+              2016-11-16
             </time>
 
             &nbsp;|&nbsp;
@@ -340,20 +319,51 @@ Syntax(语法)1$">
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-21T10:22:51+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-21T10:32:40+08:00">
               2016-11-21
             </time>
             
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/sed-and-awk-101-hacks/" itemprop="url" rel="index">
+                    <span itemprop="name">sed and awk 101 hacks</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/21/Sed_and_Awk/Chapter5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/21/Sed_and_Awk/Chapter5/" itemprop="commentCount"></span>
+                <a href="/2016/11/16/Sed_and_Awk/Chapter5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/16/Sed_and_Awk/Chapter5/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -379,16 +389,7 @@ Syntax(语法)1$">
       
 
       
-        <hr>
-<p>title: ‘Chapter 5. Additional Sed Commands(扩展的sed命令)’<br>date: 2016-11-16 17:05:35<br>tags: </p>
-<ul>
-<li>学习</li>
-<li>基础<br>categories: </li>
-<li>学习笔记</li>
-<li>sed and awk 101 hacks</li>
-</ul>
-<hr>
-<h2 id="28-Append-Line-After-a-command"><a href="#28-Append-Line-After-a-command" class="headerlink" title="28. Append Line After (a command)"></a>28. Append Line After (a command)</h2><p>你可以使用<code>a</code>命令在匹配到行后面添加新行</p>
+        <h2 id="28-Append-Line-After-a-command"><a href="#28-Append-Line-After-a-command" class="headerlink" title="28. Append Line After (a command)"></a>28. Append Line After (a command)</h2><p>你可以使用<code>a</code>命令在匹配到行后面添加新行</p>
 <h3 id="Syntax-语法"><a href="#Syntax-语法" class="headerlink" title="Syntax(语法)"></a>Syntax(语法)</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sed <span class="string">'[address] a the-line-to-append'</span> <span class="built_in">input</span>-<span class="keyword">file</span></div></pre></td></tr></table></figure>
 <h4 id="Add-a-new-record-记录-to-the-employee-txt-file-after-line-number"><a href="#Add-a-new-record-记录-to-the-employee-txt-file-after-line-number" class="headerlink" title="Add a new record(记录)to the employee.txt file after line number:"></a>Add a new record(记录)to the employee.txt file after line number:</h4><p>对<code>employee.txt</code>文件在指定行号后面添加一个新的记录<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ sed <span class="string">'2 a 203,Jack Johnson,Engineer'</span> employee.txt </div><div class="line"><span class="number">101</span>,John Doe,CEO</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager </div><div class="line"><span class="number">203</span>,Jack Johnson,Engineer </div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin </div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
@@ -443,13 +444,21 @@ Syntax(语法)1$">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/基础/" rel="tag"># 基础</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/21/Sed_and_Awk/Chapter4/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2016/11/16/Sed_and_Awk/Chapter4/" rel="next" title="Chapter 4. Sed Execution(执行)">
+                <i class="fa fa-chevron-left"></i> Chapter 4. Sed Execution(执行)
               </a>
             
           </div>
@@ -457,6 +466,10 @@ Syntax(语法)1$">
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/16/Sed_and_Awk/Chapter1/" rel="prev" title="Chapter 1: Sed Syntax and Basic Commands">
+                Chapter 1: Sed Syntax and Basic Commands <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -482,8 +495,8 @@ Syntax(语法)1$">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/21/Sed_and_Awk/Chapter5/"
-           data-title="" data-url="https://summingyu.github.io/2016/11/21/Sed_and_Awk/Chapter5/">
+      <div class="ds-thread" data-thread-key="2016/11/16/Sed_and_Awk/Chapter5/"
+           data-title="Chapter 5. Additional Sed Commands(扩展的sed命令)" data-url="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter5/">
       </div>
     
   </div>

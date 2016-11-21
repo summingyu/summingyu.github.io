@@ -4,45 +4,75 @@
 
     
   <url>
-    <loc>https://summingyu.github.io/2016/11/21/Sed_and_Awk/Chapter5/</loc>
-    <lastmod>2016-11-21T02:22:51.000Z</lastmod>
+    <loc>https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter5/</loc>
+    <lastmod>2016-11-21T02:32:40.492Z</lastmod>
     <data>
         <display>
-        <title></title>
-        <pubTime>2016-11-21T02:24:26.179Z</pubTime>
+        <title>Chapter 5. Additional Sed Commands(扩展的sed命令)</title>
+        <pubTime>2016-11-16T09:05:35.000Z</pubTime>
         
+        <tag>学习</tag>
+         
+        <tag>基础</tag>
+         
          
            
+             
+              <breadCrumb title="学习笔记" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+             
+              <breadCrumb title="sed and awk 101 hacks" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sed-and-awk-101-hacks/"/>
+          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://summingyu.github.io/2016/11/21/Sed_and_Awk/Chapter4/</loc>
-    <lastmod>2016-11-21T02:21:47.000Z</lastmod>
+    <loc>https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter4/</loc>
+    <lastmod>2016-11-21T02:32:27.521Z</lastmod>
     <data>
         <display>
-        <title></title>
-        <pubTime>2016-11-21T02:24:25.284Z</pubTime>
+        <title>Chapter 4. Sed Execution(执行)</title>
+        <pubTime>2016-11-16T09:04:35.000Z</pubTime>
         
+        <tag>学习</tag>
+         
+        <tag>基础</tag>
+         
          
            
+             
+              <breadCrumb title="学习笔记" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+             
+              <breadCrumb title="sed and awk 101 hacks" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sed-and-awk-101-hacks/"/>
+          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://summingyu.github.io/2016/11/21/Sed_and_Awk/Chapter3/</loc>
-    <lastmod>2016-11-21T02:19:43.000Z</lastmod>
+    <loc>https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter3/</loc>
+    <lastmod>2016-11-21T02:30:18.830Z</lastmod>
     <data>
         <display>
-        <title></title>
-        <pubTime>2016-11-21T02:24:24.340Z</pubTime>
+        <title>Chapter 3. Regular Expressions（正则表达式）</title>
+        <pubTime>2016-11-16T09:04:33.000Z</pubTime>
         
+        <tag>学习</tag>
+         
+        <tag>基础</tag>
+         
          
            
+             
+              <breadCrumb title="学习笔记" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+             
+              <breadCrumb title="sed and awk 101 hacks" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/sed-and-awk-101-hacks/"/>
+          
         </display>
     </data>
     </url>
