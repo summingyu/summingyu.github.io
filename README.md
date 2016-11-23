@@ -1,5 +1,8 @@
 # 余苏明的幻想乡
 ## 2016-11-23
+### 新增阅读量统计
+由于新版next主题已经支持LeanCloud系统，所以直接注册加配置就行了
+[参考资料](http://lfwen.site/2016/05/31/add-count-for-hexo-next/)
 ### 添加顶部加载条
 [参考资料](http://boyuanblog.com/2016/06/09/8532cbf3/)
 
