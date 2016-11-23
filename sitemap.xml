@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://summingyu.github.io/about/index.html</loc>
+    
+    <lastmod>2016-11-23T03:56:11.823Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://summingyu.github.io//404.html</loc>
     
     <lastmod>2016-11-23T03:18:02.965Z</lastmod>
@@ -103,13 +110,6 @@
     <loc>https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter3/</loc>
     
     <lastmod>2016-11-21T02:30:18.830Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://summingyu.github.io/about/index.html</loc>
-    
-    <lastmod>2016-11-18T11:50:19.642Z</lastmod>
     
   </url>
   
