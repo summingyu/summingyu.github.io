@@ -85,36 +85,24 @@
 
 
 <meta name="description" content="写在前面现在服务程序一般都使用双机备份，防止出现单点故障，而备份不可能每天手动去备份，所以要使用备份程序进行同步。
-##目标
-
-[ ] 打通2.52与2.52之间的ssh，并修改ssh端口号
-[ ] 写备份脚本或使用resync，24小时备份程序到另一台服务器
-
 实施过程打通2.52与2.51之间的ssh免密码登陆(root用户)
-在各个服务器使用命令ssh-keygen  -t rsa -P &amp;">
+在各个服务器使用命令ssh-keygen  -t rsa -P &amp;#39;&amp;#39; -f /root/.ssh/id_rsa一次生成或者运行ssh-keygen -t rsa然后敲击三次回车生成密钥对
+如果在各个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="部署rsync远程备份">
 <meta property="og:url" content="https://summingyu.github.io/2016/11/23/linux/rsync/index.html">
 <meta property="og:site_name" content="余苏明的幻想乡">
 <meta property="og:description" content="写在前面现在服务程序一般都使用双机备份，防止出现单点故障，而备份不可能每天手动去备份，所以要使用备份程序进行同步。
-##目标
-
-[ ] 打通2.52与2.52之间的ssh，并修改ssh端口号
-[ ] 写备份脚本或使用resync，24小时备份程序到另一台服务器
-
 实施过程打通2.52与2.51之间的ssh免密码登陆(root用户)
-在各个服务器使用命令ssh-keygen  -t rsa -P &amp;">
-<meta property="og:updated_time" content="2016-11-23T02:04:35.000Z">
+在各个服务器使用命令ssh-keygen  -t rsa -P &amp;#39;&amp;#39; -f /root/.ssh/id_rsa一次生成或者运行ssh-keygen -t rsa然后敲击三次回车生成密钥对
+如果在各个">
+<meta property="og:updated_time" content="2016-11-23T02:09:34.913Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="部署rsync远程备份">
 <meta name="twitter:description" content="写在前面现在服务程序一般都使用双机备份，防止出现单点故障，而备份不可能每天手动去备份，所以要使用备份程序进行同步。
-##目标
-
-[ ] 打通2.52与2.52之间的ssh，并修改ssh端口号
-[ ] 写备份脚本或使用resync，24小时备份程序到另一台服务器
-
 实施过程打通2.52与2.51之间的ssh免密码登陆(root用户)
-在各个服务器使用命令ssh-keygen  -t rsa -P &amp;">
+在各个服务器使用命令ssh-keygen  -t rsa -P &amp;#39;&amp;#39; -f /root/.ssh/id_rsa一次生成或者运行ssh-keygen -t rsa然后敲击三次回车生成密钥对
+如果在各个">
 
 
 
@@ -334,7 +322,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-23T10:04:35+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-23T10:09:34+08:00">
               2016-11-23
             </time>
             
@@ -393,24 +381,16 @@
 
       
         <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>现在服务程序一般都使用双机备份，防止出现单点故障，而备份不可能每天手动去备份，所以要使用备份程序进行同步。</p>
-<p>##目标</p>
-<ul>
-<li>[ ] 打通2.52与2.52之间的<strong>ssh</strong>，并修改ssh端口号</li>
-<li>[ ] 写备份脚本或使用<code>resync</code>，<strong>24</strong>小时备份程序到另一台服务器</li>
-</ul>
 <h2 id="实施过程"><a href="#实施过程" class="headerlink" title="实施过程"></a>实施过程</h2><h3 id="打通2-52与2-51之间的ssh免密码登陆-root用户"><a href="#打通2-52与2-51之间的ssh免密码登陆-root用户" class="headerlink" title="打通2.52与2.51之间的ssh免密码登陆(root用户)"></a>打通2.52与2.51之间的<code>ssh</code>免密码登陆(root用户)</h3><ol>
 <li>在各个服务器使用命令<strong><code>ssh-keygen  -t rsa -P &#39;&#39; -f /root/.ssh/id_rsa</code></strong>一次生成或者运行<strong><code>ssh-keygen -t rsa</code></strong>然后敲击三次回车生成密钥对</li>
 <li>如果在各个服务器上的<code>/root/.ssh/</code>目录下没有<code>authorized_keys</code>文件，则生成：<strong><code>touch authorized_keys</code></strong></li>
 <li>修改权限<strong><code>chmod 600 authorized_keys</code></strong></li>
-<li><p>将其他服务器上生成的<code>id_rsa.pub</code>追加到本地<code>authorized_keys</code>文件中</p>
-<ol>
-<li><p>使用scp命令将远程服务器上的<code>id_rsa.pub</code>下载到本地服务器</p>
-<blockquote>
+<li>将其他服务器上生成的<code>id_rsa.pub</code>追加到本地<code>authorized_keys</code>文件中<ol>
+<li>使用scp命令将远程服务器上的<code>id_rsa.pub</code>下载到本地服务器<blockquote>
 <p><code>scp -p root@192.168.2.52:/root/.ssh/id_rsa.pub /root/.ssh/id_rsa.pub_192.168.2.52</code></p>
-</blockquote>
+<a id="more"></a>    </blockquote>
 </li>
-<li><p>追加到<code>authorized_keys</code>文件中</p>
-<blockquote>
+<li>追加到<code>authorized_keys</code>文件中<blockquote>
 <p><code>cat /root/.ssh/id_rsa.pub_192.168.2.52 &gt;&gt;authorized_keys</code></p>
 </blockquote>
 </li>
