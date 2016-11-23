@@ -96,7 +96,7 @@
 实施过程打通2.52与2.51之间的ssh免密码登陆(root用户)
 在各个服务器使用命令ssh-keygen  -t rsa -P &amp;#39;&amp;#39; -f /root/.ssh/id_rsa一次生成或者运行ssh-keygen -t rsa然后敲击三次回车生成密钥对
 如果在各个">
-<meta property="og:updated_time" content="2016-11-23T02:09:34.913Z">
+<meta property="og:updated_time" content="2016-11-23T02:24:21.335Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="部署rsync远程备份">
 <meta name="twitter:description" content="写在前面现在服务程序一般都使用双机备份，防止出现单点故障，而备份不可能每天手动去备份，所以要使用备份程序进行同步。
@@ -322,7 +322,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-23T10:09:34+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-23T10:24:21+08:00">
               2016-11-23
             </time>
             
@@ -422,7 +422,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">exclude = bin/ <span class="built_in">history</span>/ <span class="comment">#多个目录使用空格隔开</span></div><div class="line"><span class="comment">#如果过滤文件较多，可以使用参数exclude from</span></div><div class="line">exclude from = /home/exclude.list</div><div class="line"><span class="comment">#exclude.list每行为一个参数，参数为相对路径</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>编写<code>autobakup.sh</code>备份脚本</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">MONTH=`date +"%Y%m"`</div><div class="line">DAY=`date +"%d"`</div><div class="line">HOUR=`date +"%H"`</div><div class="line">MIN=`date +"%M"`</div><div class="line">tarname=/bak/33e9/33e9_1_$&#123;MONTH&#125;$&#123;DAY&#125;$&#123;HOUR&#125;.tar.gz</div><div class="line"></div><div class="line">[ ! -d /bak/33e9 ] &amp;&amp; mkdir -p /bak/33e9;</div><div class="line"></div><div class="line">[ ! -d /bak/33e9_1 ] &amp;&amp; mkdir -p /bak/33e9_1;</div><div class="line"></div><div class="line"># 删除7天前的备份文件</div><div class="line">find /bak/33e9 -name "33e9_1_*.tar.gz" -mtime +7 -type f|xargs rm -f</div><div class="line"></div><div class="line">rsync -vzrtopg --bwlimit=1000 --delete --progress root@192.168.2.51::33e9_1 /bak/33e9_1/ --password-file=/root/backserver.pas</div><div class="line"></div><div class="line">tar -zcvf $&#123;tarname&#125; /bak/33e9_1/</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#Author:summingyu</div><div class="line"></div><div class="line">MONTH=`date +"%Y%m"`</div><div class="line">DAY=`date +"%d"`</div><div class="line">HOUR=`date +"%H"`</div><div class="line">MIN=`date +"%M"`</div><div class="line">tarname=/bak/33e9/33e9_1_$&#123;MONTH&#125;$&#123;DAY&#125;$&#123;HOUR&#125;.tar.gz</div><div class="line"></div><div class="line">[ ! -d /bak/33e9 ] &amp;&amp; mkdir -p /bak/33e9;</div><div class="line"></div><div class="line">[ ! -d /bak/33e9_1 ] &amp;&amp; mkdir -p /bak/33e9_1;</div><div class="line"></div><div class="line"># 删除7天前的备份文件</div><div class="line">find /bak/33e9 -name "33e9_1_*.tar.gz" -mtime +7 -type f|xargs rm -f</div><div class="line"></div><div class="line">rsync -vzrtopg --bwlimit=1000 --delete --progress root@192.168.2.51::33e9_1 /bak/33e9_1/ --password-file=/root/backserver.pas</div><div class="line"></div><div class="line">tar -zcvf $&#123;tarname&#125; /bak/33e9_1/</div></pre></td></tr></table></figure>
 </li>
 <li><p>可以在客户端 将命令加入<code>crontab</code>，定时执行</p>
 </li>
@@ -497,6 +497,27 @@
     </div>
   </div>
 
+<div class="page-footer">
+    
+      <div id="eof" class="print-invisible">
+        <hr class="eof">
+      </div>
+
+      <div class="copyright" style="clear:both;">
+         <p><span>本文标题:</span><a href="/2016/11/23/linux/rsync/">部署rsync远程备份</a></p>
+         <p><span>文章作者:</span><a href="/" title="访问 Summingyu 的个人博客">Summingyu</a></p>
+         <p><span>发布时间:</span>2016年11月23日 - 09时11分</p>
+         <p><span>最后更新:</span>2016年11月23日 - 10时11分</p>
+         <p><span>本文字数:</span><span class="page-count">本文一共有字</span></p>
+         <p><span>原始链接:</span><a href="/2016/11/23/linux/rsync/" title="部署rsync远程备份">https://summingyu.github.io/2016/11/23/linux/rsync/</a></p>
+         <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)">Attribution-NonCommercial 4.0</a></p>
+         <p><span>转载请保留以上信息。</span></p>
+      </div>
+    
+
+    
+
+  </div>
 
           </div>
           
