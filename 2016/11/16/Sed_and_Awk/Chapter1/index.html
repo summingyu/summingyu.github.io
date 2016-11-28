@@ -1,0 +1,1019 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习,基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Chapter 1: Sed Syntax and Basic Commandssed examples使用的sed 案例均为下面文件123456$ vi employee.txt101,John Doe,CEO102,Jason Smith,IT Manager103,Raj Reddy,Sysadmin104,Anand Ram,Developer105,Jane Miller,Sales M">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 1: Sed Syntax and Basic Commands">
+<meta property="og:url" content="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter1/index.html">
+<meta property="og:site_name" content="余苏明的幻想乡">
+<meta property="og:description" content="Chapter 1: Sed Syntax and Basic Commandssed examples使用的sed 案例均为下面文件123456$ vi employee.txt101,John Doe,CEO102,Jason Smith,IT Manager103,Raj Reddy,Sysadmin104,Anand Ram,Developer105,Jane Miller,Sales M">
+<meta property="og:image" content="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter1/1469504159382.png">
+<meta property="og:updated_time" content="2016-11-21T02:39:45.032Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 1: Sed Syntax and Basic Commands">
+<meta name="twitter:description" content="Chapter 1: Sed Syntax and Basic Commandssed examples使用的sed 案例均为下面文件123456$ vi employee.txt101,John Doe,CEO102,Jason Smith,IT Manager103,Raj Reddy,Sysadmin104,Anand Ram,Developer105,Jane Miller,Sales M">
+<meta name="twitter:image" content="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter1/1469504159382.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter1/"/>
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script> 
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style> 
+ .pace .pace-progress { 
+     background:#1e92fb; /*进度条颜色*/ 
+     height:3px; 
+ }
+.pace .pace-progress-inner { 
+    box-shadow:0 0 10px #1e92fb, 0 0 5px #1e92fb; /*阴影颜色*/ 
+}
+.pace .pace-activity { 
+    border-top-color:#1e92fb; /*上边框颜色*/ 
+    border-left-color:#1e92fb; /*左边框颜色*/ 
+}
+</style>
+
+  <title> Chapter 1: Sed Syntax and Basic Commands | 余苏明的幻想乡 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">余苏明的幻想乡</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">summingyu's blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter1/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Summingyu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="余苏明的幻想乡">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="余苏明的幻想乡" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Chapter 1: Sed Syntax and Basic Commands
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-16T07:07:33+08:00">
+              2016-11-16
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-21T10:39:45+08:00">
+              2016-11-21
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/sed-and-awk-101-hacks/" itemprop="url" rel="index">
+                    <span itemprop="name">sed and awk 101 hacks</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/16/Sed_and_Awk/Chapter1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/16/Sed_and_Awk/Chapter1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/16/Sed_and_Awk/Chapter1/" class="leancloud_visitors" data-flag-title="Chapter 1: Sed Syntax and Basic Commands">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">临幸次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Chapter-1-Sed-Syntax-and-Basic-Commands"><a href="#Chapter-1-Sed-Syntax-and-Basic-Commands" class="headerlink" title="Chapter 1: Sed Syntax and Basic Commands"></a>Chapter 1: Sed Syntax and Basic Commands</h1><h2 id="sed-examples"><a href="#sed-examples" class="headerlink" title="sed examples"></a><code>sed</code> examples</h2><p>使用的<code>sed</code> 案例均为下面文件<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">vi</span> employee.txt</div><div class="line"><span class="number">101</span>,John Doe,CEO</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="1-Sed-Command-Syntax"><a href="#1-Sed-Command-Syntax" class="headerlink" title="1. Sed Command Syntax"></a>1. Sed Command Syntax</h2><h3 id="sed基本语法"><a href="#sed基本语法" class="headerlink" title="sed基本语法"></a><code>sed</code>基本语法</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed [<span class="keyword">options</span>] &#123;sed-commands&#125; &#123;<span class="built_in">input</span>-<span class="keyword">file</span>&#125;</div></pre></td></tr></table></figure>
+<p><code>sed</code>读取文本为<strong>按行</strong>读取匹配</p>
+<blockquote>
+<p>输出<code>/etc/passwd</code>文件的所有行<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">sed -n <span class="string">'p'</span> /etc/passwd</div><div class="line"></div><div class="line">[root@localhost ~]# sed -n <span class="string">'p'</span> /etc/passwd</div><div class="line">roo<span class="variable">t:x</span>:<span class="number">0</span>:<span class="number">0</span>:roo<span class="variable">t:</span>/roo<span class="variable">t:</span>/bin/bash</div><div class="line">bin:<span class="keyword">x</span>:<span class="number">1</span>:<span class="number">1</span>:bin:/bin:/sbin/nologin</div><div class="line">daemon:<span class="keyword">x</span>:<span class="number">2</span>:<span class="number">2</span>:daemon:/sbin:/sbin/nologin</div><div class="line">adm:<span class="keyword">x</span>:<span class="number">3</span>:<span class="number">4</span>:adm:/var/adm:/sbin/nologin</div><div class="line"><span class="keyword">lp</span>:<span class="keyword">x</span>:<span class="number">4</span>:<span class="number">7</span>:<span class="keyword">lp</span>:/var/spool/lpd:/sbin/nologin</div><div class="line"><span class="keyword">sync</span>:<span class="keyword">x</span>:<span class="number">5</span>:<span class="number">0</span>:<span class="keyword">sync</span>:/sbin:/bin/<span class="keyword">sync</span></div><div class="line">shutdown:<span class="keyword">x</span>:<span class="number">6</span>:<span class="number">0</span>:shutdown:/sbin:/sbin/shutdown</div><div class="line">hal<span class="variable">t:x</span>:<span class="number">7</span>:<span class="number">0</span>:hal<span class="variable">t:</span>/sbin:/sbin/halt</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="sed命令文件的基本语法"><a href="#sed命令文件的基本语法" class="headerlink" title="sed命令文件的基本语法"></a><code>sed</code>命令文件的基本语法</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed [<span class="keyword">options</span>] -<span class="keyword">f</span> &#123;sed-commands-in-<span class="keyword">a</span>-<span class="keyword">file</span>&#125; &#123;<span class="built_in">input</span>-<span class="keyword">file</span>&#125;</div></pre></td></tr></table></figure>
+<p>sed命令文件格式为一行一个sed命令，实现多个sed命令<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@localhost SedAwk]# <span class="keyword">cat</span> test-script.sed </div><div class="line">/^root/ <span class="keyword">p</span></div><div class="line">/^nobody/ <span class="keyword">p</span></div><div class="line">[root@localhost SedAwk]# sed -n -<span class="keyword">f</span> test-script.sed /etc/passwd</div><div class="line">roo<span class="variable">t:x</span>:<span class="number">0</span>:<span class="number">0</span>:roo<span class="variable">t:</span>/roo<span class="variable">t:</span>/bin/bash</div><div class="line">nobody:<span class="keyword">x</span>:<span class="number">99</span>:<span class="number">99</span>:Nobody:/:/sbin/nologin</div></pre></td></tr></table></figure></p>
+<h3 id="sed使用-e参数实现多个sed命令"><a href="#sed使用-e参数实现多个sed命令" class="headerlink" title="sed使用-e参数实现多个sed命令"></a><code>sed</code>使用<code>-e</code>参数实现多个sed命令</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed [<span class="keyword">options</span>] -<span class="keyword">e</span> &#123;sed-<span class="keyword">command</span>-<span class="number">1</span>&#125; -<span class="keyword">e</span> &#123;sed-<span class="keyword">command</span>-<span class="number">2</span>&#125; &#123;<span class="built_in">input</span>-<span class="keyword">file</span>&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@localhost SedAwk]# sed -n -<span class="keyword">e</span> <span class="string">'/^root/ p'</span> -<span class="keyword">e</span> <span class="string">'/^nobody/ p'</span> /etc/passwd</div><div class="line">roo<span class="variable">t:x</span>:<span class="number">0</span>:<span class="number">0</span>:roo<span class="variable">t:</span>/roo<span class="variable">t:</span>/bin/bash</div><div class="line">nobody:<span class="keyword">x</span>:<span class="number">99</span>:<span class="number">99</span>:Nobody:/:/sbin/nologin</div></pre></td></tr></table></figure>
+<p>为了方便阅读，可以使用<code>\</code>换行<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sed -n \</div><div class="line">-<span class="keyword">e</span> <span class="string">'/^root/ p'</span> \</div><div class="line">-<span class="keyword">e</span> <span class="string">'/^nobody/ p'</span> \</div><div class="line">/etc/passwd</div></pre></td></tr></table></figure></p>
+<p>也可以使用<code>{}</code>包括命令组<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sed [options] '&#123;</div><div class="line">sed-command-1</div><div class="line">sed-command-2</div><div class="line">&#125;' input-file</div></pre></td></tr></table></figure></p>
+<p>例如：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@localhost SedAwk]# sed -n '&#123;</div><div class="line">&gt; /^root/ p</div><div class="line">&gt; /^nobody/ p</div><div class="line">&gt; &#125;' /etc/passwd</div><div class="line">root:x:0:0:root:/root:/bin/bash</div><div class="line">nobody:x:99:99:Nobody:/:/sbin/nologin</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="2-Sed-Scripting-Flow"><a href="#2-Sed-Scripting-Flow" class="headerlink" title="2.Sed Scripting Flow"></a>2.Sed Scripting Flow</h2><h3 id="Sed命令运行步骤"><a href="#Sed命令运行步骤" class="headerlink" title="Sed命令运行步骤"></a>Sed命令运行步骤</h3><ul>
+<li>Read  逐行读取</li>
+<li>Execute 逐行执行命令 <strong>one by one</strong></li>
+<li>Print 可以是空匹配</li>
+<li>Repeat  重复步骤<img src="/2016/11/16/Sed_and_Awk/Chapter1/1469504159382.png" alt="执行步骤" title="执行步骤">
+</li>
+</ul>
+<h2 id="3-Print-Pattern-Space-p-command"><a href="#3-Print-Pattern-Space-p-command" class="headerlink" title="3. Print Pattern Space (p command)"></a>3. Print Pattern Space (p command)</h2><p>Using the sed p command, you can print the current pattern space.<br>使用p命令，你可以输出当前的模式</p>
+<h3 id="The-following-example-prints-every-line-of-employee-txt-twice"><a href="#The-following-example-prints-every-line-of-employee-txt-twice" class="headerlink" title="The following example prints every line of employee.txt twice:"></a>The following example prints every line of employee.txt twice:</h3><p>单独使用p命令会使每行都输出两次<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ sed <span class="string">'p'</span> employee.txt</div><div class="line"><span class="number">101</span>,John Doe,CEO</div><div class="line"><span class="number">101</span>,John Doe,CEO</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">13</span>Sed <span class="built_in">and</span> Awk <span class="number">101</span> Hacks</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div></pre></td></tr></table></figure></p>
+<h3 id="Print-each-line-once-functionally-the-same-as-‘cat-employee-txt’"><a href="#Print-each-line-once-functionally-the-same-as-‘cat-employee-txt’" class="headerlink" title="Print each line once (functionally the same as ‘cat employee.txt’):"></a>Print each line once (functionally the same as ‘cat employee.txt’):</h3><p>配合n命令可以只输出一次</p>
+<ul>
+<li>-n     取消默认的输出<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sed -n <span class="string">'p'</span> employee.txt</div><div class="line"><span class="number">101</span>,John Doe,CEO</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Specifying-an-Address-Range-指定地址范围"><a href="#Specifying-an-Address-Range-指定地址范围" class="headerlink" title="Specifying an Address Range 指定地址范围"></a>Specifying an Address Range 指定地址范围</h3><p>如果你不指定范围，sed默认匹配全部行</p>
+<h4 id="Print-only-the-2nd-line"><a href="#Print-only-the-2nd-line" class="headerlink" title="Print only the 2nd line:"></a>Print only the 2nd line:</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sed -n <span class="string">'2 p'</span> employee.txt</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div></pre></td></tr></table></figure>
+<h4 id="Print-from-line-1-through-line-4"><a href="#Print-from-line-1-through-line-4" class="headerlink" title="Print from line 1 through line 4:"></a>Print from line 1 through line 4:</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sed -n <span class="string">'1,4 p'</span> employee.txt</div><div class="line"><span class="number">101</span>,John Doe,CEO</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">14</span>Sed <span class="built_in">and</span> Awk <span class="number">101</span> Hacks</div></pre></td></tr></table></figure>
+<h4 id="Print-from-line-2-through-the-last-line-represents-the-last-line"><a href="#Print-from-line-2-through-the-last-line-represents-the-last-line" class="headerlink" title="Print from line 2 through the last line ($ represents the last line):"></a>Print from line 2 through the last line ($ represents the last line):</h4><p>输出第二行一直到最后一行<br><code>$</code>匹配最后一行<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ sed -n <span class="string">'2,$ p'</span> employee.txt</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div></pre></td></tr></table></figure></p>
+<h3 id="Modify-Address-Range"><a href="#Modify-Address-Range" class="headerlink" title="Modify Address Range"></a>Modify Address Range</h3><p>三种模式：逗号模式，加号模式，和波浪号模式</p>
+<ul>
+<li>逗号模式<ul>
+<li>表示绝对的地址范围</li>
+</ul>
+</li>
+<li>加号模式<ul>
+<li>表示相对的地址范围</li>
+</ul>
+</li>
+<li>波浪号模式<ul>
+<li>表示等差序列的步长<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">• <span class="number">1</span>~<span class="number">2</span> matches <span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>, etc.</div><div class="line">• <span class="number">2</span>~<span class="number">2</span> matches <span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>, etc.</div><div class="line">• <span class="number">1</span>~<span class="number">3</span> matches <span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>,<span class="number">10</span>, etc.</div><div class="line">• <span class="number">2</span>~<span class="number">3</span> matches <span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">11</span>, etc.</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Print-only-odd-numbered-lines-输出奇数行"><a href="#Print-only-odd-numbered-lines-输出奇数行" class="headerlink" title="Print only odd numbered lines:输出奇数行"></a>Print only odd numbered lines:输出奇数行</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sed -n <span class="string">'1~2 p'</span> employee.txt</div><div class="line"><span class="number">101</span>,John Doe,CEO</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div></pre></td></tr></table></figure>
+<h3 id="Pattern-Matching-模板匹配"><a href="#Pattern-Matching-模板匹配" class="headerlink" title="Pattern Matching 模板匹配"></a>Pattern Matching 模板匹配</h3><h4 id="Print-lines-matching-the-pattern-“Jane”"><a href="#Print-lines-matching-the-pattern-“Jane”" class="headerlink" title="Print lines matching the pattern “Jane”:"></a>Print lines matching the pattern “Jane”:</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sed -n <span class="string">'/Jane/ p'</span> employee.txt</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div></pre></td></tr></table></figure>
+<h4 id="Print-lines-starting-from-the-1st-match-of-“Jason”-until-the-4th-line"><a href="#Print-lines-starting-from-the-1st-match-of-“Jason”-until-the-4th-line" class="headerlink" title="Print lines starting from the 1st match of “Jason” until the 4th line:"></a>Print lines starting from the 1st match of “Jason” until the 4th line:</h4><p>输出从第一个<code>Jason</code>行开始到第四行的所有行(并且输出所有的匹配到<code>Jason</code>的行)<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sed -n <span class="string">'/Jason/,4 p'</span> employee.txt</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Note: If there were no matches for “Jason” in the 1st 4 lines, this<br>command would print the lines that match “Jason” after the 4th line.</p>
+<p>如果在前四行没有匹配到<code>Jason</code>，则在第四行之后只输出匹配到<code>Jason</code>的行</p>
+</blockquote>
+<h4 id="Print-lines-starting-from-the-1st-match-of-“Raj”-until-the-last-line"><a href="#Print-lines-starting-from-the-1st-match-of-“Raj”-until-the-last-line" class="headerlink" title="Print lines starting from the 1st match of “Raj” until the last line:"></a>Print lines starting from the 1st match of “Raj” until the last line:</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sed -n <span class="string">'/Raj/,$ p'</span> employee.txt</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div></pre></td></tr></table></figure>
+<h4 id="Print-lines-starting-from-the-1st-line-matching-“Raj”-until-the-1st-line-matching-“Jane”"><a href="#Print-lines-starting-from-the-1st-line-matching-“Raj”-until-the-1st-line-matching-“Jane”" class="headerlink" title="Print lines starting from the 1st line matching “Raj” until the 1st line matching “Jane”:"></a>Print lines starting from the <strong><em>1st line</em></strong> matching “Raj” until <strong><em>the 1st</em></strong> line matching “Jane”:</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sed -n <span class="string">'/Raj/,/Jane/ p'</span> employee.txt</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果<code>Raj</code>匹配行后没有找到<code>Jane</code>匹配行，则输出到最后行。（不管前面是否有<code>Jane</code>行，都不会输出<code>Jane</code>行）<br>该模式会循环匹配（<code>Jane</code>之后还有<code>Raj</code>到<code>Jane</code>也会输出，只有<code>Raj</code>会输出后面所有行）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">st=&gt;start: start</div><div class="line">op=&gt;operation: read a line</div><div class="line">op1=&gt;operation: print</div><div class="line">op2=&gt;operation: skip</div><div class="line">op3=&gt;operation: read a line</div><div class="line">op4=&gt;operation: print</div><div class="line">cond=&gt;condition: Raj yes or no?</div><div class="line">cond1=&gt;condition: Jane yes or no?</div><div class="line">ed=&gt;end</div><div class="line"></div><div class="line">st-&gt;op-&gt;cond(yes)-&gt;op1-&gt;op3-&gt;cond1(no)-&gt;op1</div><div class="line">cond(no)-&gt;op2-&gt;op</div><div class="line">cond1(yes)-&gt;op4-&gt;op</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="Print-the-line-matching-“Jason”-and-2-lines-immediately-after-that"><a href="#Print-the-line-matching-“Jason”-and-2-lines-immediately-after-that" class="headerlink" title="Print the line matching “Jason” and 2 lines immediately after that:"></a>Print the line matching “Jason” and 2 lines immediately after that:</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sed -n <span class="string">'/Jason/,+2 p'</span> employee.txt</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div></pre></td></tr></table></figure>
+<h2 id="4-Delete-Lines-d-command"><a href="#4-Delete-Lines-d-command" class="headerlink" title="4. Delete Lines (d command)"></a>4. Delete Lines (d command)</h2><p>使用d参数，可以删除行。</p>
+<blockquote>
+<p><strong>NOTE</strong>:d参数仅仅只删除输出流，就像其他的sed参数，并不会修改原始文件。<br>如果不使用其他参数，单独使用d参数，则匹配所有行，所以不会有任何输出。</p>
+<p>相当于p参数的非，不显示匹配到的行。如果前面使用<code>-n</code>参数，则不会有任何输出<br>因为d参数没有输出功能，<code>-n</code>参数是取消默认输入的输出<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed <span class="string">'d'</span> employee.txt</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="Useful-Delete-Examples-常用实例"><a href="#Useful-Delete-Examples-常用实例" class="headerlink" title="Useful Delete Examples (常用实例)"></a>Useful Delete Examples (常用实例)</h3><h4 id="删除空行"><a href="#删除空行" class="headerlink" title="删除空行:"></a>删除空行:</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed <span class="string">'/^$/ d'</span> employee.txt</div></pre></td></tr></table></figure>
+<h4 id="删除所有注释行"><a href="#删除所有注释行" class="headerlink" title="删除所有注释行:"></a>删除所有注释行:</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed <span class="string">'/^#/ d'</span> employee.txt</div></pre></td></tr></table></figure>
+<blockquote>
+<p>NOTE:当使用多个命令参数匹配同一行时，d命令执行之后会删除匹配行，不会在删除行进一步执行后续命令<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@localhost SedAwk]# sed -n -<span class="keyword">e</span> <span class="string">'2 d'</span> -<span class="keyword">e</span> <span class="string">'2 p'</span> employee.txt </div><div class="line">              </div><div class="line">[root@localhost SedAwk]# sed -n -<span class="keyword">e</span> <span class="string">'2 p'</span> -<span class="keyword">e</span> <span class="string">'2 d'</span>  employee.txt</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line">[root@localhost SedAwk]#</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="5-Write-Pattern-Space-to-File-w-command"><a href="#5-Write-Pattern-Space-to-File-w-command" class="headerlink" title="5. Write Pattern Space to File (w command)"></a>5. Write Pattern Space to File (w command)</h2><p>将标准输出输入到指定文件</p>
+<h4 id="Write-the-content-of-employee-txt-file-to-file-output-txt-and-display-on-screen"><a href="#Write-the-content-of-employee-txt-file-to-file-output-txt-and-display-on-screen" class="headerlink" title="Write the content of employee.txt file to file output.txt (and display on screen):"></a>Write the content of employee.txt file to file output.txt (and display on screen):</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ sed <span class="string">'w output.txt'</span> employee.txt</div><div class="line"><span class="number">101</span>,John Doe,CEO</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line"><span class="number">19</span>Sed <span class="built_in">and</span> Awk <span class="number">101</span> Hacks</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div><div class="line"></div><div class="line">$ <span class="keyword">cat</span> output.txt</div><div class="line"><span class="number">101</span>,John Doe,CEO</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div></pre></td></tr></table></figure>
+<h4 id="Write-the-content-of-employee-txt-file-to-output-txt-file-but-not-to-screen"><a href="#Write-the-content-of-employee-txt-file-to-output-txt-file-but-not-to-screen" class="headerlink" title="Write the content of employee.txt file to output.txt file but not to screen:"></a>Write the content of employee.txt file to output.txt file but not to screen:</h4><p>加<code>-n</code>参数，将不会输出标准输入</p>
+<blockquote>
+<p>使用w参数会覆盖原本文件里面的内容<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ sed -n <span class="string">'w output.txt'</span> employee.txt</div><div class="line"></div><div class="line">$ <span class="keyword">cat</span> output.txt</div><div class="line"><span class="number">101</span>,John Doe,CEO</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div><div class="line"><span class="number">103</span>,Raj Reddy,Sysadmin</div><div class="line"><span class="number">104</span>,Anand Ram,Developer</div><div class="line"><span class="number">105</span>,Jane Miller,Sales Manager</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="Write-only-the-2nd-line"><a href="#Write-only-the-2nd-line" class="headerlink" title="Write only the 2nd line:"></a>Write only the 2nd line:</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sed -n <span class="string">'2 w output.txt'</span> employee.txt</div><div class="line"></div><div class="line">$ <span class="keyword">cat</span> output.txt</div><div class="line"><span class="number">102</span>,Jason Smith,IT Manager</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Note: You might not use the w command frequently. Most people use<br>UNIX output redirection, instead, to store the output of sed to a file.<br>For example: <code>sed &#39;p&#39; employee.txt &gt; output.txt</code><br>你可能不会使用w命令，因为大部分在<code>UNIX</code>系统中，使用&gt;符号代替</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>(๑˙❥˙๑)憋说话吻我</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="Summingyu WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="Summingyu Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/基础/" rel="tag"># 基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/16/Sed_and_Awk/Chapter2/" rel="prev" title="Chapter2 Sed Substitute 代替 Command">
+                Chapter2 Sed Substitute 代替 Command <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+<div class="page-footer">
+    
+      <div id="eof" class="print-invisible">
+        <hr class="eof">
+      </div>
+
+      <div class="copyright" style="clear:both;">
+         <p><span>本文标题:</span><a href="/2016/11/16/Sed_and_Awk/Chapter1/">Chapter 1: Sed Syntax and Basic Commands</a></p>
+         <p><span>文章作者:</span><a href="/" title="访问 Summingyu 的个人博客">Summingyu</a></p>
+         <p><span>发布时间:</span>2016年11月16日 - 07时11分</p>
+         <p><span>最后更新:</span>2016年11月21日 - 10时11分</p>
+         <p><span>原始链接:</span><a href="/2016/11/16/Sed_and_Awk/Chapter1/" title="Chapter 1: Sed Syntax and Basic Commands">https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter1/</a></p>
+         <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)">Attribution-NonCommercial 4.0</a></p>
+         <p><span>转载请保留以上信息。</span></p>
+      </div>
+    
+
+    
+
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/16/Sed_and_Awk/Chapter1/"
+           data-title="Chapter 1: Sed Syntax and Basic Commands" data-url="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter1/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Summingyu" />
+          <p class="site-author-name" itemprop="name">Summingyu</p>
+          <p class="site-description motion-element" itemprop="description">“Talk is cheap. Show me the code.”————多说无益，看代码</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/summingyu" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1891527110" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="1007226049" target="_blank" title="qq">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  qq
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://quericy.me/" title="quericy" target="_blank">quericy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/opsdba" title="fenge" target="_blank">fenge</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-1-Sed-Syntax-and-Basic-Commands"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1: Sed Syntax and Basic Commands</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sed-examples"><span class="nav-number">1.1.</span> <span class="nav-text">sed examples</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Sed-Command-Syntax"><span class="nav-number">1.2.</span> <span class="nav-text">1. Sed Command Syntax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sed基本语法"><span class="nav-number">1.2.1.</span> <span class="nav-text">sed基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sed命令文件的基本语法"><span class="nav-number">1.2.2.</span> <span class="nav-text">sed命令文件的基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sed使用-e参数实现多个sed命令"><span class="nav-number">1.2.3.</span> <span class="nav-text">sed使用-e参数实现多个sed命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Sed-Scripting-Flow"><span class="nav-number">1.3.</span> <span class="nav-text">2.Sed Scripting Flow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sed命令运行步骤"><span class="nav-number">1.3.1.</span> <span class="nav-text">Sed命令运行步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Print-Pattern-Space-p-command"><span class="nav-number">1.4.</span> <span class="nav-text">3. Print Pattern Space (p command)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-following-example-prints-every-line-of-employee-txt-twice"><span class="nav-number">1.4.1.</span> <span class="nav-text">The following example prints every line of employee.txt twice:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Print-each-line-once-functionally-the-same-as-‘cat-employee-txt’"><span class="nav-number">1.4.2.</span> <span class="nav-text">Print each line once (functionally the same as ‘cat employee.txt’):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Specifying-an-Address-Range-指定地址范围"><span class="nav-number">1.4.3.</span> <span class="nav-text">Specifying an Address Range 指定地址范围</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-only-the-2nd-line"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">Print only the 2nd line:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-from-line-1-through-line-4"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">Print from line 1 through line 4:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-from-line-2-through-the-last-line-represents-the-last-line"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">Print from line 2 through the last line ($ represents the last line):</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modify-Address-Range"><span class="nav-number">1.4.4.</span> <span class="nav-text">Modify Address Range</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-only-odd-numbered-lines-输出奇数行"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">Print only odd numbered lines:输出奇数行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pattern-Matching-模板匹配"><span class="nav-number">1.4.5.</span> <span class="nav-text">Pattern Matching 模板匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-lines-matching-the-pattern-“Jane”"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">Print lines matching the pattern “Jane”:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-lines-starting-from-the-1st-match-of-“Jason”-until-the-4th-line"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">Print lines starting from the 1st match of “Jason” until the 4th line:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-lines-starting-from-the-1st-match-of-“Raj”-until-the-last-line"><span class="nav-number">1.4.5.3.</span> <span class="nav-text">Print lines starting from the 1st match of “Raj” until the last line:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-lines-starting-from-the-1st-line-matching-“Raj”-until-the-1st-line-matching-“Jane”"><span class="nav-number">1.4.5.4.</span> <span class="nav-text">Print lines starting from the 1st line matching “Raj” until the 1st line matching “Jane”:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Print-the-line-matching-“Jason”-and-2-lines-immediately-after-that"><span class="nav-number">1.4.5.5.</span> <span class="nav-text">Print the line matching “Jason” and 2 lines immediately after that:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Delete-Lines-d-command"><span class="nav-number">1.5.</span> <span class="nav-text">4. Delete Lines (d command)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Useful-Delete-Examples-常用实例"><span class="nav-number">1.5.1.</span> <span class="nav-text">Useful Delete Examples (常用实例)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#删除空行"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">删除空行:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除所有注释行"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">删除所有注释行:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Write-Pattern-Space-to-File-w-command"><span class="nav-number">1.6.</span> <span class="nav-text">5. Write Pattern Space to File (w command)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Write-the-content-of-employee-txt-file-to-file-output-txt-and-display-on-screen"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">Write the content of employee.txt file to file output.txt (and display on screen):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Write-the-content-of-employee-txt-file-to-output-txt-file-but-not-to-screen"><span class="nav-number">1.6.0.2.</span> <span class="nav-text">Write the content of employee.txt file to output.txt file but not to screen:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Write-only-the-2nd-line"><span class="nav-number">1.6.0.3.</span> <span class="nav-text">Write only the 2nd line:</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Summingyu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"summingyu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("z9eCjRBlwX07Thdsg58l5Dwr-gzGzoHsz", "mtlF0oEHECJgSoguu45AbcSr");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
