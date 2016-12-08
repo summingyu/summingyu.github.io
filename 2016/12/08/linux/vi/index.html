@@ -84,31 +84,28 @@
 
 
 
-<meta name="description" content="Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundamentals（正则表达式基础）
-Beginning of line (^ )
-End of line ( $)
-Single Character (.)
-Zero or more Occurrences (*)
-One or more Occurrence (\+)">
+<meta name="description" content="vi指令說明(完整版)本文学习自http://www2.nsysu.edu.tw/csmlab/unix/vi_command.htm
+vi 的操作模式vi 提供兩種操作模式：輸入模式(insert mode)和指令模式(command mode)
+。當使用者進入 vi 後，即處在指令模式下，此刻鍵入之任何字元皆被視為
+指令。在此模式下可進行刪除、修改等動作。若要輸入資料，則需進入輸入
+模式。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Chapter 3. Regular Expressions（正则表达式）">
-<meta property="og:url" content="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter3/index.html">
+<meta property="og:title" content="vi指令說明(完整版)">
+<meta property="og:url" content="https://summingyu.github.io/2016/12/08/linux/vi/index.html">
 <meta property="og:site_name" content="余苏明的幻想乡">
-<meta property="og:description" content="Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundamentals（正则表达式基础）
-Beginning of line (^ )
-End of line ( $)
-Single Character (.)
-Zero or more Occurrences (*)
-One or more Occurrence (\+)">
-<meta property="og:updated_time" content="2016-11-21T02:30:18.830Z">
+<meta property="og:description" content="vi指令說明(完整版)本文学习自http://www2.nsysu.edu.tw/csmlab/unix/vi_command.htm
+vi 的操作模式vi 提供兩種操作模式：輸入模式(insert mode)和指令模式(command mode)
+。當使用者進入 vi 後，即處在指令模式下，此刻鍵入之任何字元皆被視為
+指令。在此模式下可進行刪除、修改等動作。若要輸入資料，則需進入輸入
+模式。">
+<meta property="og:updated_time" content="2016-12-08T06:10:34.537Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 3. Regular Expressions（正则表达式）">
-<meta name="twitter:description" content="Chapter 3. Regular Expressions（正则表达式）20. Regular Expression Fundamentals（正则表达式基础）
-Beginning of line (^ )
-End of line ( $)
-Single Character (.)
-Zero or more Occurrences (*)
-One or more Occurrence (\+)">
+<meta name="twitter:title" content="vi指令說明(完整版)">
+<meta name="twitter:description" content="vi指令說明(完整版)本文学习自http://www2.nsysu.edu.tw/csmlab/unix/vi_command.htm
+vi 的操作模式vi 提供兩種操作模式：輸入模式(insert mode)和指令模式(command mode)
+。當使用者進入 vi 後，即處在指令模式下，此刻鍵入之任何字元皆被視為
+指令。在此模式下可進行刪除、修改等動作。若要輸入資料，則需進入輸入
+模式。">
 
 
 
@@ -136,7 +133,7 @@ One or more Occurrence (\+)">
 
 
 
-  <link rel="canonical" href="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter3/"/>
+  <link rel="canonical" href="https://summingyu.github.io/2016/12/08/linux/vi/"/>
 
 
 
@@ -158,7 +155,7 @@ One or more Occurrence (\+)">
 }
 </style>
 
-  <title> Chapter 3. Regular Expressions（正则表达式） | 余苏明的幻想乡 </title>
+  <title> vi指令說明(完整版) | 余苏明的幻想乡 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -299,7 +296,7 @@ One or more Occurrence (\+)">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter3/">
+  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/12/08/linux/vi/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Summingyu">
@@ -323,7 +320,7 @@ One or more Occurrence (\+)">
             
             
               
-                Chapter 3. Regular Expressions（正则表达式）
+                vi指令說明(完整版)
               
             
           </h1>
@@ -335,8 +332,8 @@ One or more Occurrence (\+)">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-16T17:04:33+08:00">
-              2016-11-16
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-08T13:54:33+08:00">
+              2016-12-08
             </time>
 
             &nbsp;|&nbsp;
@@ -344,8 +341,8 @@ One or more Occurrence (\+)">
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-21T10:30:18+08:00">
-              2016-11-21
+            <time title="Post modified" itemprop="dateModified" datetime="2016-12-08T14:10:34+08:00">
+              2016-12-08
             </time>
             
           </span>
@@ -371,8 +368,8 @@ One or more Occurrence (\+)">
 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/sed-and-awk-101-hacks/" itemprop="url" rel="index">
-                    <span itemprop="name">sed and awk 101 hacks</span>
+                  <a href="/categories/学习笔记/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -387,8 +384,8 @@ One or more Occurrence (\+)">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/16/Sed_and_Awk/Chapter3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/16/Sed_and_Awk/Chapter3/" itemprop="commentCount"></span>
+                <a href="/2016/12/08/linux/vi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/08/linux/vi/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -398,7 +395,7 @@ One or more Occurrence (\+)">
 
           
           
-             <span id="/2016/11/16/Sed_and_Awk/Chapter3/" class="leancloud_visitors" data-flag-title="Chapter 3. Regular Expressions（正则表达式）">
+             <span id="/2016/12/08/linux/vi/" class="leancloud_visitors" data-flag-title="vi指令說明(完整版)">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -423,24 +420,159 @@ One or more Occurrence (\+)">
       
 
       
-        <h1 id="Chapter-3-Regular-Expressions（正则表达式）"><a href="#Chapter-3-Regular-Expressions（正则表达式）" class="headerlink" title="Chapter 3. Regular Expressions（正则表达式）"></a>Chapter 3. Regular Expressions（正则表达式）</h1><h2 id="20-Regular-Expression-Fundamentals（正则表达式基础）"><a href="#20-Regular-Expression-Fundamentals（正则表达式基础）" class="headerlink" title="20. Regular Expression Fundamentals（正则表达式基础）"></a>20. Regular Expression Fundamentals（正则表达式基础）</h2><ol>
-<li>Beginning of line (<code>^</code> )</li>
-<li>End of line ( <code>$</code>)</li>
-<li>Single Character (.)</li>
-<li>Zero or more Occurrences (<code>*</code>)</li>
-<li>One or more Occurrence (<code>\+</code>)</li>
-<li>Zero or one Occurrence (<code>\?</code>)</li>
-<li>Escaping the Special Character (<code>\</code>)</li>
-<li>Character Class (<code>[0-9]</code>)<a id="more"></a>
-<h2 id="21-Additional-Regular-Expressions-（扩展正则表达式）"><a href="#21-Additional-Regular-Expressions-（扩展正则表达式）" class="headerlink" title="21. Additional Regular Expressions （扩展正则表达式）"></a>21. Additional Regular Expressions （扩展正则表达式）</h2></li>
-<li>OR Operation (<code>|</code>)</li>
-<li>Exactly M Occurrences (<code>{m}</code>)</li>
-<li>M to N Occurrences (<code>{m,n}</code>)</li>
-<li>Word Boundary (<code>\b</code>)（单词边界符）</li>
-<li>Back References (<code>\n</code>)（反向引用，<code>n</code>为数字）<h2 id="22-Sed-Substitution-Using-Regular-Expression"><a href="#22-Sed-Substitution-Using-Regular-Expression" class="headerlink" title="22. Sed Substitution Using Regular Expression"></a>22. Sed Substitution Using Regular Expression</h2><h3 id="Convert-the-DOS-file-format-to-Unix-file-format-using-sed"><a href="#Convert-the-DOS-file-format-to-Unix-file-format-using-sed" class="headerlink" title="Convert the DOS file format to Unix file format using sed:"></a>Convert the DOS file format to Unix file format using sed:</h3>使用<code>sed</code>将DOS下的新行换行符(CR/LF)替换成Unix下的格式<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed <span class="string">'s/.$//'</span> filename</div></pre></td></tr></table></figure>
-</li>
-</ol>
-
+        <h1 id="vi指令說明-完整版"><a href="#vi指令說明-完整版" class="headerlink" title="vi指令說明(完整版)"></a>vi指令說明(完整版)</h1><p>本文学习自<a href="http://www2.nsysu.edu.tw/csmlab/unix/vi_command.htm" target="_blank" rel="external">http://www2.nsysu.edu.tw/csmlab/unix/vi_command.htm</a></p>
+<h1 id="vi-的操作模式"><a href="#vi-的操作模式" class="headerlink" title="vi 的操作模式"></a>vi 的操作模式</h1><pre><code>vi 提供兩種操作模式：輸入模式(insert mode)和指令模式(command mode)
+。當使用者進入 vi 後，即處在指令模式下，此刻鍵入之任何字元皆被視為
+指令。在此模式下可進行刪除、修改等動作。若要輸入資料，則需進入輸入
+模式。
+</code></pre><a id="more"></a>
+<h1 id="輸入模式"><a href="#輸入模式" class="headerlink" title="輸入模式"></a>輸入模式</h1><pre><code>如何進入輸入模式
+        a (append)      由游標之後加入資料。
+        A               由該行之末加入資料。
+        i (insert)      由游標之前加入資料。
+        I               由該行之首加入資料。
+        o (open)        新增一行於該行之下供輸入資料之用。
+        O               新增一行於該行之上供輸入資料之用。
+如何離開輸入模式
+        &lt;ESC&gt;           結束輸入模式。
+</code></pre><h1 id="指令模式"><a href="#指令模式" class="headerlink" title="指令模式"></a>指令模式</h1><pre><code>游標之移動
+h       向左移一個字元。
+j       向上移一個字元。
+k       向下移一個字元。
+l       向右移一個字元。
+0       移至該行之首
+$       移至該行之末。
+^       移至該行的第一個字元處。
+H       移至視窗的第一列。
+M       移至視窗的中間那列。
+L       移至視窗的最後一列。
+G       移至該檔案的最後一列。
++       移至下一列的第一個字元處。
+-       移至上一列的第一個字元處。
+(       移至該句之首。 (註一)
+)       移至該句之末。
+{       移至該段落之首。 (註二)
+}       移至該段落之末。
+nG      移至該檔案的第 n 列。
+n+      移至游標所在位置之後的第 n 列。
+n-      移至游標所在位置之前的第 n 列。
+&lt;Ctrl&gt;&lt;g&gt;       會顯示該行之行號、檔案名稱、檔案中最末行之行號、游標
+                所在行號佔總行號之百分比。
+註一：句子(sentence)在vi中是指以『！』、『.』或『？』結束的一串字。
+註二：段落(paragraph)在vi中是指以空白行隔開的文字。
+</code></pre><h1 id="視窗的移動"><a href="#視窗的移動" class="headerlink" title="視窗的移動"></a>視窗的移動</h1><pre><code>&lt;Ctrl&gt;&lt;f&gt;       視窗往下捲一頁。
+&lt;Ctrl&gt;&lt;b&gt;       視窗往上捲一頁。
+&lt;Ctrl&gt;&lt;d&gt;       視窗往下捲半頁。
+&lt;Ctrl&gt;&lt;u&gt;       視窗往上捲半頁。
+&lt;Ctrl&gt;&lt;e&gt;       視窗往下捲一行。
+&lt;Ctrl&gt;&lt;y&gt;       視窗往上捲一行。
+</code></pre><h1 id="刪除、複製及修改指令介紹-此單元較少使用"><a href="#刪除、複製及修改指令介紹-此單元較少使用" class="headerlink" title="刪除、複製及修改指令介紹 (此單元較少使用)"></a>刪除、複製及修改指令介紹 (此單元較少使用)</h1><pre><code>d(delete)、c(change)和y(yank)這一類的指令在 vi 中的指令格式為：
+Operator + Scope = command
+(運算子)   (範圍)
+運算子：
+d       刪除指令。刪除資料，但會將刪除資料複製到記憶體緩衝區。
+y       將資料(字組、行列、句子或段落)複製到緩衝區。
+p       放置(put)指令，與 d 和 y 配和使用。可將最後delete或yank的資
+        料放置於游標所在位置之行列下。
+c       修改(change)指令，類似delete與insert的組和。刪除一個字組、句
+        子等之資料，並插入新鍵資料。
+範圍：
+e       由游標所在位置至該字串的最後一個字元。
+w       由游標所在位置至下一個字串的第一個字元。
+b       由游標所在位置至前一個字串的第一個字元。
+$       由游標所在位置至該行的最後一個字元。
+0       由游標所在位置至該行的第一個字元。
+)       由游標所在位置至下一個句子的第一個字元。
+(       由游標所在位置至該句子的第一個字元。
+{       由游標所在位置至該段落的最後一個字元。
+}       由游標所在位置至該段落的第一個字元。
+整行動作
+dd      刪除整行。
+D       以行為單位，刪除游標後之所有字元。
+cc      修改整行的內容。
+yy      yank整行，使游標所在該行複製到記憶體緩衝區。
+</code></pre><h1 id="刪除與修改"><a href="#刪除與修改" class="headerlink" title="刪除與修改"></a>刪除與修改</h1><pre><code>x       刪除游標所在該字元。
+X       刪除游標所在之前一字元。
+dd      刪除游標所在該行。
+r       用接於此指令之後的字元取代(replace)游標所在字元。
+        如： ra 將游標所在字元以 a 取代之。
+R       進入取代狀態，直到&lt;ESC&gt;為止。
+s       刪除游標所在之字元，並進入輸入模式直到&lt;ESC&gt;。
+S       刪除游標所在之該行資料，並進入輸入模式直到&lt;ESC&gt;。
+</code></pre><h1 id="搬移與複製"><a href="#搬移與複製" class="headerlink" title="搬移與複製"></a>搬移與複製</h1><pre><code>利用 delete 及 put 指令可完成資料搬移之目的。
+利用 yank 及 put 指令可完成資料複製之目的。
+yank 和 delete 可將指定的資料複製到記憶體緩衝區，而藉由 put 指令
+可將緩衝區內的資料複製到螢幕上。
+例：
+搬移一行        ‧在該行執行 dd
+                ‧游標移至目的地
+                ‧執行 p
+複製一行        ‧在該行執行 yy
+                ‧游標移至目的地
+                ‧執行 p
+</code></pre><h1 id="指令重複"><a href="#指令重複" class="headerlink" title="指令重複"></a>指令重複</h1><pre><code>在指令模式中，可在指令前面加入一數字 n，則此指令動作會重複執行 n
+次。
+例：
+刪除10行                ‧10dd
+複製10行                ‧10yy
+                        ‧游標移至目的地
+                        ‧p
+指標往下移10行  ‧10j
+</code></pre><h1 id="取消前一動作-Undo"><a href="#取消前一動作-Undo" class="headerlink" title="取消前一動作(Undo)"></a>取消前一動作(Undo)</h1><pre><code>即復原執行上一指令前的內容。
+u       恢復最後一個指令之前的結果。
+U       恢復游標該行之所有改變。
+</code></pre><h1 id="搜尋"><a href="#搜尋" class="headerlink" title="搜尋"></a>搜尋</h1><pre><code>在vi中可搜尋某一字串，使游標移至該處。
+/字串           往游標之後尋找該字串。
+?字串           往游標之前尋找該字串。
+n               往下繼續尋找下一個相同的字串。
+N               往上繼續尋找下一個相同的字串。
+</code></pre><h1 id="資料的連接"><a href="#資料的連接" class="headerlink" title="資料的連接"></a>資料的連接</h1><pre><code>J       句子的連接。將游標所在之下一行連接至游標該行的後面。
+若某行資料太長亦可將其分成兩行，只要將游標移至分開點，進入輸入模式
+(可利用 a、i等指令)再按&lt;Enter&gt;即可。
+</code></pre><h1 id="環境的設定"><a href="#環境的設定" class="headerlink" title="環境的設定"></a>環境的設定</h1><pre><code>：set nu                設定資料的行號。
+：set nonu              取消行號設定。
+：set ai                自動內縮。
+：set noai              取消自動內縮。
+自動內縮(automatic indentation)
+在編輯文件或程式時，有時會遇到需要內縮的狀況，『：set ai』即提供自
+動內縮的功能，用下例解釋之：
+‧vi test
+‧(進入編輯視窗後)
+  this is the test for auto indent
+  &lt;Tab&gt;start indent           ← ：set ai (設自動內縮)
+  &lt;Tab&gt;data
+  &lt;Tab&gt;data
+  &lt;Tab&gt;data                   ← ：set noai (取消自動內縮)
+the end of auto indent.
+‧註：&lt;Ctrl&gt;&lt;d&gt; 可刪除&lt;Tab&gt;字元。
+</code></pre><h1 id="ex指令"><a href="#ex指令" class="headerlink" title="ex指令"></a>ex指令</h1><pre><code>讀寫資料
+：w                     將緩衝區的資料寫入磁碟中。
+：10,20w test   將第10行至第20行的資料寫入test檔案。
+：10,20w&gt;&gt;test  將第10行至第20行的資料加在test檔案之後。
+：r test                將test檔案的資料讀入編輯緩衝區的最後。
+刪除、複製及搬移
+：10,20d                刪除第10行至第20行的資料。
+：10d                   刪除第10行的資料。
+：%d                    刪除整個編輯緩衝區。
+：10,20co30             將第10行至第20行的資料複製至第30行之後。
+：10,20mo30             將第10行至第20行的資料搬移至第30行之後。
+字串搜尋與取代
+s(substitute)指令可搜尋某行列範圍。
+g(global)指令則可搜尋整個編輯緩衝區的資料。
+s指令以第一個滿足該條件的字串為其取代的對象，若該行有數個滿足該條
+件的字串，也僅能取代第一個，若想取代所有的字串則需加上g參數。
+：1,$s/old/new/g                將檔案中所有的『old』改成『new』。
+：10,20s/^/   /         將第10行至第20行資料的最前面插入5個空白。
+：%s/old/new/g          將編輯緩衝區中所有的『old』改成『new』。
+</code></pre><h1 id="恢復編輯時被中斷的檔案"><a href="#恢復編輯時被中斷的檔案" class="headerlink" title="恢復編輯時被中斷的檔案"></a>恢復編輯時被中斷的檔案</h1><pre><code>在編輯過程中，若系統當掉或連線中斷，而緩衝區的資料並還未
+被寫回磁碟時，當再度回到系統，執行下列指令即可回復中斷前
+的檔案內容。
+%vi -r filename
+</code></pre><h1 id="編輯多個檔案"><a href="#編輯多個檔案" class="headerlink" title="編輯多個檔案"></a>編輯多個檔案</h1><pre><code>vi亦提供同時編輯多個檔案的功能，方法如下：
+%vi file1 file2 ..
+當第一個檔案編修完成後，可利用『：w』將該緩衝區存檔，而後
+再利用 『：n』載入下一個檔案。
+</code></pre>
       
     </div>
 
@@ -495,8 +627,8 @@ One or more Occurrence (\+)">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/16/Sed_and_Awk/Chapter2/" rel="next" title="Chapter2 Sed Substitute 代替 Command">
-                <i class="fa fa-chevron-left"></i> Chapter2 Sed Substitute 代替 Command
+              <a href="/2016/12/02/wireshark/SMGP3_Lua_wireshark/" rel="next" title="优化wireshark下Lua插件SMGP协议代码">
+                <i class="fa fa-chevron-left"></i> 优化wireshark下Lua插件SMGP协议代码
               </a>
             
           </div>
@@ -504,10 +636,6 @@ One or more Occurrence (\+)">
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/16/Sed_and_Awk/Chapter4/" rel="prev" title="Chapter 4. Sed Execution(执行)">
-                Chapter 4. Sed Execution(执行) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -522,10 +650,10 @@ One or more Occurrence (\+)">
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/11/16/Sed_and_Awk/Chapter3/"
-     data-title="Chapter 3. Regular Expressions（正则表达式）"
+        <div class="ds-share flat" data-thread-key="2016/12/08/linux/vi/"
+     data-title="vi指令說明(完整版)"
      data-content=""
-     data-url="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter3/">
+     data-url="https://summingyu.github.io/2016/12/08/linux/vi/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -551,11 +679,11 @@ One or more Occurrence (\+)">
       </div>
 
       <div class="copyright" style="clear:both;">
-         <p><span>本文标题:</span><a href="/2016/11/16/Sed_and_Awk/Chapter3/">Chapter 3. Regular Expressions（正则表达式）</a></p>
+         <p><span>本文标题:</span><a href="/2016/12/08/linux/vi/">vi指令說明(完整版)</a></p>
          <p><span>文章作者:</span><a href="/" title="访问 Summingyu 的个人博客">Summingyu</a></p>
-         <p><span>发布时间:</span>2016年11月16日 - 17时11分</p>
-         <p><span>最后更新:</span>2016年11月21日 - 10时11分</p>
-         <p><span>原始链接:</span><a href="/2016/11/16/Sed_and_Awk/Chapter3/" title="Chapter 3. Regular Expressions（正则表达式）">https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter3/</a></p>
+         <p><span>发布时间:</span>2016年12月8日 - 13时12分</p>
+         <p><span>最后更新:</span>2016年12月8日 - 14时12分</p>
+         <p><span>原始链接:</span><a href="/2016/12/08/linux/vi/" title="vi指令說明(完整版)">https://summingyu.github.io/2016/12/08/linux/vi/</a></p>
          <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)">Attribution-NonCommercial 4.0</a></p>
          <p><span>转载请保留以上信息。</span></p>
       </div>
@@ -573,8 +701,8 @@ One or more Occurrence (\+)">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/16/Sed_and_Awk/Chapter3/"
-           data-title="Chapter 3. Regular Expressions（正则表达式）" data-url="https://summingyu.github.io/2016/11/16/Sed_and_Awk/Chapter3/">
+      <div class="ds-thread" data-thread-key="2016/12/08/linux/vi/"
+           data-title="vi指令說明(完整版)" data-url="https://summingyu.github.io/2016/12/08/linux/vi/">
       </div>
     
   </div>
@@ -718,7 +846,7 @@ One or more Occurrence (\+)">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-3-Regular-Expressions（正则表达式）"><span class="nav-number">1.</span> <span class="nav-text">Chapter 3. Regular Expressions（正则表达式）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#20-Regular-Expression-Fundamentals（正则表达式基础）"><span class="nav-number">1.1.</span> <span class="nav-text">20. Regular Expression Fundamentals（正则表达式基础）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-Additional-Regular-Expressions-（扩展正则表达式）"><span class="nav-number">1.2.</span> <span class="nav-text">21. Additional Regular Expressions （扩展正则表达式）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-Sed-Substitution-Using-Regular-Expression"><span class="nav-number">1.3.</span> <span class="nav-text">22. Sed Substitution Using Regular Expression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Convert-the-DOS-file-format-to-Unix-file-format-using-sed"><span class="nav-number">1.3.1.</span> <span class="nav-text">Convert the DOS file format to Unix file format using sed:</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vi指令說明-完整版"><span class="nav-number">1.</span> <span class="nav-text">vi指令說明(完整版)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vi-的操作模式"><span class="nav-number">2.</span> <span class="nav-text">vi 的操作模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#輸入模式"><span class="nav-number">3.</span> <span class="nav-text">輸入模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#指令模式"><span class="nav-number">4.</span> <span class="nav-text">指令模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#視窗的移動"><span class="nav-number">5.</span> <span class="nav-text">視窗的移動</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#刪除、複製及修改指令介紹-此單元較少使用"><span class="nav-number">6.</span> <span class="nav-text">刪除、複製及修改指令介紹 (此單元較少使用)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#刪除與修改"><span class="nav-number">7.</span> <span class="nav-text">刪除與修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搬移與複製"><span class="nav-number">8.</span> <span class="nav-text">搬移與複製</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#指令重複"><span class="nav-number">9.</span> <span class="nav-text">指令重複</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#取消前一動作-Undo"><span class="nav-number">10.</span> <span class="nav-text">取消前一動作(Undo)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搜尋"><span class="nav-number">11.</span> <span class="nav-text">搜尋</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#資料的連接"><span class="nav-number">12.</span> <span class="nav-text">資料的連接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#環境的設定"><span class="nav-number">13.</span> <span class="nav-text">環境的設定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ex指令"><span class="nav-number">14.</span> <span class="nav-text">ex指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#恢復編輯時被中斷的檔案"><span class="nav-number">15.</span> <span class="nav-text">恢復編輯時被中斷的檔案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#編輯多個檔案"><span class="nav-number">16.</span> <span class="nav-text">編輯多個檔案</span></a></li></ol></div>
             
 
           </div>
