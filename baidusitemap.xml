@@ -5,14 +5,23 @@
     
   <url>
     <loc>https://summingyu.github.io/2017/01/17/linux/rsync/</loc>
-    <lastmod>2017-01-17T11:01:25.313Z</lastmod>
+    <lastmod>2017-01-17T11:17:11.107Z</lastmod>
     <data>
         <display>
-        <title></title>
-        <pubTime>2017-01-17T11:01:25.313Z</pubTime>
+        <title>部署rsync远程备份</title>
+        <pubTime>2017-01-17T01:49:09.000Z</pubTime>
         
+        <tag>自动化运维</tag>
+         
+        <tag>脚本</tag>
+         
+        <tag>linux</tag>
+         
          
            
+             
+              <breadCrumb title="linux" url="https://summingyu.github.io/categories/linux/"/>
+          
         </display>
     </data>
     </url>
