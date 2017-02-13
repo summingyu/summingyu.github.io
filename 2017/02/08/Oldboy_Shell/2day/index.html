@@ -94,7 +94,7 @@ shell中特殊且重要的变量">
 <meta property="og:description" content="第二天 shell变量学习笔记@(shell脚本)[学习]
 [toc]
 shell中特殊且重要的变量">
-<meta property="og:updated_time" content="2017-02-13T01:10:19.454Z">
+<meta property="og:updated_time" content="2017-02-13T03:27:38.671Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二天 shell变量学习笔记">
 <meta name="twitter:description" content="第二天 shell变量学习笔记@(shell脚本)[学习]
@@ -335,7 +335,7 @@ shell中特殊且重要的变量">
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2017-02-13T09:10:19+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2017-02-13T11:27:38+08:00">
               2017-02-13
             </time>
             
@@ -541,6 +541,32 @@ shell中特殊且重要的变量">
 <blockquote>
 <p>Note: # ## % %% 都是从开头或结尾匹配，如果中间出现符合的，但开头或结尾不符合也是无法匹配到的。即，不会出现截取掉中间部分的情况</p>
 </blockquote>
+<h3 id="Shell特殊扩展变量"><a href="#Shell特殊扩展变量" class="headerlink" title="Shell特殊扩展变量"></a>Shell特殊扩展变量</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">表达式</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">${parameter:-word}</td>
+<td style="text-align:left">如果parameter的变量值为空或未赋值，则会返回word字符串并代替变量的值.<strong>并不会改变parameter的值</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">${parameter:=word}</td>
+<td style="text-align:left">如果parameter的变量值为空或未赋值,则设置这个变量为word.<strong>位置变量和特殊变量不适用</strong>.基本同上一个表达式,但该变量额外给parameter变量赋值了</td>
+</tr>
+<tr>
+<td style="text-align:center">${parameter:?word}</td>
+<td style="text-align:left">如果parameter的变量值为空或未赋值,那么word字符串将被作为标准错误输出,否则输出变量的值</td>
+</tr>
+<tr>
+<td style="text-align:center">${parameter:+word}</td>
+<td style="text-align:left">如果parameter的变量值为空或未赋值,则什么都不做,否则word字符串将代替变量的值</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -651,7 +677,7 @@ shell中特殊且重要的变量">
          <p><span>本文标题:</span><a href="/2017/02/08/Oldboy_Shell/2day/">第二天 shell变量学习笔记</a></p>
          <p><span>文章作者:</span><a href="/" title="访问 Summingyu 的个人博客">Summingyu</a></p>
          <p><span>发布时间:</span>2017年2月8日 - 10时02分</p>
-         <p><span>最后更新:</span>2017年2月13日 - 09时02分</p>
+         <p><span>最后更新:</span>2017年2月13日 - 11时02分</p>
          <p><span>原始链接:</span><a href="/2017/02/08/Oldboy_Shell/2day/" title="第二天 shell变量学习笔记">https://summingyu.github.io/2017/02/08/Oldboy_Shell/2day/</a></p>
          <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)">Attribution-NonCommercial 4.0</a></p>
          <p><span>转载请保留以上信息。</span></p>
@@ -815,7 +841,7 @@ shell中特殊且重要的变量">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第二天-shell变量学习笔记"><span class="nav-number">1.</span> <span class="nav-text">第二天 shell变量学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell中特殊且重要的变量"><span class="nav-number">1.1.</span> <span class="nav-text">shell中特殊且重要的变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell中的特殊位置参数变量"><span class="nav-number">1.1.1.</span> <span class="nav-text">shell中的特殊位置参数变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell进程中特殊状态变量"><span class="nav-number">1.1.2.</span> <span class="nav-text">shell进程中特殊状态变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell变量子串知识及实践"><span class="nav-number">1.2.</span> <span class="nav-text">Shell变量子串知识及实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Shell变量子串介绍"><span class="nav-number">1.2.1.</span> <span class="nav-text">Shell变量子串介绍</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第二天-shell变量学习笔记"><span class="nav-number">1.</span> <span class="nav-text">第二天 shell变量学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell中特殊且重要的变量"><span class="nav-number">1.1.</span> <span class="nav-text">shell中特殊且重要的变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell中的特殊位置参数变量"><span class="nav-number">1.1.1.</span> <span class="nav-text">shell中的特殊位置参数变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell进程中特殊状态变量"><span class="nav-number">1.1.2.</span> <span class="nav-text">shell进程中特殊状态变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell变量子串知识及实践"><span class="nav-number">1.2.</span> <span class="nav-text">Shell变量子串知识及实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Shell变量子串介绍"><span class="nav-number">1.2.1.</span> <span class="nav-text">Shell变量子串介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shell特殊扩展变量"><span class="nav-number">1.2.2.</span> <span class="nav-text">Shell特殊扩展变量</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
