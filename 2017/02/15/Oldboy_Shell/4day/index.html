@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="自动化运维,脚本,linux," />
+  <meta name="keywords" content="学习,基础," />
 
 
 
@@ -84,16 +84,19 @@
 
 
 
-<meta name="description" content="##写在前面年终了！要回去过年，担心各个设备出问题，要一个备份机器将其他设备上的程序同步做灾备。">
+<meta name="description" content="第四 shell脚本的条件测试与比较&amp;amp;&amp;amp;if条件语句@(shell脚本)[学习]
+[toc]">
 <meta property="og:type" content="article">
-<meta property="og:title" content="部署rsync远程备份">
-<meta property="og:url" content="https://summingyu.github.io/2017/01/17/linux/rsync/index.html">
+<meta property="og:title" content="第四 shell脚本的条件测试与比较&&if条件语句">
+<meta property="og:url" content="https://summingyu.github.io/2017/02/15/Oldboy_Shell/4day/index.html">
 <meta property="og:site_name" content="余苏明的幻想乡">
-<meta property="og:description" content="##写在前面年终了！要回去过年，担心各个设备出问题，要一个备份机器将其他设备上的程序同步做灾备。">
-<meta property="og:updated_time" content="2017-01-17T11:17:11.107Z">
+<meta property="og:description" content="第四 shell脚本的条件测试与比较&amp;amp;&amp;amp;if条件语句@(shell脚本)[学习]
+[toc]">
+<meta property="og:updated_time" content="2017-02-15T08:25:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="部署rsync远程备份">
-<meta name="twitter:description" content="##写在前面年终了！要回去过年，担心各个设备出问题，要一个备份机器将其他设备上的程序同步做灾备。">
+<meta name="twitter:title" content="第四 shell脚本的条件测试与比较&&if条件语句">
+<meta name="twitter:description" content="第四 shell脚本的条件测试与比较&amp;amp;&amp;amp;if条件语句@(shell脚本)[学习]
+[toc]">
 
 
 
@@ -121,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="https://summingyu.github.io/2017/01/17/linux/rsync/"/>
+  <link rel="canonical" href="https://summingyu.github.io/2017/02/15/Oldboy_Shell/4day/"/>
 
 
 
@@ -143,7 +146,7 @@
 }
 </style>
 
-  <title> 部署rsync远程备份 | 余苏明的幻想乡 </title>
+  <title> 第四 shell脚本的条件测试与比较&&if条件语句 | 余苏明的幻想乡 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -284,7 +287,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2017/01/17/linux/rsync/">
+  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2017/02/15/Oldboy_Shell/4day/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Summingyu">
@@ -308,7 +311,7 @@
             
             
               
-                部署rsync远程备份
+                第四 shell脚本的条件测试与比较&&if条件语句
               
             
           </h1>
@@ -320,8 +323,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-17T09:49:09+08:00">
-              2017-01-17
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-15T08:30:35+08:00">
+              2017-02-15
             </time>
 
             &nbsp;|&nbsp;
@@ -329,8 +332,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2017-01-17T19:17:11+08:00">
-              2017-01-17
+            <time title="Post modified" itemprop="dateModified" datetime="2017-02-15T16:25:32+08:00">
+              2017-02-15
             </time>
             
           </span>
@@ -344,8 +347,20 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/Linux-oldboy-shell/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux_oldboy_shell</span>
                   </a>
                 </span>
 
@@ -360,8 +375,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/01/17/linux/rsync/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/17/linux/rsync/" itemprop="commentCount"></span>
+                <a href="/2017/02/15/Oldboy_Shell/4day/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/15/Oldboy_Shell/4day/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -371,7 +386,7 @@
 
           
           
-             <span id="/2017/01/17/linux/rsync/" class="leancloud_visitors" data-flag-title="部署rsync远程备份">
+             <span id="/2017/02/15/Oldboy_Shell/4day/" class="leancloud_visitors" data-flag-title="第四 shell脚本的条件测试与比较&&if条件语句">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -396,70 +411,170 @@
       
 
       
-        <p>##写在前面<br>年终了！要回去过年，担心各个设备出问题，要一个备份机器将其他设备上的程序同步做灾备。<br><a id="more"></a></p>
-<p>##实施过程<br>其中52为备份客户端，51为服务端</p>
-<p>###打通2.52与2.51之间的<code>ssh</code>免密码登陆(root用户)</p>
-<ol>
-<li>在<strong>备份服务器52</strong>上使用命令<code>ssh-keygen  -t rsa -P &#39;&#39; -f /root/.ssh/id_rsa</code>一次生成<blockquote>
-<p><strong>或者运行</strong><code>ssh-keygen -t rsa</code>**然后敲击三次回车生成密钥对</p>
-</blockquote>
-</li>
-<li>如果在<strong>2.51服务端</strong>上的<code>/root/.ssh/</code>目录下没有<code>authorized_keys</code>文件，则生成：<strong><code>touch authorized_keys</code></strong></li>
-<li>修改权限<strong><code>chmod 600 authorized_keys</code></strong></li>
-<li><p>将客户端上生成的<code>id_rsa.pub</code>追加到服务端<code>authorized_keys</code>文件中</p>
-<ol>
-<li><p>在<strong>服务端51</strong>上使用scp命令将远程服务器上的<code>id_rsa.pub</code>下载到本地服务器<br><code>scp -p root@192.168.2.52:/root/.ssh/id_rsa.pub /root/.ssh/id_rsa.pub_192.168.2.52</code></p>
-</li>
-<li><p>追加到<code>authorized_keys</code>文件中</p>
+        <h1 id="第四-shell脚本的条件测试与比较-amp-amp-if条件语句"><a href="#第四-shell脚本的条件测试与比较-amp-amp-if条件语句" class="headerlink" title="第四 shell脚本的条件测试与比较&amp;&amp;if条件语句"></a>第四 shell脚本的条件测试与比较&amp;&amp;if条件语句</h1><p>@(shell脚本)[学习]</p>
+<p>[toc]</p>
+<a id="more"></a>
+<h2 id="测试命令test"><a href="#测试命令test" class="headerlink" title="测试命令test"></a>测试命令<code>test</code></h2><p>结论：test命令测试的功能很强大，但是和<code>[ ]</code>、<code>[[ ]]</code>的功能有所重合，因此，在实际工作中选择一种适合自己的语法就好了。</p>
+<h2 id="文件测试表达式"><a href="#文件测试表达式" class="headerlink" title="文件测试表达式"></a>文件测试表达式</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">常用文件测试操作符</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-d 文件</td>
+<td style="text-align:center">directory，目录</td>
+</tr>
+<tr>
+<td style="text-align:center">-f 文件</td>
+<td style="text-align:center">file，普通文件</td>
+</tr>
+<tr>
+<td style="text-align:center">-e 文件</td>
+<td style="text-align:center">exist，-e不辨别是目录还是文件</td>
+</tr>
+<tr>
+<td style="text-align:center">-r 文件</td>
+<td style="text-align:center">read，可读文件</td>
+</tr>
+<tr>
+<td style="text-align:center">-s 文件</td>
+<td style="text-align:center">size，文件大小不为0的文件</td>
+</tr>
+<tr>
+<td style="text-align:center">-w 文件</td>
+<td style="text-align:center">write，可写文件</td>
+</tr>
+<tr>
+<td style="text-align:center">-x 文件</td>
+<td style="text-align:center">executable，可执行文件</td>
+</tr>
+<tr>
+<td style="text-align:center">-L 文件</td>
+<td style="text-align:center">link，链接文件</td>
+</tr>
+<tr>
+<td style="text-align:center">f1 -nt f2</td>
+<td style="text-align:center">newer than 文件f1比f2新，根据修改时间计算</td>
+</tr>
+<tr>
+<td style="text-align:center">f1 -ot f2</td>
+<td style="text-align:center">older than 文件f1比f2旧，根据修改时间计算</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<p><code>cat /root/.ssh/id_rsa.pub_192.168.2.52 &gt;&gt;authorized_keys</code></p>
+<p>提示：测试文件的读写执行等属性，不光是根据文件属性rwx的标识来判断，还要看当前执行测试的用户是否真的可以按照对应的权限操作该文件。<br>tips: 测试变量时要加””，否则结果可能不对。变量没赋值返回结果也为真</p>
 </blockquote>
-</li>
-</ol>
-</li>
-<li><p>修改ssh的配置文件<code>/etc/ssh/sshd_config</code>将下列三行注释去掉</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#RSAAuthentication yes</span></div><div class="line"><span class="comment">#PubkeyAuthentication yes</span></div><div class="line"><span class="comment">#AuthorizedKeysFile      .ssh/authorized_keys</span></div><div class="line"></div><div class="line"><span class="comment">##################修改后#############################</span></div><div class="line">RSAAuthentication yes</div><div class="line">PubkeyAuthentication yes</div><div class="line">AuthorizedKeysFile      .ssh/authorized_keys</div></pre></td></tr></table></figure>
-</li>
-<li><p>重启sshd服务：<strong><code>service sshd restart</code></strong></p>
-</li>
-<li>到此已经打通2.51和2.52之间的ssh</li>
-<li>保险起见，将每个服务器上的<code>id_rsa.pub_*</code>文件删除<strong><code>rm -f /root/.ssh/id_rsa.pub_*</code></strong></li>
-</ol>
-<p>###使用<code>rsync</code>同步两台服务器程序</p>
-<p>####修改51上的<code>/etc/rsyncd.conf</code>文件，没有则创建。权限<code>644</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># /etc/rsyncd: configuration file for rsync daemon mode</span></div><div class="line"></div><div class="line"><span class="comment"># See rsyncd.conf man page for more options.</span></div><div class="line"></div><div class="line"><span class="comment"># configuration example:</span></div><div class="line"></div><div class="line"><span class="comment"># uid = nobody</span></div><div class="line"><span class="comment"># gid = nobody</span></div><div class="line">uid = root</div><div class="line">gid = root</div><div class="line"><span class="comment"># use chroot = yes</span></div><div class="line">use chroot = no</div><div class="line"><span class="comment"># max connections = 4</span></div><div class="line">max connections = 4</div><div class="line"><span class="comment"># pid file = /var/run/rsyncd.pid</span></div><div class="line">pid file = /var/run/rsyncd.pid</div><div class="line">lock file = /var/run/rsyncd.lock</div><div class="line"><span class="built_in">log</span> file = /var/<span class="built_in">log</span>/rsyncd.log</div><div class="line"><span class="comment"># exclude = lost+found/</span></div><div class="line"><span class="comment"># transfer logging = yes</span></div><div class="line"><span class="comment"># timeout = 900</span></div><div class="line">timeout = 600</div><div class="line"><span class="comment"># ignore nonreadable = yes</span></div><div class="line"> dont compress   = *.gz *.tgz *.zip *.z *.Z *.rpm *.deb *.bz2</div><div class="line"></div><div class="line"></div><div class="line">[exp_1]</div><div class="line">        path = /exp</div><div class="line">        comment = bakup exp_1_zipingtai <span class="comment">#此行为备注行，可随意更改</span></div><div class="line">        ignore errors = yes</div><div class="line">        <span class="built_in">read</span> only = yes</div><div class="line">        list = no</div><div class="line">        hosts allow = 192.168.2.52 <span class="comment">#限定允许访问的ip</span></div><div class="line">        hosts deny = 0.0.0.0/0 <span class="comment">#拒绝所有其他ip使用rsync同步</span></div><div class="line">        exclude = <span class="built_in">log</span>/* <span class="comment">#过滤文件及目录为相对path的路径</span></div><div class="line">        auth users = root</div><div class="line">        secrets file = /etc/backserver.pas</div><div class="line">[tomcat]</div><div class="line">        path = /usr/tomcat</div><div class="line">        comment = bakup tomcat</div><div class="line">        ignore errors = yes</div><div class="line">        <span class="built_in">read</span> only = yes</div><div class="line">        list = no</div><div class="line">        hosts allow = 192.168.2.52</div><div class="line">        hosts deny = 0.0.0.0/0</div><div class="line">        exclude = <span class="built_in">log</span>/* logs/* webapps/ROOT/* work/*</div><div class="line">        auth users = root</div><div class="line">        secrets file = /etc/backserver.pas</div><div class="line"><span class="comment">#要同步其他程序可自行按上行格式同步</span></div></pre></td></tr></table></figure></p>
-<p>####生成认证密码文件<code>/etc/backserver.pas</code><br>执行下列命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#root密码为123456；可以与登陆密码不一致</span></div><div class="line"><span class="built_in">echo</span> root:123456 &gt; /etc/backserver.pas </div><div class="line"><span class="comment">#修改文件权限，否则服务起不来</span></div><div class="line">chmod 400 /etc/backserver.pas</div></pre></td></tr></table></figure></p>
-<p>####启动服务端<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">rsync --daemon</div><div class="line"><span class="comment">#观察是否启动成功,下列三种命令皆可</span></div><div class="line">lsof -i :873 </div><div class="line">netstat -an|grep 873</div><div class="line">ps -ef|grep rsync</div></pre></td></tr></table></figure></p>
-<p>####客户端配置</p>
-<ol>
-<li>创建密码文件</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 123456 &gt; /root/backserver.pas <span class="comment">#与服务端密码一致</span></div><div class="line"><span class="comment">#更改密码文件权限，否则报错</span></div><div class="line">chmod 600 /root/backserver.pas</div></pre></td></tr></table></figure>
-<ol>
-<li>创建对应文件夹<br><code>mkdir -pv /bak/exp_1</code></li>
-<li>执行下面命令</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync -vzrtopg --bwlimit=1000 --delete --progress root@192.168.2.51::exp_1 /bak/exp_1/ --password-file=/root/backserver.pas</div></pre></td></tr></table></figure>
-<p><code>--bwlimit</code>参数是限定同步速度为1000kB/s<br><code>--delete</code>参数是同步时发现客户端有而服务端没有的文件则删除</p>
-<p>####优化</p>
-<ol>
-<li><p>可以将<code>exclude</code>参数写入服务端配置文件中,<strong>例如</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">exclude = bin/ <span class="built_in">history</span>/ <span class="comment">#多个目录使用空格隔开</span></div><div class="line"><span class="comment">#如果过滤文件较多，可以使用参数exclude from</span></div><div class="line"><span class="comment">#注意：</span></div><div class="line"><span class="comment">##########################</span></div><div class="line"><span class="comment">#过滤目录不是按绝对值目录匹配的</span></div><div class="line"><span class="comment">#例如有两个目录bin/和foo/bin/</span></div><div class="line"><span class="comment">#则该参数会将两个bin目录都过滤掉</span></div><div class="line"><span class="comment">#如果要过滤foo/bin/则需要用foo/bin/</span></div><div class="line"><span class="comment">#exclude = foo/bin/</span></div><div class="line"><span class="comment">###########################</span></div><div class="line">exclude from = /home/exclude.list</div><div class="line"><span class="comment">#exclude.list每行为一个参数，参数为相对路径</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>编写<code>autobakup.sh</code>备份脚本</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#auther: summingbest@gmail.com</div><div class="line">MONTH=`date +"%Y%m"`</div><div class="line">DAY=`date +"%d"`</div><div class="line">HOUR=`date +"%H"`</div><div class="line">MIN=`date +"%M"`</div><div class="line">tarname=/bak/exp/exp_1_$&#123;MONTH&#125;$&#123;DAY&#125;$&#123;HOUR&#125;.tar.gz</div><div class="line"></div><div class="line">[ ! -d /bak/exp ] &amp;&amp; mkdir -p /bak/exp;</div><div class="line"></div><div class="line">[ ! -d /bak/exp/exp_1 ] &amp;&amp; mkdir -p /bak/exp/exp_1;</div><div class="line">[ ! -d /bak/exp/tomcat ] &amp;&amp; mkdir -p /bak/exp/tomcat;</div><div class="line"></div><div class="line">#删除7天前的备份文件</div><div class="line">find /bak/exp -name "exp_1_*.tar.gz" -mtime +7 -type f|xargs rm -f</div><div class="line"></div><div class="line">rsync -vzrtopg --bwlimit=1000 --delete --progress root@192.168.2.51::exp_1 /bak/exp/exp_1/ --password-file=/root/backserver.pas</div><div class="line">rsync -vzrtopg --bwlimit=1000 --delete --progress root@192.168.2.51::tomcat /bak/exp/tomcat/ --password-file=/root/backserver.pas</div><div class="line"></div><div class="line">tar -zcvf $&#123;tarname&#125; /bak/exp/exp_1/ /bak/exp/tomcat/</div></pre></td></tr></table></figure>
-</li>
-<li><p>可以在客户端 将脚本放入指定的/bak/bin目录，并使用命令加入<code>crontab</code>，定时执行</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo &apos;20 9 * * * /bin/sh /bak/bin/autobakup.sh&apos; &gt;&gt; /var/spool/cron/root</div></pre></td></tr></table></figure>
-<p>####在其他服务器上配置<br>只需要更改一些对应的参数即可</p>
-<p>##参考文献</p>
-<ol>
-<li><a href="http://jingyan.baidu.com/article/2fb0ba4043124a00f2ec5f0f.html" target="_blank" rel="external">ssh/scp免密码登陆</a></li>
-<li><a href="http://www.blogjava.net/baizhihui19870626/articles/379460.html" target="_blank" rel="external">rsync简单配置</a></li>
-<li><a href="http://wenku.baidu.com/view/745ce5d276eeaeaad1f330a7.html" target="_blank" rel="external">rsync百度文库详细参数</a></li>
-<li><a href="http://www.jb51.net/article/31920.htm" target="_blank" rel="external">rsync常见错误</a></li>
-</ol>
+<h2 id="字符串测试表达式"><a href="#字符串测试表达式" class="headerlink" title="字符串测试表达式"></a>字符串测试表达式</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">常用字符串测试操作符</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-n “字符串”</td>
+<td style="text-align:center">no zero，字符串长度不为0</td>
+</tr>
+<tr>
+<td style="text-align:center">-z “字符串”</td>
+<td style="text-align:center">zero，字符串长度为0</td>
+</tr>
+<tr>
+<td style="text-align:center">“串1”=”串2”</td>
+<td style="text-align:center">若字符串1等于字符串2，则为真，可使用”==”代替”=”</td>
+</tr>
+<tr>
+<td style="text-align:center">“串1”!=”串2”</td>
+<td style="text-align:center">若字符串1不等于字符串2，为真</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>对字符串的测试一定要将字符串加双引号之后再进行比较。</li>
+<li>比较字符串两段一定要有空格</li>
+</ul>
+<h2 id="整数二元比较操作符"><a href="#整数二元比较操作符" class="headerlink" title="整数二元比较操作符"></a>整数二元比较操作符</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">在[]以及test中使用的比较符</th>
+<th style="text-align:center">在(())和[[]]中使用的比较符号</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-eq</td>
+<td style="text-align:center">==或=</td>
+<td style="text-align:center">equal，相等</td>
+</tr>
+<tr>
+<td style="text-align:center">-ne</td>
+<td style="text-align:center">!=</td>
+<td style="text-align:center">not equal，不等</td>
+</tr>
+<tr>
+<td style="text-align:center">-gt</td>
+<td style="text-align:center">&gt;</td>
+<td style="text-align:center">greater then， 大于</td>
+</tr>
+<tr>
+<td style="text-align:center">-ge</td>
+<td style="text-align:center">&gt;=</td>
+<td style="text-align:center">greater equal， 大于等于</td>
+</tr>
+<tr>
+<td style="text-align:center">-lt</td>
+<td style="text-align:center">&lt;</td>
+<td style="text-align:center">less then,小于</td>
+</tr>
+<tr>
+<td style="text-align:center">-le</td>
+<td style="text-align:center">&lt;=</td>
+<td style="text-align:center">less equal，小于等于</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>“=”和”!=”可以在[]中使用，但”&gt;”、”&lt;”要用反斜线”\”转义</li>
+<li>比较符号两端也要有空格</li>
+</ul>
+<blockquote>
+<p><code>[[]]</code>是扩展的test命令，其语法更丰富也更复杂，建议除非是特殊的正则匹配等，在[]无法使用的情况下才会考虑使用<code>[[]]</code></p>
+</blockquote>
+<h2 id="逻辑操作符"><a href="#逻辑操作符" class="headerlink" title="逻辑操作符"></a>逻辑操作符</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">在[]以及test中使用的比较符</th>
+<th style="text-align:center">在(())和[[]]中使用的比较符号</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-a</td>
+<td style="text-align:center">&amp;&amp;</td>
+<td style="text-align:center">and</td>
+</tr>
+<tr>
+<td style="text-align:center">-o</td>
+<td style="text-align:center">\</td>
+<td style="text-align:center">\</td>
+<td></td>
+<td>or</td>
+</tr>
+<tr>
+<td style="text-align:center">!</td>
+<td style="text-align:center">!</td>
+<td style="text-align:center">not</td>
+</tr>
+</tbody>
+</table>
+<h2 id="if条件语句"><a href="#if条件语句" class="headerlink" title="if条件语句"></a>if条件语句</h2><p>基本可以用测试表达式加&amp;&amp;或||代替简单的if语句。主要是嵌套if语句和多分支语句。if在脚本中是非常重要的模块。</p>
 
       
     </div>
@@ -504,11 +619,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/自动化运维/" rel="tag"># 自动化运维</a>
+            <a href="/tags/学习/" rel="tag"># 学习</a>
           
-            <a href="/tags/脚本/" rel="tag"># 脚本</a>
-          
-            <a href="/tags/linux/" rel="tag"># linux</a>
+            <a href="/tags/基础/" rel="tag"># 基础</a>
           
         </div>
       
@@ -517,8 +630,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/08/linux/vi/" rel="next" title="vi指令說明(完整版)">
-                <i class="fa fa-chevron-left"></i> vi指令說明(完整版)
+              <a href="/2017/02/13/Oldboy_Shell/3day/" rel="next" title="第三 shell变量的数值计算学习笔记">
+                <i class="fa fa-chevron-left"></i> 第三 shell变量的数值计算学习笔记
               </a>
             
           </div>
@@ -526,10 +639,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/07/Oldboy_Shell/1day/" rel="prev" title="第一 shell基础学习笔记">
-                第一 shell基础学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -544,10 +653,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/01/17/linux/rsync/"
-     data-title="部署rsync远程备份"
+        <div class="ds-share flat" data-thread-key="2017/02/15/Oldboy_Shell/4day/"
+     data-title="第四 shell脚本的条件测试与比较&&if条件语句"
      data-content=""
-     data-url="https://summingyu.github.io/2017/01/17/linux/rsync/">
+     data-url="https://summingyu.github.io/2017/02/15/Oldboy_Shell/4day/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -573,11 +682,11 @@
       </div>
 
       <div class="copyright" style="clear:both;">
-         <p><span>本文标题:</span><a href="/2017/01/17/linux/rsync/">部署rsync远程备份</a></p>
+         <p><span>本文标题:</span><a href="/2017/02/15/Oldboy_Shell/4day/">第四 shell脚本的条件测试与比较&&if条件语句</a></p>
          <p><span>文章作者:</span><a href="/" title="访问 Summingyu 的个人博客">Summingyu</a></p>
-         <p><span>发布时间:</span>2017年1月17日 - 09时01分</p>
-         <p><span>最后更新:</span>2017年1月17日 - 19时01分</p>
-         <p><span>原始链接:</span><a href="/2017/01/17/linux/rsync/" title="部署rsync远程备份">https://summingyu.github.io/2017/01/17/linux/rsync/</a></p>
+         <p><span>发布时间:</span>2017年2月15日 - 08时02分</p>
+         <p><span>最后更新:</span>2017年2月15日 - 16时02分</p>
+         <p><span>原始链接:</span><a href="/2017/02/15/Oldboy_Shell/4day/" title="第四 shell脚本的条件测试与比较&&if条件语句">https://summingyu.github.io/2017/02/15/Oldboy_Shell/4day/</a></p>
          <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)">Attribution-NonCommercial 4.0</a></p>
          <p><span>转载请保留以上信息。</span></p>
       </div>
@@ -595,8 +704,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/01/17/linux/rsync/"
-           data-title="部署rsync远程备份" data-url="https://summingyu.github.io/2017/01/17/linux/rsync/">
+      <div class="ds-thread" data-thread-key="2017/02/15/Oldboy_Shell/4day/"
+           data-title="第四 shell脚本的条件测试与比较&&if条件语句" data-url="https://summingyu.github.io/2017/02/15/Oldboy_Shell/4day/">
       </div>
     
   </div>
@@ -620,8 +729,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -721,6 +839,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第四-shell脚本的条件测试与比较-amp-amp-if条件语句"><span class="nav-number">1.</span> <span class="nav-text">第四 shell脚本的条件测试与比较&&if条件语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试命令test"><span class="nav-number">1.1.</span> <span class="nav-text">测试命令test</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件测试表达式"><span class="nav-number">1.2.</span> <span class="nav-text">文件测试表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串测试表达式"><span class="nav-number">1.3.</span> <span class="nav-text">字符串测试表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整数二元比较操作符"><span class="nav-number">1.4.</span> <span class="nav-text">整数二元比较操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑操作符"><span class="nav-number">1.5.</span> <span class="nav-text">逻辑操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#if条件语句"><span class="nav-number">1.6.</span> <span class="nav-text">if条件语句</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
