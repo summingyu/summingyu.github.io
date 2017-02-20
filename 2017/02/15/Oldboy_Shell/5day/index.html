@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="余苏明的幻想乡">
 <meta property="og:description" content="第五 shell函数@(shell脚本)[学习]
 [toc]">
-<meta property="og:updated_time" content="2017-02-20T08:35:04.384Z">
+<meta property="og:updated_time" content="2017-02-20T08:36:41.921Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第五 shell函数">
 <meta name="twitter:description" content="第五 shell函数@(shell脚本)[学习]
@@ -332,7 +332,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2017-02-20T16:35:04+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2017-02-20T16:36:41+08:00">
               2017-02-20
             </time>
             
@@ -489,8 +489,7 @@
 <p>以上n均可省略</p>
 </blockquote>
 <h2 id="shell数组"><a href="#shell数组" class="headerlink" title="shell数组"></a>shell数组</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">array=(value1 value2 ...)</div></pre></td></tr></table></figure>
-<p>输出数组的所有元素值<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array[*]&#125;</span></div><div class="line"><span class="comment">#或</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array[@]&#125;</span></div></pre></td></tr></table></figure></p>
-<p>动态定义数组<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">array=($(<span class="built_in">command</span>))</div><div class="line"><span class="comment">#或</span></div><div class="line">array=(`<span class="built_in">command</span>`)</div></pre></td></tr></table></figure></p>
+<p>输出数组的所有元素值<br><code>echo ${array[*]}</code>或<code>echo ${array[@]}</code><br>动态定义数组<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">array=($(<span class="built_in">command</span>))</div><div class="line"><span class="comment">#或</span></div><div class="line">array=(`<span class="built_in">command</span>`)</div></pre></td></tr></table></figure></p>
 <blockquote>
 <p>数组也是变量，所以前面的变量子串知识也试用与数组 。例如<code>echo ${\#array[@]}</code>获取数组长度</p>
 </blockquote>
