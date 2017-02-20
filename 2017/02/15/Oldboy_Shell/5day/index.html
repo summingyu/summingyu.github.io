@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="余苏明的幻想乡">
 <meta property="og:description" content="第五 shell函数@(shell脚本)[学习]
 [toc]">
-<meta property="og:updated_time" content="2017-02-20T07:33:45.440Z">
+<meta property="og:updated_time" content="2017-02-20T07:36:37.046Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第五 shell函数">
 <meta name="twitter:description" content="第五 shell函数@(shell脚本)[学习]
@@ -332,7 +332,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2017-02-20T15:33:45+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2017-02-20T15:36:37+08:00">
               2017-02-20
             </time>
             
@@ -488,6 +488,8 @@
 <blockquote>
 <p>以上n均可省略</p>
 </blockquote>
+<h2 id="shell数组"><a href="#shell数组" class="headerlink" title="shell数组"></a>shell数组</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">array=(value1 value2 ...)</div></pre></td></tr></table></figure>
+<p>输出数组的所有元素值<br>动态定义数组<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">array=($(<span class="built_in">command</span>))</div><div class="line"><span class="comment">#或</span></div><div class="line">array=(`<span class="built_in">command</span>`)</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -762,7 +764,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第五-shell函数"><span class="nav-number">1.</span> <span class="nav-text">第五 shell函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的执行"><span class="nav-number">1.1.</span> <span class="nav-text">函数的执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#执行不带参数的函数时，直接输入函数名即可"><span class="nav-number">1.1.1.</span> <span class="nav-text">执行不带参数的函数时，直接输入函数名即可</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带参数的函数执行方法如下："><span class="nav-number">1.1.2.</span> <span class="nav-text">带参数的函数执行方法如下：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#case条件语句"><span class="nav-number">1.2.</span> <span class="nav-text">case条件语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#while循环和until循环"><span class="nav-number">1.3.</span> <span class="nav-text">while循环和until循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for和select循环语句"><span class="nav-number">1.4.</span> <span class="nav-text">for和select循环语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for循环语句"><span class="nav-number">1.4.1.</span> <span class="nav-text">for循环语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#select-循环语句"><span class="nav-number">1.4.2.</span> <span class="nav-text">select 循环语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环控制及状态返回值"><span class="nav-number">1.5.</span> <span class="nav-text">循环控制及状态返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#break，continue，exit，return"><span class="nav-number">1.5.1.</span> <span class="nav-text">break，continue，exit，return</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第五-shell函数"><span class="nav-number">1.</span> <span class="nav-text">第五 shell函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的执行"><span class="nav-number">1.1.</span> <span class="nav-text">函数的执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#执行不带参数的函数时，直接输入函数名即可"><span class="nav-number">1.1.1.</span> <span class="nav-text">执行不带参数的函数时，直接输入函数名即可</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带参数的函数执行方法如下："><span class="nav-number">1.1.2.</span> <span class="nav-text">带参数的函数执行方法如下：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#case条件语句"><span class="nav-number">1.2.</span> <span class="nav-text">case条件语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#while循环和until循环"><span class="nav-number">1.3.</span> <span class="nav-text">while循环和until循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for和select循环语句"><span class="nav-number">1.4.</span> <span class="nav-text">for和select循环语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for循环语句"><span class="nav-number">1.4.1.</span> <span class="nav-text">for循环语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#select-循环语句"><span class="nav-number">1.4.2.</span> <span class="nav-text">select 循环语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环控制及状态返回值"><span class="nav-number">1.5.</span> <span class="nav-text">循环控制及状态返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#break，continue，exit，return"><span class="nav-number">1.5.1.</span> <span class="nav-text">break，continue，exit，return</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shell数组"><span class="nav-number">1.6.</span> <span class="nav-text">shell数组</span></a></li></ol></li></ol></div>
             
 
           </div>
