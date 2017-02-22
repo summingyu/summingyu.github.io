@@ -1,0 +1,1055 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="自动化运维,脚本,linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="写在前面记录登陆者的ip，登陆执行操作和登陆时间，登陆一次记录一次原理是将命令写在/etc/profile里面，每次登陆都会加载/etc/profile文件，所以能够记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录登陆与操作日志">
+<meta property="og:url" content="https://summingyu.github.io/2016/11/23/linux/Loginlog/index.html">
+<meta property="og:site_name" content="余苏明的幻想乡">
+<meta property="og:description" content="写在前面记录登陆者的ip，登陆执行操作和登陆时间，登陆一次记录一次原理是将命令写在/etc/profile里面，每次登陆都会加载/etc/profile文件，所以能够记录">
+<meta property="og:updated_time" content="2016-12-08T06:12:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记录登陆与操作日志">
+<meta name="twitter:description" content="写在前面记录登陆者的ip，登陆执行操作和登陆时间，登陆一次记录一次原理是将命令写在/etc/profile里面，每次登陆都会加载/etc/profile文件，所以能够记录">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'CV7W4UCD4O',
+      apiKey: '006e12021aae0e40fd4eecf26125b687',
+      indexName: 'summingyu',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://summingyu.github.io/2016/11/23/linux/Loginlog/"/>
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script> 
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style> 
+ .pace .pace-progress { 
+     background:#1e92fb; /*进度条颜色*/ 
+     height:3px; 
+ }
+.pace .pace-progress-inner { 
+    box-shadow:0 0 10px #1e92fb, 0 0 5px #1e92fb; /*阴影颜色*/ 
+}
+.pace .pace-activity { 
+    border-top-color:#1e92fb; /*上边框颜色*/ 
+    border-left-color:#1e92fb; /*左边框颜色*/ 
+}
+</style>
+
+  <title> 记录登陆与操作日志 | 余苏明的幻想乡 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">余苏明的幻想乡</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">summingyu's blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/11/23/linux/Loginlog/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Summingyu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="余苏明的幻想乡">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="余苏明的幻想乡" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                记录登陆与操作日志
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-23T14:49:09+08:00">
+              2016-11-23
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-12-08T14:12:50+08:00">
+              2016-12-08
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/23/linux/Loginlog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/23/linux/Loginlog/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/23/linux/Loginlog/" class="leancloud_visitors" data-flag-title="记录登陆与操作日志">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">临幸次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>记录登陆者的ip，登陆执行操作和登陆时间，登陆一次记录一次<br>原理是将命令写在<code>/etc/profile</code>里面，每次登陆都会加载<code>/etc/profile</code>文件，所以能够记录<br><a id="more"></a></p>
+<h3 id="手动创建"><a href="#手动创建" class="headerlink" title="手动创建"></a>手动创建</h3><h4 id="在-etc-profile文件后面加上下面代码init-txt"><a href="#在-etc-profile文件后面加上下面代码init-txt" class="headerlink" title="在/etc/profile文件后面加上下面代码init.txt"></a>在<code>/etc/profile</code>文件后面加上下面代码<code>init.txt</code></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#登陆时运行</span></div><div class="line"><span class="built_in">export</span> LOGINLOGDIR=/home/LoginLog/<span class="built_in">history</span></div><div class="line"><span class="comment">#PS1="`whoami`@`hostname`:"'[$PWD]'</span></div><div class="line"><span class="comment">#export HISTTIMEFORMAT="%F %T"</span></div><div class="line"><span class="comment">#history</span></div><div class="line"><span class="built_in">export</span> HISTTIMEFORMAT=<span class="string">"[%Y.%m.%d %H:%M:%S]"</span></div><div class="line">USER_IP=`who -u am i 2&gt;/dev/null| awk <span class="string">'&#123;print $NF&#125;'</span>|sed <span class="_">-e</span> <span class="string">'s/[()]//g'</span>`</div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$USER_IP</span>"</span> = <span class="string">""</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">USER_IP=`hostname`</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="variable">$&#123;LOGINLOGDIR&#125;</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    mkdir -p <span class="variable">$&#123;LOGINLOGDIR&#125;</span></div><div class="line">    chmod 733 <span class="variable">$&#123;LOGINLOGDIR&#125;</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="variable">$&#123;LOGINLOGDIR&#125;</span>/<span class="variable">$&#123;LOGNAME&#125;</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    mkdir <span class="variable">$&#123;LOGINLOGDIR&#125;</span>/<span class="variable">$&#123;LOGNAME&#125;</span></div><div class="line">    chmod 300 <span class="variable">$&#123;LOGINLOGDIR&#125;</span>/<span class="variable">$&#123;LOGNAME&#125;</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> /home/LoginLog/bin/ ]</div><div class="line"><span class="keyword">then</span></div><div class="line">	mkdir /home/LoginLog/bin/ </div><div class="line"><span class="keyword">else</span></div><div class="line">	/bin/bash /home/LoginLog/bin/Login.sh</div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="built_in">export</span> HISTSIZE=4096</div><div class="line">DT=`date +<span class="string">"%Y%m%d_%H%M%S"</span>`</div><div class="line"><span class="built_in">export</span> LOGINDT=<span class="variable">$&#123;LOGINLOGDIR&#125;</span>/LOGINLOG_`date +<span class="string">"%Y%m%d_%H%M"</span>`</div><div class="line"><span class="built_in">export</span> HISTFILE=<span class="string">"<span class="variable">$&#123;LOGINLOGDIR&#125;</span>/<span class="variable">$&#123;LOGNAME&#125;</span>/<span class="variable">$&#123;USER_IP&#125;</span>_history.<span class="variable">$DT</span>"</span></div><div class="line">chmod 600 <span class="variable">$&#123;LOGINLOGDIR&#125;</span>/<span class="variable">$&#123;LOGNAME&#125;</span>/*<span class="built_in">history</span>* 2&gt;/dev/null</div></pre></td></tr></table></figure>
+<h4 id="在-home-LoginLog-bin目录创建Login-sh"><a href="#在-home-LoginLog-bin目录创建Login-sh" class="headerlink" title="在/home/LoginLog/bin目录创建Login.sh"></a>在<code>/home/LoginLog/bin</code>目录创建<code>Login.sh</code></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">MONTH=`date +<span class="string">"%Y%m"</span>`</div><div class="line">DAY=`date +<span class="string">"%d"</span>`</div><div class="line">HOUR=`date +<span class="string">"%H"</span>`</div><div class="line">MIN=`date +<span class="string">"%M"</span>`</div><div class="line">NOW=<span class="variable">$&#123;MONTH&#125;</span><span class="variable">$&#123;DAY&#125;</span>_<span class="variable">$&#123;HOUR&#125;</span>_<span class="variable">$&#123;MIN&#125;</span></div><div class="line">LOGINLOGDIR=/home/LoginLog/<span class="built_in">history</span></div><div class="line">LOGDIR=<span class="variable">$&#123;LOGINLOGDIR&#125;</span>/<span class="variable">$&#123;LOGNAME&#125;</span>/LOGIN</div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="variable">$&#123;LOGDIR&#125;</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">mkdir -p <span class="variable">$&#123;LOGDIR&#125;</span></div><div class="line"><span class="keyword">fi</span></div><div class="line">LOGFILE=<span class="variable">$&#123;LOGDIR&#125;</span>/Loginlog_<span class="variable">$&#123;NOW&#125;</span>.log</div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-f</span> <span class="variable">$&#123;LOGFILE&#125;</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">touch  <span class="variable">$&#123;LOGFILE&#125;</span></div><div class="line">chmod 600 <span class="variable">$&#123;LOGFILE&#125;</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"==============`date`================="</span>&gt;&gt; <span class="variable">$&#123;LOGFILE&#125;</span></div><div class="line">last -x|head &gt;&gt; <span class="variable">$&#123;LOGFILE&#125;</span></div></pre></td></tr></table></figure>
+<h4 id="编写删除脚本DelLoginLog-sh"><a href="#编写删除脚本DelLoginLog-sh" class="headerlink" title="编写删除脚本DelLoginLog.sh"></a>编写删除脚本<code>DelLoginLog.sh</code></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#script name:DelLoginLog.sh</span></div><div class="line"><span class="built_in">export</span> LANG=en</div><div class="line">LOGINLOGDELDIR=/home/LoginLog</div><div class="line">LOGINLOGDIR=/home/LoginLog/<span class="built_in">history</span></div><div class="line"></div><div class="line"><span class="comment">#删除90天前的所有文件</span></div><div class="line">find <span class="variable">$&#123;LOGINLOGDIR&#125;</span> -mtime +90 -type f|xargs rm <span class="_">-f</span></div><div class="line"></div><div class="line"><span class="comment">#读取日志文件大小</span></div><div class="line">FREEDISK=`du -sk <span class="variable">$&#123;LOGINLOGDELDIR&#125;</span>/|awk <span class="string">'&#123;print $1&#125;'</span>`</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">DiskClear</span></span>()</div><div class="line">&#123;</div><div class="line">    <span class="comment">#查找1天前的最早的10个文件</span></div><div class="line">    HEADMOST=`find <span class="variable">$&#123;LOGINLOGDELDIR&#125;</span> -mtime +1 -type f|xargs ls -lrt|awk <span class="string">'&#123;print $NF&#125;'</span>|egrep -v <span class="string">"total$|sh$|tmp$|^snapshot$"</span>|head -n 10`;</div><div class="line">    <span class="comment">#如果文件数为0，则退出函数</span></div><div class="line">    HEADCOUNT=`find <span class="variable">$&#123;LOGINLOGDELDIR&#125;</span> -mtime +1 -type f|egrep -v <span class="string">"total$|sh$|tmp$|^snapshot$"</span>|wc <span class="_">-l</span>`;</div><div class="line">    [ <span class="string">"<span class="variable">$&#123;HEADCOUNT&#125;</span>"</span> == <span class="string">'0'</span> ] &amp;&amp; <span class="built_in">return</span>; </div><div class="line">    rm <span class="_">-f</span> <span class="string">"<span class="variable">$HEADMOST</span>"</span>;</div><div class="line">    FREEDISK=`du -sk <span class="variable">$&#123;LOGINLOGDIR&#125;</span>/|awk <span class="string">'&#123;print $1&#125;'</span>`;</div><div class="line">    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;FREEDISK&#125;</span>"</span> -ge <span class="string">"102400"</span> ];<span class="keyword">then</span></div><div class="line">        DiskClear;</div><div class="line">    <span class="keyword">fi</span>; </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment"># 当文件大于1G时删除</span></div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;FREEDISK&#125;</span>"</span> -ge <span class="string">"102400"</span> ];<span class="keyword">then</span></div><div class="line">    DiskClear</div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="comment">#删除空文件夹</span></div><div class="line">EMPTYDIRCOUNT=`find <span class="variable">$&#123;LOGINLOGDELDIR&#125;</span> -type d -empty|wc <span class="_">-l</span>`</div><div class="line"><span class="keyword">if</span> [ <span class="variable">$EMPTYDIRCOUNT</span> != <span class="string">'0'</span> ];<span class="keyword">then</span>  </div><div class="line">        find <span class="variable">$&#123;LOGINLOGDELDIR&#125;</span> -type d -empty|xargs rmdir -p --ignore-fail-on-non-empty</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<h4 id="备份并上传脚本LoginLogBakup-sh-—-—目前没部署"><a href="#备份并上传脚本LoginLogBakup-sh-—-—目前没部署" class="headerlink" title="备份并上传脚本LoginLogBakup.sh — —目前没部署"></a>备份并上传脚本<code>LoginLogBakup.sh</code> — —目前没部署</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">BAKUPDIR=/home/LoginLog/Bak</div><div class="line">LOGINLOGDIR=/home/LoginLog/<span class="built_in">history</span></div><div class="line">MONTH=`date +<span class="string">"%Y%m"</span>`</div><div class="line">DAY=`date +<span class="string">"%d"</span>`</div><div class="line">HOUR=`date +<span class="string">"%H"</span>`</div><div class="line">MIN=`date +<span class="string">"%M"</span>`</div><div class="line">NOW=<span class="variable">$&#123;MONTH&#125;</span><span class="variable">$&#123;DAY&#125;</span>_<span class="variable">$&#123;HOUR&#125;</span>_<span class="variable">$&#123;MIN&#125;</span></div><div class="line">BAKUPFILE=<span class="variable">$&#123;BAKUPDIR&#125;</span>/backup_<span class="variable">$&#123;NOW&#125;</span>.tar.gz</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="variable">$&#123;BAKUPDIR&#125;</span> ];<span class="keyword">then</span></div><div class="line">	mkdir -p <span class="variable">$&#123;BAKUPDIR&#125;</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="built_in">cd</span> <span class="variable">$&#123;BACUPDIR&#125;</span></div><div class="line">tar -g snapshot -zcf <span class="variable">$&#123;BAKUPFILE&#125;</span> <span class="variable">$&#123;LOGINLOGDIR&#125;</span></div><div class="line"><span class="comment">##############################ftp#########################################</span></div><div class="line">FTP<span class="built_in">log</span>=<span class="variable">$&#123;BAKUPDIR&#125;</span>/ftp_`date +%Y-%m-%d`.log</div><div class="line">TOHOST=</div><div class="line">HOSTPORT=</div><div class="line">USER=</div><div class="line">PASSWORD=</div><div class="line">TODIR=</div><div class="line"><span class="built_in">echo</span> <span class="string">"`date +%Y-%m-%d' '%H:%M:%S`,***FTP***Begin to put files....."</span>  &gt;&gt; <span class="variable">$FTPlog</span></div><div class="line"></div><div class="line"></div><div class="line">/usr/bin/ftp  -n &lt;&lt; !  &gt; /dev/null</div><div class="line">open <span class="variable">$&#123;TOHOST&#125;</span> <span class="variable">$&#123;HOSTPORT&#125;</span></div><div class="line">user <span class="variable">$&#123;USER&#125;</span> <span class="variable">$&#123;PASSWORD&#125;</span></div><div class="line">binary</div><div class="line"><span class="built_in">cd</span> <span class="variable">$&#123;TODIR&#125;</span></div><div class="line">put <span class="variable">$&#123;BAKUPFILE&#125;</span> <span class="variable">$&#123;BAKUPFILE&#125;</span>.$</div><div class="line">rename <span class="variable">$&#123;BAKUPFILE&#125;</span>.$ <span class="variable">$BAKUPFILE</span></div><div class="line"><span class="built_in">bye</span></div><div class="line">!</div><div class="line"></div><div class="line"><span class="keyword">if</span> [ $? = 0 ]; <span class="keyword">then</span></div><div class="line">  <span class="built_in">echo</span> <span class="string">"`date +%Y-%m-%d' '%H:%M:%S`,***FTP***put    <span class="variable">$i</span> sucess...."</span> &gt;&gt; <span class="variable">$FTPlog</span></div><div class="line"><span class="keyword">else</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"`date +%Y-%m-%d' '%H:%M:%S`,***FTP***put    <span class="variable">$i</span> failed...."</span> &gt;&gt; <span class="variable">$FTPlog</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"`date +%Y-%m-%d' '%H:%M:%S`,***FTP***End to put files....."</span>  &gt;&gt; <span class="variable">$FTPlog</span></div></pre></td></tr></table></figure>
+<h4 id="修改脚本权限"><a href="#修改脚本权限" class="headerlink" title="修改脚本权限"></a>修改脚本权限</h4><h4 id="在crontab-e中添加定时任务"><a href="#在crontab-e中添加定时任务" class="headerlink" title="在crontab -e中添加定时任务"></a>在<code>crontab -e</code>中添加定时任务</h4><p>将<code>DelLoginLog.sh</code>和<code>LoginLogBakup.sh</code>脚本加入定时任务</p>
+<blockquote>
+<p><code>*/5 * * * * /bin/bash /home/LoginLog/bin/DelLoginLog.sh</code></p>
+</blockquote>
+<h4 id="要读取历史日志时间时执行下面代码进行时间格式转换"><a href="#要读取历史日志时间时执行下面代码进行时间格式转换" class="headerlink" title="要读取历史日志时间时执行下面代码进行时间格式转换"></a>要读取历史日志时间时执行下面代码进行时间格式转换</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">FILENAME=192.168.153.1_history.20160524_205143</div><div class="line">perl -i -pe <span class="string">'s/^#(\d+)$/localtime($1)/e'</span> <span class="variable">$&#123;FILENAME&#125;</span></div></pre></td></tr></table></figure>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul>
+<li>新建目录和文件时注意权限<ul>
+<li>脚本权限要加<strong>x</strong> ：<code>chmod a+x **.sh</code></li>
+<li><code>$LOGINLOGDIR</code> 目录权限要<strong>可写可执行</strong>，可以不给其他用户<strong>读取</strong>权限：<code>chmod 733</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="自动创建"><a href="#自动创建" class="headerlink" title="自动创建"></a>自动创建</h3><p>####自动安装脚本<code>setup.sh</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">## 检查 root 权限</span></div><div class="line">[ $(id -g) != <span class="string">"0"</span> ] &amp;&amp; die <span class="string">"Script must be run as root."</span>;</div><div class="line"></div><div class="line">cat ./init.txt &gt;&gt; /etc/profile</div><div class="line"></div><div class="line">logdir=/home/LoginLog</div><div class="line">LOGINLOGDIR=<span class="variable">$&#123;logdir&#125;</span>/<span class="built_in">history</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="variable">$&#123;logdir&#125;</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    mkdir -p <span class="variable">$&#123;logdir&#125;</span></div><div class="line">    chmod 733 <span class="variable">$&#123;logdir&#125;</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="variable">$&#123;LOGINLOGDIR&#125;</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    mkdir -p <span class="variable">$&#123;LOGINLOGDIR&#125;</span></div><div class="line">    chmod 733 <span class="variable">$&#123;LOGINLOGDIR&#125;</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="variable">$&#123;logdir&#125;</span>/bin/ ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    mkdir <span class="variable">$&#123;logdir&#125;</span>/bin/</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line">chmod 744 ./bin/*.sh</div><div class="line">chmod a+x ./bin/Login.sh</div><div class="line">cp ./bin/*.sh <span class="variable">$&#123;logdir&#125;</span>/bin/</div><div class="line"><span class="comment">#添加定时任务</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"5 3 * * * /bin/bash <span class="variable">$&#123;logdir&#125;</span>/bin/DelLoginLog.sh"</span> &gt;&gt; /var/spool/cron/root</div></pre></td></tr></table></figure></p>
+<h4 id="注意：在安装脚本目录执行安装脚本"><a href="#注意：在安装脚本目录执行安装脚本" class="headerlink" title="注意：在安装脚本目录执行安装脚本"></a>注意：在安装脚本目录执行安装脚本</h4><h4 id="打包文件内容清单"><a href="#打包文件内容清单" class="headerlink" title="打包文件内容清单"></a>打包文件内容清单</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">autosetup.tar.gz</div><div class="line">|--autosetup/</div><div class="line">	|--bin/</div><div class="line">		|--DelLoginLog.sh</div><div class="line">		|--Login.sh</div><div class="line">	|--init.txt</div><div class="line">	|--setup.sh</div></pre></td></tr></table></figure>
+<a href="/2016/11/23/linux/Loginlog/autosetup.tar.gz" title="autosetup.tar.gz">autosetup.tar.gz</a>
+<h4 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h4><p>首次执行完要<code>exit</code>退出，</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>(๑˙❥˙๑)憋说话吻我</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="Summingyu WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="Summingyu Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自动化运维/" rel="tag"># 自动化运维</a>
+          
+            <a href="/tags/脚本/" rel="tag"># 脚本</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/18/hexo/使用ssh实现hexo免输密码上传文章/" rel="next" title="用ssh实现hexo免输密码上传文章">
+                <i class="fa fa-chevron-left"></i> 用ssh实现hexo免输密码上传文章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/28/python/pyenv/" rel="prev" title="利用pyenv和virtualenv搭建多版本pyhton虚拟环境">
+                利用pyenv和virtualenv搭建多版本pyhton虚拟环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/23/linux/Loginlog/"
+     data-title="记录登陆与操作日志"
+     data-content=""
+     data-url="https://summingyu.github.io/2016/11/23/linux/Loginlog/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+<div class="page-footer">
+    
+      <div id="eof" class="print-invisible">
+        <hr class="eof">
+      </div>
+
+      <div class="copyright" style="clear:both;">
+         <p><span>本文标题:</span><a href="/2016/11/23/linux/Loginlog/">记录登陆与操作日志</a></p>
+         <p><span>文章作者:</span><a href="/" title="访问 Summingyu 的个人博客">Summingyu</a></p>
+         <p><span>发布时间:</span>2016年11月23日 - 14时11分</p>
+         <p><span>最后更新:</span>2016年12月8日 - 14时12分</p>
+         <p><span>原始链接:</span><a href="/2016/11/23/linux/Loginlog/" title="记录登陆与操作日志">https://summingyu.github.io/2016/11/23/linux/Loginlog/</a></p>
+         <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)">Attribution-NonCommercial 4.0</a></p>
+         <p><span>转载请保留以上信息。</span></p>
+      </div>
+    
+
+    
+
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/23/linux/Loginlog/"
+           data-title="记录登陆与操作日志" data-url="https://summingyu.github.io/2016/11/23/linux/Loginlog/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Summingyu" />
+          <p class="site-author-name" itemprop="name">Summingyu</p>
+          <p class="site-description motion-element" itemprop="description">“Talk is cheap. Show me the code.”————多说无益，看代码</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/summingyu" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1891527110" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="1007226049" target="_blank" title="qq">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  qq
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://quericy.me/" title="quericy" target="_blank">quericy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/opsdba" title="fenge" target="_blank">fenge</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#手动创建"><span class="nav-number">1.1.</span> <span class="nav-text">手动创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在-etc-profile文件后面加上下面代码init-txt"><span class="nav-number">1.1.1.</span> <span class="nav-text">在/etc/profile文件后面加上下面代码init.txt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在-home-LoginLog-bin目录创建Login-sh"><span class="nav-number">1.1.2.</span> <span class="nav-text">在/home/LoginLog/bin目录创建Login.sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写删除脚本DelLoginLog-sh"><span class="nav-number">1.1.3.</span> <span class="nav-text">编写删除脚本DelLoginLog.sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#备份并上传脚本LoginLogBakup-sh-—-—目前没部署"><span class="nav-number">1.1.4.</span> <span class="nav-text">备份并上传脚本LoginLogBakup.sh — —目前没部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改脚本权限"><span class="nav-number">1.1.5.</span> <span class="nav-text">修改脚本权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在crontab-e中添加定时任务"><span class="nav-number">1.1.6.</span> <span class="nav-text">在crontab -e中添加定时任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#要读取历史日志时间时执行下面代码进行时间格式转换"><span class="nav-number">1.1.7.</span> <span class="nav-text">要读取历史日志时间时执行下面代码进行时间格式转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意"><span class="nav-number">1.1.8.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动创建"><span class="nav-number">1.2.</span> <span class="nav-text">自动创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注意：在安装脚本目录执行安装脚本"><span class="nav-number">1.2.1.</span> <span class="nav-text">注意：在安装脚本目录执行安装脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包文件内容清单"><span class="nav-number">1.2.2.</span> <span class="nav-text">打包文件内容清单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">注意</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Summingyu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"summingyu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("z9eCjRBlwX07Thdsg58l5Dwr-gzGzoHsz", "mtlF0oEHECJgSoguu45AbcSr");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+</body>
+</html>

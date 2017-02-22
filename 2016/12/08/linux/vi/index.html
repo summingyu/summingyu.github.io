@@ -1,0 +1,1208 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习,基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="vi指令說明(完整版)本文学习自http://www2.nsysu.edu.tw/csmlab/unix/vi_command.htm
+vi 的操作模式vi 提供兩種操作模式：輸入模式(insert mode)和指令模式(command mode)
+。當使用者進入 vi 後，即處在指令模式下，此刻鍵入之任何字元皆被視為
+指令。在此模式下可進行刪除、修改等動作。若要輸入資料，則需進入輸入
+模式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vi指令說明(完整版)">
+<meta property="og:url" content="https://summingyu.github.io/2016/12/08/linux/vi/index.html">
+<meta property="og:site_name" content="余苏明的幻想乡">
+<meta property="og:description" content="vi指令說明(完整版)本文学习自http://www2.nsysu.edu.tw/csmlab/unix/vi_command.htm
+vi 的操作模式vi 提供兩種操作模式：輸入模式(insert mode)和指令模式(command mode)
+。當使用者進入 vi 後，即處在指令模式下，此刻鍵入之任何字元皆被視為
+指令。在此模式下可進行刪除、修改等動作。若要輸入資料，則需進入輸入
+模式。">
+<meta property="og:updated_time" content="2016-12-08T06:10:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vi指令說明(完整版)">
+<meta name="twitter:description" content="vi指令說明(完整版)本文学习自http://www2.nsysu.edu.tw/csmlab/unix/vi_command.htm
+vi 的操作模式vi 提供兩種操作模式：輸入模式(insert mode)和指令模式(command mode)
+。當使用者進入 vi 後，即處在指令模式下，此刻鍵入之任何字元皆被視為
+指令。在此模式下可進行刪除、修改等動作。若要輸入資料，則需進入輸入
+模式。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'CV7W4UCD4O',
+      apiKey: '006e12021aae0e40fd4eecf26125b687',
+      indexName: 'summingyu',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://summingyu.github.io/2016/12/08/linux/vi/"/>
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script> 
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style> 
+ .pace .pace-progress { 
+     background:#1e92fb; /*进度条颜色*/ 
+     height:3px; 
+ }
+.pace .pace-progress-inner { 
+    box-shadow:0 0 10px #1e92fb, 0 0 5px #1e92fb; /*阴影颜色*/ 
+}
+.pace .pace-activity { 
+    border-top-color:#1e92fb; /*上边框颜色*/ 
+    border-left-color:#1e92fb; /*左边框颜色*/ 
+}
+</style>
+
+  <title> vi指令說明(完整版) | 余苏明的幻想乡 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">余苏明的幻想乡</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">summingyu's blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2016/12/08/linux/vi/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Summingyu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="余苏明的幻想乡">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="余苏明的幻想乡" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                vi指令說明(完整版)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-08T13:54:33+08:00">
+              2016-12-08
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-12-08T14:10:34+08:00">
+              2016-12-08
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/08/linux/vi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/08/linux/vi/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/08/linux/vi/" class="leancloud_visitors" data-flag-title="vi指令說明(完整版)">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">临幸次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="vi指令說明-完整版"><a href="#vi指令說明-完整版" class="headerlink" title="vi指令說明(完整版)"></a>vi指令說明(完整版)</h1><p>本文学习自<a href="http://www2.nsysu.edu.tw/csmlab/unix/vi_command.htm" target="_blank" rel="external">http://www2.nsysu.edu.tw/csmlab/unix/vi_command.htm</a></p>
+<h1 id="vi-的操作模式"><a href="#vi-的操作模式" class="headerlink" title="vi 的操作模式"></a>vi 的操作模式</h1><pre><code>vi 提供兩種操作模式：輸入模式(insert mode)和指令模式(command mode)
+。當使用者進入 vi 後，即處在指令模式下，此刻鍵入之任何字元皆被視為
+指令。在此模式下可進行刪除、修改等動作。若要輸入資料，則需進入輸入
+模式。
+</code></pre><a id="more"></a>
+<h1 id="輸入模式"><a href="#輸入模式" class="headerlink" title="輸入模式"></a>輸入模式</h1><pre><code>如何進入輸入模式
+        a (append)      由游標之後加入資料。
+        A               由該行之末加入資料。
+        i (insert)      由游標之前加入資料。
+        I               由該行之首加入資料。
+        o (open)        新增一行於該行之下供輸入資料之用。
+        O               新增一行於該行之上供輸入資料之用。
+如何離開輸入模式
+        &lt;ESC&gt;           結束輸入模式。
+</code></pre><h1 id="指令模式"><a href="#指令模式" class="headerlink" title="指令模式"></a>指令模式</h1><pre><code>游標之移動
+h       向左移一個字元。
+j       向上移一個字元。
+k       向下移一個字元。
+l       向右移一個字元。
+0       移至該行之首
+$       移至該行之末。
+^       移至該行的第一個字元處。
+H       移至視窗的第一列。
+M       移至視窗的中間那列。
+L       移至視窗的最後一列。
+G       移至該檔案的最後一列。
++       移至下一列的第一個字元處。
+-       移至上一列的第一個字元處。
+(       移至該句之首。 (註一)
+)       移至該句之末。
+{       移至該段落之首。 (註二)
+}       移至該段落之末。
+nG      移至該檔案的第 n 列。
+n+      移至游標所在位置之後的第 n 列。
+n-      移至游標所在位置之前的第 n 列。
+&lt;Ctrl&gt;&lt;g&gt;       會顯示該行之行號、檔案名稱、檔案中最末行之行號、游標
+                所在行號佔總行號之百分比。
+註一：句子(sentence)在vi中是指以『！』、『.』或『？』結束的一串字。
+註二：段落(paragraph)在vi中是指以空白行隔開的文字。
+</code></pre><h1 id="視窗的移動"><a href="#視窗的移動" class="headerlink" title="視窗的移動"></a>視窗的移動</h1><pre><code>&lt;Ctrl&gt;&lt;f&gt;       視窗往下捲一頁。
+&lt;Ctrl&gt;&lt;b&gt;       視窗往上捲一頁。
+&lt;Ctrl&gt;&lt;d&gt;       視窗往下捲半頁。
+&lt;Ctrl&gt;&lt;u&gt;       視窗往上捲半頁。
+&lt;Ctrl&gt;&lt;e&gt;       視窗往下捲一行。
+&lt;Ctrl&gt;&lt;y&gt;       視窗往上捲一行。
+</code></pre><h1 id="刪除、複製及修改指令介紹-此單元較少使用"><a href="#刪除、複製及修改指令介紹-此單元較少使用" class="headerlink" title="刪除、複製及修改指令介紹 (此單元較少使用)"></a>刪除、複製及修改指令介紹 (此單元較少使用)</h1><pre><code>d(delete)、c(change)和y(yank)這一類的指令在 vi 中的指令格式為：
+Operator + Scope = command
+(運算子)   (範圍)
+運算子：
+d       刪除指令。刪除資料，但會將刪除資料複製到記憶體緩衝區。
+y       將資料(字組、行列、句子或段落)複製到緩衝區。
+p       放置(put)指令，與 d 和 y 配和使用。可將最後delete或yank的資
+        料放置於游標所在位置之行列下。
+c       修改(change)指令，類似delete與insert的組和。刪除一個字組、句
+        子等之資料，並插入新鍵資料。
+範圍：
+e       由游標所在位置至該字串的最後一個字元。
+w       由游標所在位置至下一個字串的第一個字元。
+b       由游標所在位置至前一個字串的第一個字元。
+$       由游標所在位置至該行的最後一個字元。
+0       由游標所在位置至該行的第一個字元。
+)       由游標所在位置至下一個句子的第一個字元。
+(       由游標所在位置至該句子的第一個字元。
+{       由游標所在位置至該段落的最後一個字元。
+}       由游標所在位置至該段落的第一個字元。
+整行動作
+dd      刪除整行。
+D       以行為單位，刪除游標後之所有字元。
+cc      修改整行的內容。
+yy      yank整行，使游標所在該行複製到記憶體緩衝區。
+</code></pre><h1 id="刪除與修改"><a href="#刪除與修改" class="headerlink" title="刪除與修改"></a>刪除與修改</h1><pre><code>x       刪除游標所在該字元。
+X       刪除游標所在之前一字元。
+dd      刪除游標所在該行。
+r       用接於此指令之後的字元取代(replace)游標所在字元。
+        如： ra 將游標所在字元以 a 取代之。
+R       進入取代狀態，直到&lt;ESC&gt;為止。
+s       刪除游標所在之字元，並進入輸入模式直到&lt;ESC&gt;。
+S       刪除游標所在之該行資料，並進入輸入模式直到&lt;ESC&gt;。
+</code></pre><h1 id="搬移與複製"><a href="#搬移與複製" class="headerlink" title="搬移與複製"></a>搬移與複製</h1><pre><code>利用 delete 及 put 指令可完成資料搬移之目的。
+利用 yank 及 put 指令可完成資料複製之目的。
+yank 和 delete 可將指定的資料複製到記憶體緩衝區，而藉由 put 指令
+可將緩衝區內的資料複製到螢幕上。
+例：
+搬移一行        ‧在該行執行 dd
+                ‧游標移至目的地
+                ‧執行 p
+複製一行        ‧在該行執行 yy
+                ‧游標移至目的地
+                ‧執行 p
+</code></pre><h1 id="指令重複"><a href="#指令重複" class="headerlink" title="指令重複"></a>指令重複</h1><pre><code>在指令模式中，可在指令前面加入一數字 n，則此指令動作會重複執行 n
+次。
+例：
+刪除10行                ‧10dd
+複製10行                ‧10yy
+                        ‧游標移至目的地
+                        ‧p
+指標往下移10行  ‧10j
+</code></pre><h1 id="取消前一動作-Undo"><a href="#取消前一動作-Undo" class="headerlink" title="取消前一動作(Undo)"></a>取消前一動作(Undo)</h1><pre><code>即復原執行上一指令前的內容。
+u       恢復最後一個指令之前的結果。
+U       恢復游標該行之所有改變。
+</code></pre><h1 id="搜尋"><a href="#搜尋" class="headerlink" title="搜尋"></a>搜尋</h1><pre><code>在vi中可搜尋某一字串，使游標移至該處。
+/字串           往游標之後尋找該字串。
+?字串           往游標之前尋找該字串。
+n               往下繼續尋找下一個相同的字串。
+N               往上繼續尋找下一個相同的字串。
+</code></pre><h1 id="資料的連接"><a href="#資料的連接" class="headerlink" title="資料的連接"></a>資料的連接</h1><pre><code>J       句子的連接。將游標所在之下一行連接至游標該行的後面。
+若某行資料太長亦可將其分成兩行，只要將游標移至分開點，進入輸入模式
+(可利用 a、i等指令)再按&lt;Enter&gt;即可。
+</code></pre><h1 id="環境的設定"><a href="#環境的設定" class="headerlink" title="環境的設定"></a>環境的設定</h1><pre><code>：set nu                設定資料的行號。
+：set nonu              取消行號設定。
+：set ai                自動內縮。
+：set noai              取消自動內縮。
+自動內縮(automatic indentation)
+在編輯文件或程式時，有時會遇到需要內縮的狀況，『：set ai』即提供自
+動內縮的功能，用下例解釋之：
+‧vi test
+‧(進入編輯視窗後)
+  this is the test for auto indent
+  &lt;Tab&gt;start indent           ← ：set ai (設自動內縮)
+  &lt;Tab&gt;data
+  &lt;Tab&gt;data
+  &lt;Tab&gt;data                   ← ：set noai (取消自動內縮)
+the end of auto indent.
+‧註：&lt;Ctrl&gt;&lt;d&gt; 可刪除&lt;Tab&gt;字元。
+</code></pre><h1 id="ex指令"><a href="#ex指令" class="headerlink" title="ex指令"></a>ex指令</h1><pre><code>讀寫資料
+：w                     將緩衝區的資料寫入磁碟中。
+：10,20w test   將第10行至第20行的資料寫入test檔案。
+：10,20w&gt;&gt;test  將第10行至第20行的資料加在test檔案之後。
+：r test                將test檔案的資料讀入編輯緩衝區的最後。
+刪除、複製及搬移
+：10,20d                刪除第10行至第20行的資料。
+：10d                   刪除第10行的資料。
+：%d                    刪除整個編輯緩衝區。
+：10,20co30             將第10行至第20行的資料複製至第30行之後。
+：10,20mo30             將第10行至第20行的資料搬移至第30行之後。
+字串搜尋與取代
+s(substitute)指令可搜尋某行列範圍。
+g(global)指令則可搜尋整個編輯緩衝區的資料。
+s指令以第一個滿足該條件的字串為其取代的對象，若該行有數個滿足該條
+件的字串，也僅能取代第一個，若想取代所有的字串則需加上g參數。
+：1,$s/old/new/g                將檔案中所有的『old』改成『new』。
+：10,20s/^/   /         將第10行至第20行資料的最前面插入5個空白。
+：%s/old/new/g          將編輯緩衝區中所有的『old』改成『new』。
+</code></pre><h1 id="恢復編輯時被中斷的檔案"><a href="#恢復編輯時被中斷的檔案" class="headerlink" title="恢復編輯時被中斷的檔案"></a>恢復編輯時被中斷的檔案</h1><pre><code>在編輯過程中，若系統當掉或連線中斷，而緩衝區的資料並還未
+被寫回磁碟時，當再度回到系統，執行下列指令即可回復中斷前
+的檔案內容。
+%vi -r filename
+</code></pre><h1 id="編輯多個檔案"><a href="#編輯多個檔案" class="headerlink" title="編輯多個檔案"></a>編輯多個檔案</h1><pre><code>vi亦提供同時編輯多個檔案的功能，方法如下：
+%vi file1 file2 ..
+當第一個檔案編修完成後，可利用『：w』將該緩衝區存檔，而後
+再利用 『：n』載入下一個檔案。
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>(๑˙❥˙๑)憋说话吻我</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="Summingyu WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="Summingyu Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/基础/" rel="tag"># 基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/02/wireshark/SMGP3_Lua_wireshark/" rel="next" title="优化wireshark下Lua插件SMGP协议代码">
+                <i class="fa fa-chevron-left"></i> 优化wireshark下Lua插件SMGP协议代码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/17/linux/rsync/" rel="prev" title="部署rsync远程备份">
+                部署rsync远程备份 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/12/08/linux/vi/"
+     data-title="vi指令說明(完整版)"
+     data-content=""
+     data-url="https://summingyu.github.io/2016/12/08/linux/vi/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+<div class="page-footer">
+    
+      <div id="eof" class="print-invisible">
+        <hr class="eof">
+      </div>
+
+      <div class="copyright" style="clear:both;">
+         <p><span>本文标题:</span><a href="/2016/12/08/linux/vi/">vi指令說明(完整版)</a></p>
+         <p><span>文章作者:</span><a href="/" title="访问 Summingyu 的个人博客">Summingyu</a></p>
+         <p><span>发布时间:</span>2016年12月8日 - 13时12分</p>
+         <p><span>最后更新:</span>2016年12月8日 - 14时12分</p>
+         <p><span>原始链接:</span><a href="/2016/12/08/linux/vi/" title="vi指令說明(完整版)">https://summingyu.github.io/2016/12/08/linux/vi/</a></p>
+         <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)">Attribution-NonCommercial 4.0</a></p>
+         <p><span>转载请保留以上信息。</span></p>
+      </div>
+    
+
+    
+
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/08/linux/vi/"
+           data-title="vi指令說明(完整版)" data-url="https://summingyu.github.io/2016/12/08/linux/vi/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Summingyu" />
+          <p class="site-author-name" itemprop="name">Summingyu</p>
+          <p class="site-description motion-element" itemprop="description">“Talk is cheap. Show me the code.”————多说无益，看代码</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/summingyu" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1891527110" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="1007226049" target="_blank" title="qq">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  qq
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://quericy.me/" title="quericy" target="_blank">quericy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/opsdba" title="fenge" target="_blank">fenge</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vi指令說明-完整版"><span class="nav-number">1.</span> <span class="nav-text">vi指令說明(完整版)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vi-的操作模式"><span class="nav-number">2.</span> <span class="nav-text">vi 的操作模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#輸入模式"><span class="nav-number">3.</span> <span class="nav-text">輸入模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#指令模式"><span class="nav-number">4.</span> <span class="nav-text">指令模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#視窗的移動"><span class="nav-number">5.</span> <span class="nav-text">視窗的移動</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#刪除、複製及修改指令介紹-此單元較少使用"><span class="nav-number">6.</span> <span class="nav-text">刪除、複製及修改指令介紹 (此單元較少使用)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#刪除與修改"><span class="nav-number">7.</span> <span class="nav-text">刪除與修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搬移與複製"><span class="nav-number">8.</span> <span class="nav-text">搬移與複製</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#指令重複"><span class="nav-number">9.</span> <span class="nav-text">指令重複</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#取消前一動作-Undo"><span class="nav-number">10.</span> <span class="nav-text">取消前一動作(Undo)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搜尋"><span class="nav-number">11.</span> <span class="nav-text">搜尋</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#資料的連接"><span class="nav-number">12.</span> <span class="nav-text">資料的連接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#環境的設定"><span class="nav-number">13.</span> <span class="nav-text">環境的設定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ex指令"><span class="nav-number">14.</span> <span class="nav-text">ex指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#恢復編輯時被中斷的檔案"><span class="nav-number">15.</span> <span class="nav-text">恢復編輯時被中斷的檔案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#編輯多個檔案"><span class="nav-number">16.</span> <span class="nav-text">編輯多個檔案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Summingyu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"summingyu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("z9eCjRBlwX07Thdsg58l5Dwr-gzGzoHsz", "mtlF0oEHECJgSoguu45AbcSr");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+</body>
+</html>
