@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://summingyu.github.io/about/index.html</loc>
+    
+    <lastmod>2017-02-22T08:28:58.657Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://summingyu.github.io/2017/02/15/Oldboy_Shell/5day/</loc>
     
     <lastmod>2017-02-20T08:57:46.885Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://summingyu.github.io/2017/02/07/Oldboy_Shell/1day/</loc>
     
     <lastmod>2017-02-14T01:21:58.502Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://summingyu.github.io/about/index.html</loc>
-    
-    <lastmod>2017-02-13T01:11:42.785Z</lastmod>
     
   </url>
   
