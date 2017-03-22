@@ -90,7 +90,7 @@
 <meta property="og:url" content="https://summingyu.github.io/2017/01/17/linux/rsync/index.html">
 <meta property="og:site_name" content="余苏明的幻想乡">
 <meta property="og:description" content="写在前面年终了！要回去过年，担心各个设备出问题，要一个备份机器将其他设备上的程序同步做灾备。">
-<meta property="og:updated_time" content="2017-03-22T03:38:57.751Z">
+<meta property="og:updated_time" content="2017-03-22T03:45:01.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="部署rsync远程备份">
 <meta name="twitter:description" content="写在前面年终了！要回去过年，担心各个设备出问题，要一个备份机器将其他设备上的程序同步做灾备。">
@@ -365,7 +365,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2017-03-22T11:38:57+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2017-03-22T11:45:01+08:00">
               2017-03-22
             </time>
             
@@ -484,7 +484,7 @@
 </li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo &apos;20 9 * * * /bin/sh /bak/bin/autobakup.sh&apos; &gt;&gt; /var/spool/cron/root</div></pre></td></tr></table></figure>
-<p>####在其他服务器上配置<br>只需要更改一些对应的参数即可</p>
+<h4 id="在其他服务器上配置"><a href="#在其他服务器上配置" class="headerlink" title="在其他服务器上配置"></a>在其他服务器上配置</h4><p>只需要更改一些对应的参数即可</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
 <li><a href="http://jingyan.baidu.com/article/2fb0ba4043124a00f2ec5f0f.html" target="_blank" rel="external">ssh/scp免密码登陆</a></li>
 <li><a href="http://www.blogjava.net/baizhihui19870626/articles/379460.html" target="_blank" rel="external">rsync简单配置</a></li>
@@ -771,7 +771,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实施过程"><span class="nav-number">2.</span> <span class="nav-text">实施过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打通2-52与2-51之间的ssh免密码登陆-root用户"><span class="nav-number">2.1.</span> <span class="nav-text">打通2.52与2.51之间的ssh免密码登陆(root用户)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用rsync同步两台服务器程序"><span class="nav-number">2.2.</span> <span class="nav-text">使用rsync同步两台服务器程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改51上的-etc-rsyncd-conf文件，没有则创建。权限644"><span class="nav-number">2.2.1.</span> <span class="nav-text">修改51上的/etc/rsyncd.conf文件，没有则创建。权限644</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成认证密码文件-etc-backserver-pas"><span class="nav-number">2.2.2.</span> <span class="nav-text">生成认证密码文件/etc/backserver.pas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动服务端"><span class="nav-number">2.2.3.</span> <span class="nav-text">启动服务端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端配置"><span class="nav-number">2.2.4.</span> <span class="nav-text">客户端配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优化"><span class="nav-number">2.2.5.</span> <span class="nav-text">优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实施过程"><span class="nav-number">2.</span> <span class="nav-text">实施过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打通2-52与2-51之间的ssh免密码登陆-root用户"><span class="nav-number">2.1.</span> <span class="nav-text">打通2.52与2.51之间的ssh免密码登陆(root用户)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用rsync同步两台服务器程序"><span class="nav-number">2.2.</span> <span class="nav-text">使用rsync同步两台服务器程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改51上的-etc-rsyncd-conf文件，没有则创建。权限644"><span class="nav-number">2.2.1.</span> <span class="nav-text">修改51上的/etc/rsyncd.conf文件，没有则创建。权限644</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成认证密码文件-etc-backserver-pas"><span class="nav-number">2.2.2.</span> <span class="nav-text">生成认证密码文件/etc/backserver.pas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动服务端"><span class="nav-number">2.2.3.</span> <span class="nav-text">启动服务端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端配置"><span class="nav-number">2.2.4.</span> <span class="nav-text">客户端配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优化"><span class="nav-number">2.2.5.</span> <span class="nav-text">优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在其他服务器上配置"><span class="nav-number">2.2.6.</span> <span class="nav-text">在其他服务器上配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
