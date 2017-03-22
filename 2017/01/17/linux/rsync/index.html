@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="##写在前面年终了！要回去过年，担心各个设备出问题，要一个备份机器将其他设备上的程序同步做灾备。">
+<meta name="description" content="写在前面年终了！要回去过年，担心各个设备出问题，要一个备份机器将其他设备上的程序同步做灾备。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="部署rsync远程备份">
 <meta property="og:url" content="https://summingyu.github.io/2017/01/17/linux/rsync/index.html">
 <meta property="og:site_name" content="余苏明的幻想乡">
-<meta property="og:description" content="##写在前面年终了！要回去过年，担心各个设备出问题，要一个备份机器将其他设备上的程序同步做灾备。">
-<meta property="og:updated_time" content="2017-01-17T11:17:11.107Z">
+<meta property="og:description" content="写在前面年终了！要回去过年，担心各个设备出问题，要一个备份机器将其他设备上的程序同步做灾备。">
+<meta property="og:updated_time" content="2017-03-22T03:38:57.751Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="部署rsync远程备份">
-<meta name="twitter:description" content="##写在前面年终了！要回去过年，担心各个设备出问题，要一个备份机器将其他设备上的程序同步做灾备。">
+<meta name="twitter:description" content="写在前面年终了！要回去过年，担心各个设备出问题，要一个备份机器将其他设备上的程序同步做灾备。">
 
 
 
@@ -365,8 +365,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2017-01-17T19:17:11+08:00">
-              2017-01-17
+            <time title="Post modified" itemprop="dateModified" datetime="2017-03-22T11:38:57+08:00">
+              2017-03-22
             </time>
             
           </span>
@@ -432,10 +432,9 @@
       
 
       
-        <p>##写在前面<br>年终了！要回去过年，担心各个设备出问题，要一个备份机器将其他设备上的程序同步做灾备。<br><a id="more"></a></p>
-<p>##实施过程<br>其中52为备份客户端，51为服务端</p>
-<p>###打通2.52与2.51之间的<code>ssh</code>免密码登陆(root用户)</p>
-<ol>
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>年终了！要回去过年，担心各个设备出问题，要一个备份机器将其他设备上的程序同步做灾备。<br><a id="more"></a></p>
+<h2 id="实施过程"><a href="#实施过程" class="headerlink" title="实施过程"></a>实施过程</h2><p>其中52为备份客户端，51为服务端</p>
+<h3 id="打通2-52与2-51之间的ssh免密码登陆-root用户"><a href="#打通2-52与2-51之间的ssh免密码登陆-root用户" class="headerlink" title="打通2.52与2.51之间的ssh免密码登陆(root用户)"></a>打通2.52与2.51之间的<code>ssh</code>免密码登陆(root用户)</h3><ol>
 <li>在<strong>备份服务器52</strong>上使用命令<code>ssh-keygen  -t rsa -P &#39;&#39; -f /root/.ssh/id_rsa</code>一次生成<blockquote>
 <p><strong>或者运行</strong><code>ssh-keygen -t rsa</code>**然后敲击三次回车生成密钥对</p>
 </blockquote>
@@ -461,25 +460,22 @@
 <li>到此已经打通2.51和2.52之间的ssh</li>
 <li>保险起见，将每个服务器上的<code>id_rsa.pub_*</code>文件删除<strong><code>rm -f /root/.ssh/id_rsa.pub_*</code></strong></li>
 </ol>
-<p>###使用<code>rsync</code>同步两台服务器程序</p>
-<p>####修改51上的<code>/etc/rsyncd.conf</code>文件，没有则创建。权限<code>644</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># /etc/rsyncd: configuration file for rsync daemon mode</span></div><div class="line"></div><div class="line"><span class="comment"># See rsyncd.conf man page for more options.</span></div><div class="line"></div><div class="line"><span class="comment"># configuration example:</span></div><div class="line"></div><div class="line"><span class="comment"># uid = nobody</span></div><div class="line"><span class="comment"># gid = nobody</span></div><div class="line">uid = root</div><div class="line">gid = root</div><div class="line"><span class="comment"># use chroot = yes</span></div><div class="line">use chroot = no</div><div class="line"><span class="comment"># max connections = 4</span></div><div class="line">max connections = 4</div><div class="line"><span class="comment"># pid file = /var/run/rsyncd.pid</span></div><div class="line">pid file = /var/run/rsyncd.pid</div><div class="line">lock file = /var/run/rsyncd.lock</div><div class="line"><span class="built_in">log</span> file = /var/<span class="built_in">log</span>/rsyncd.log</div><div class="line"><span class="comment"># exclude = lost+found/</span></div><div class="line"><span class="comment"># transfer logging = yes</span></div><div class="line"><span class="comment"># timeout = 900</span></div><div class="line">timeout = 600</div><div class="line"><span class="comment"># ignore nonreadable = yes</span></div><div class="line"> dont compress   = *.gz *.tgz *.zip *.z *.Z *.rpm *.deb *.bz2</div><div class="line"></div><div class="line"></div><div class="line">[exp_1]</div><div class="line">        path = /exp</div><div class="line">        comment = bakup exp_1_zipingtai <span class="comment">#此行为备注行，可随意更改</span></div><div class="line">        ignore errors = yes</div><div class="line">        <span class="built_in">read</span> only = yes</div><div class="line">        list = no</div><div class="line">        hosts allow = 192.168.2.52 <span class="comment">#限定允许访问的ip</span></div><div class="line">        hosts deny = 0.0.0.0/0 <span class="comment">#拒绝所有其他ip使用rsync同步</span></div><div class="line">        exclude = <span class="built_in">log</span>/* <span class="comment">#过滤文件及目录为相对path的路径</span></div><div class="line">        auth users = root</div><div class="line">        secrets file = /etc/backserver.pas</div><div class="line">[tomcat]</div><div class="line">        path = /usr/tomcat</div><div class="line">        comment = bakup tomcat</div><div class="line">        ignore errors = yes</div><div class="line">        <span class="built_in">read</span> only = yes</div><div class="line">        list = no</div><div class="line">        hosts allow = 192.168.2.52</div><div class="line">        hosts deny = 0.0.0.0/0</div><div class="line">        exclude = <span class="built_in">log</span>/* logs/* webapps/ROOT/* work/*</div><div class="line">        auth users = root</div><div class="line">        secrets file = /etc/backserver.pas</div><div class="line"><span class="comment">#要同步其他程序可自行按上行格式同步</span></div></pre></td></tr></table></figure></p>
-<p>####生成认证密码文件<code>/etc/backserver.pas</code><br>执行下列命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#root密码为123456；可以与登陆密码不一致</span></div><div class="line"><span class="built_in">echo</span> root:123456 &gt; /etc/backserver.pas </div><div class="line"><span class="comment">#修改文件权限，否则服务起不来</span></div><div class="line">chmod 400 /etc/backserver.pas</div></pre></td></tr></table></figure></p>
-<p>####启动服务端<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">rsync --daemon</div><div class="line"><span class="comment">#观察是否启动成功,下列三种命令皆可</span></div><div class="line">lsof -i :873 </div><div class="line">netstat -an|grep 873</div><div class="line">ps -ef|grep rsync</div></pre></td></tr></table></figure></p>
-<p>####客户端配置</p>
-<ol>
+<h3 id="使用rsync同步两台服务器程序"><a href="#使用rsync同步两台服务器程序" class="headerlink" title="使用rsync同步两台服务器程序"></a>使用<code>rsync</code>同步两台服务器程序</h3><h4 id="修改51上的-etc-rsyncd-conf文件，没有则创建。权限644"><a href="#修改51上的-etc-rsyncd-conf文件，没有则创建。权限644" class="headerlink" title="修改51上的/etc/rsyncd.conf文件，没有则创建。权限644"></a>修改51上的<code>/etc/rsyncd.conf</code>文件，没有则创建。权限<code>644</code></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># /etc/rsyncd: configuration file for rsync daemon mode</span></div><div class="line"></div><div class="line"><span class="comment"># See rsyncd.conf man page for more options.</span></div><div class="line"></div><div class="line"><span class="comment"># configuration example:</span></div><div class="line"></div><div class="line"><span class="comment"># uid = nobody</span></div><div class="line"><span class="comment"># gid = nobody</span></div><div class="line">uid = root</div><div class="line">gid = root</div><div class="line"><span class="comment"># use chroot = yes</span></div><div class="line">use chroot = no</div><div class="line"><span class="comment"># max connections = 4</span></div><div class="line">max connections = 4</div><div class="line"><span class="comment"># pid file = /var/run/rsyncd.pid</span></div><div class="line">pid file = /var/run/rsyncd.pid</div><div class="line">lock file = /var/run/rsyncd.lock</div><div class="line"><span class="built_in">log</span> file = /var/<span class="built_in">log</span>/rsyncd.log</div><div class="line"><span class="comment"># exclude = lost+found/</span></div><div class="line"><span class="comment"># transfer logging = yes</span></div><div class="line"><span class="comment"># timeout = 900</span></div><div class="line">timeout = 600</div><div class="line"><span class="comment"># ignore nonreadable = yes</span></div><div class="line"> dont compress   = *.gz *.tgz *.zip *.z *.Z *.rpm *.deb *.bz2</div><div class="line"></div><div class="line"></div><div class="line">[exp_1]</div><div class="line">        path = /exp</div><div class="line">        comment = bakup exp_1_zipingtai <span class="comment">#此行为备注行，可随意更改</span></div><div class="line">        ignore errors = yes</div><div class="line">        <span class="built_in">read</span> only = yes</div><div class="line">        list = no</div><div class="line">        hosts allow = 192.168.2.52 <span class="comment">#限定允许访问的ip</span></div><div class="line">        hosts deny = 0.0.0.0/0 <span class="comment">#拒绝所有其他ip使用rsync同步</span></div><div class="line">        exclude = <span class="built_in">log</span>/* <span class="comment">#过滤文件及目录为相对path的路径</span></div><div class="line">        auth users = root</div><div class="line">        secrets file = /etc/backserver.pas</div><div class="line">[tomcat]</div><div class="line">        path = /usr/tomcat</div><div class="line">        comment = bakup tomcat</div><div class="line">        ignore errors = yes</div><div class="line">        <span class="built_in">read</span> only = yes</div><div class="line">        list = no</div><div class="line">        hosts allow = 192.168.2.52</div><div class="line">        hosts deny = 0.0.0.0/0</div><div class="line">        exclude = <span class="built_in">log</span>/* logs/* webapps/ROOT/* work/*</div><div class="line">        auth users = root</div><div class="line">        secrets file = /etc/backserver.pas</div><div class="line"><span class="comment"># 要同步其他程序可自行按上行格式同步</span></div></pre></td></tr></table></figure>
+<h4 id="生成认证密码文件-etc-backserver-pas"><a href="#生成认证密码文件-etc-backserver-pas" class="headerlink" title="生成认证密码文件/etc/backserver.pas"></a>生成认证密码文件<code>/etc/backserver.pas</code></h4><p>执行下列命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># root密码为123456；可以与登陆密码不一致</span></div><div class="line"><span class="built_in">echo</span> root:123456 &gt; /etc/backserver.pas </div><div class="line"><span class="comment"># 修改文件权限，否则服务起不来</span></div><div class="line">chmod 400 /etc/backserver.pas</div></pre></td></tr></table></figure></p>
+<h4 id="启动服务端"><a href="#启动服务端" class="headerlink" title="启动服务端"></a>启动服务端</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">rsync --daemon</div><div class="line"><span class="comment"># 观察是否启动成功,下列三种命令皆可</span></div><div class="line">lsof -i :873 </div><div class="line">netstat -an|grep 873</div><div class="line">ps -ef|grep rsync</div></pre></td></tr></table></figure>
+<h4 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h4><ol>
 <li>创建密码文件</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 123456 &gt; /root/backserver.pas <span class="comment">#与服务端密码一致</span></div><div class="line"><span class="comment">#更改密码文件权限，否则报错</span></div><div class="line">chmod 600 /root/backserver.pas</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> 123456 &gt; /root/backserver.pas <span class="comment">#与服务端密码一致</span></div><div class="line"><span class="comment"># 更改密码文件权限，否则报错</span></div><div class="line">chmod 600 /root/backserver.pas</div></pre></td></tr></table></figure>
 <ol>
 <li>创建对应文件夹<br><code>mkdir -pv /bak/exp_1</code></li>
 <li>执行下面命令</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync -vzrtopg --bwlimit=1000 --delete --progress root@192.168.2.51::exp_1 /bak/exp_1/ --password-file=/root/backserver.pas</div></pre></td></tr></table></figure>
 <p><code>--bwlimit</code>参数是限定同步速度为1000kB/s<br><code>--delete</code>参数是同步时发现客户端有而服务端没有的文件则删除</p>
-<p>####优化</p>
-<ol>
+<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><ol>
 <li><p>可以将<code>exclude</code>参数写入服务端配置文件中,<strong>例如</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">exclude = bin/ <span class="built_in">history</span>/ <span class="comment">#多个目录使用空格隔开</span></div><div class="line"><span class="comment">#如果过滤文件较多，可以使用参数exclude from</span></div><div class="line"><span class="comment">#注意：</span></div><div class="line"><span class="comment">##########################</span></div><div class="line"><span class="comment">#过滤目录不是按绝对值目录匹配的</span></div><div class="line"><span class="comment">#例如有两个目录bin/和foo/bin/</span></div><div class="line"><span class="comment">#则该参数会将两个bin目录都过滤掉</span></div><div class="line"><span class="comment">#如果要过滤foo/bin/则需要用foo/bin/</span></div><div class="line"><span class="comment">#exclude = foo/bin/</span></div><div class="line"><span class="comment">###########################</span></div><div class="line">exclude from = /home/exclude.list</div><div class="line"><span class="comment">#exclude.list每行为一个参数，参数为相对路径</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">exclude = bin/ <span class="built_in">history</span>/ <span class="comment">#多个目录使用空格隔开</span></div><div class="line"><span class="comment"># 如果过滤文件较多，可以使用参数exclude from</span></div><div class="line"><span class="comment"># 注意：</span></div><div class="line"><span class="comment">##########################</span></div><div class="line"><span class="comment"># 过滤目录不是按绝对值目录匹配的</span></div><div class="line"><span class="comment"># 例如有两个目录bin/和foo/bin/</span></div><div class="line"><span class="comment"># 则该参数会将两个bin目录都过滤掉</span></div><div class="line"><span class="comment"># 如果要过滤foo/bin/则需要用foo/bin/</span></div><div class="line"><span class="comment"># exclude = foo/bin/</span></div><div class="line"><span class="comment">###########################</span></div><div class="line">exclude from = /home/exclude.list</div><div class="line"><span class="comment">#exclude.list每行为一个参数，参数为相对路径</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>编写<code>autobakup.sh</code>备份脚本</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#auther: summingbest@gmail.com</div><div class="line">MONTH=`date +"%Y%m"`</div><div class="line">DAY=`date +"%d"`</div><div class="line">HOUR=`date +"%H"`</div><div class="line">MIN=`date +"%M"`</div><div class="line">tarname=/bak/exp/exp_1_$&#123;MONTH&#125;$&#123;DAY&#125;$&#123;HOUR&#125;.tar.gz</div><div class="line"></div><div class="line">[ ! -d /bak/exp ] &amp;&amp; mkdir -p /bak/exp;</div><div class="line"></div><div class="line">[ ! -d /bak/exp/exp_1 ] &amp;&amp; mkdir -p /bak/exp/exp_1;</div><div class="line">[ ! -d /bak/exp/tomcat ] &amp;&amp; mkdir -p /bak/exp/tomcat;</div><div class="line"></div><div class="line">#删除7天前的备份文件</div><div class="line">find /bak/exp -name "exp_1_*.tar.gz" -mtime +7 -type f|xargs rm -f</div><div class="line"></div><div class="line">rsync -vzrtopg --bwlimit=1000 --delete --progress root@192.168.2.51::exp_1 /bak/exp/exp_1/ --password-file=/root/backserver.pas</div><div class="line">rsync -vzrtopg --bwlimit=1000 --delete --progress root@192.168.2.51::tomcat /bak/exp/tomcat/ --password-file=/root/backserver.pas</div><div class="line"></div><div class="line">tar -zcvf $&#123;tarname&#125; /bak/exp/exp_1/ /bak/exp/tomcat/</div></pre></td></tr></table></figure>
@@ -489,8 +485,7 @@
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo &apos;20 9 * * * /bin/sh /bak/bin/autobakup.sh&apos; &gt;&gt; /var/spool/cron/root</div></pre></td></tr></table></figure>
 <p>####在其他服务器上配置<br>只需要更改一些对应的参数即可</p>
-<p>##参考文献</p>
-<ol>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
 <li><a href="http://jingyan.baidu.com/article/2fb0ba4043124a00f2ec5f0f.html" target="_blank" rel="external">ssh/scp免密码登陆</a></li>
 <li><a href="http://www.blogjava.net/baizhihui19870626/articles/379460.html" target="_blank" rel="external">rsync简单配置</a></li>
 <li><a href="http://wenku.baidu.com/view/745ce5d276eeaeaad1f330a7.html" target="_blank" rel="external">rsync百度文库详细参数</a></li>
@@ -612,7 +607,7 @@
          <p><span>本文标题:</span><a href="/2017/01/17/linux/rsync/">部署rsync远程备份</a></p>
          <p><span>文章作者:</span><a href="/" title="访问 Summingyu 的个人博客">Summingyu</a></p>
          <p><span>发布时间:</span>2017年1月17日 - 09时01分</p>
-         <p><span>最后更新:</span>2017年1月17日 - 19时01分</p>
+         <p><span>最后更新:</span>2017年3月22日 - 11时03分</p>
          <p><span>原始链接:</span><a href="/2017/01/17/linux/rsync/" title="部署rsync远程备份">https://summingyu.github.io/2017/01/17/linux/rsync/</a></p>
          <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)">Attribution-NonCommercial 4.0</a></p>
          <p><span>转载请保留以上信息。</span></p>
@@ -656,8 +651,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -668,7 +672,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -757,6 +761,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实施过程"><span class="nav-number">2.</span> <span class="nav-text">实施过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打通2-52与2-51之间的ssh免密码登陆-root用户"><span class="nav-number">2.1.</span> <span class="nav-text">打通2.52与2.51之间的ssh免密码登陆(root用户)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用rsync同步两台服务器程序"><span class="nav-number">2.2.</span> <span class="nav-text">使用rsync同步两台服务器程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改51上的-etc-rsyncd-conf文件，没有则创建。权限644"><span class="nav-number">2.2.1.</span> <span class="nav-text">修改51上的/etc/rsyncd.conf文件，没有则创建。权限644</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成认证密码文件-etc-backserver-pas"><span class="nav-number">2.2.2.</span> <span class="nav-text">生成认证密码文件/etc/backserver.pas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动服务端"><span class="nav-number">2.2.3.</span> <span class="nav-text">启动服务端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端配置"><span class="nav-number">2.2.4.</span> <span class="nav-text">客户端配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优化"><span class="nav-number">2.2.5.</span> <span class="nav-text">优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>

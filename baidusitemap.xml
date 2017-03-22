@@ -4,6 +4,55 @@
 
     
   <url>
+    <loc>https://summingyu.github.io/2017/01/17/linux/rsync/</loc>
+    <lastmod>2017-03-22T03:38:57.751Z</lastmod>
+    <data>
+        <display>
+        <title>部署rsync远程备份</title>
+        <pubTime>2017-01-17T01:49:09.000Z</pubTime>
+        
+        <tag>自动化运维</tag>
+         
+        <tag>脚本</tag>
+         
+        <tag>linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="https://summingyu.github.io/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://summingyu.github.io/2017/03/15/Oldboy_Shell/7day/</loc>
+    <lastmod>2017-03-22T02:54:35.000Z</lastmod>
+    <data>
+        <display>
+        <title>第七 Expect自动化交互式程序</title>
+        <pubTime>2017-03-15T00:30:35.000Z</pubTime>
+        
+        <tag>学习</tag>
+         
+        <tag>基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+             
+              <breadCrumb title="Linux_oldboy_shell" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux-oldboy-shell/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://summingyu.github.io/2017/03/15/Oldboy_Shell/6day/</loc>
     <lastmod>2017-03-15T00:30:39.000Z</lastmod>
     <data>
@@ -173,30 +222,6 @@
           
              
               <breadCrumb title="Linux_oldboy_shell" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux-oldboy-shell/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://summingyu.github.io/2017/01/17/linux/rsync/</loc>
-    <lastmod>2017-01-17T11:17:11.107Z</lastmod>
-    <data>
-        <display>
-        <title>部署rsync远程备份</title>
-        <pubTime>2017-01-17T01:49:09.000Z</pubTime>
-        
-        <tag>自动化运维</tag>
-         
-        <tag>脚本</tag>
-         
-        <tag>linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="linux" url="https://summingyu.github.io/categories/linux/"/>
           
         </display>
     </data>
