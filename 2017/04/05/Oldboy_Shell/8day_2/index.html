@@ -1,0 +1,1141 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习,基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="#第八 面试题实战 二@(shell脚本)[学习]
+[toc]
+前言本章内容来自《跟老男孩学Linux运维：Shell编程实战》第19章内容第二部分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第八 面试题实战 二">
+<meta property="og:url" content="https://summingyu.github.io/2017/04/05/Oldboy_Shell/8day_2/index.html">
+<meta property="og:site_name" content="余苏明的幻想乡">
+<meta property="og:description" content="#第八 面试题实战 二@(shell脚本)[学习]
+[toc]
+前言本章内容来自《跟老男孩学Linux运维：Shell编程实战》第19章内容第二部分">
+<meta property="og:updated_time" content="2017-05-08T00:59:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第八 面试题实战 二">
+<meta name="twitter:description" content="#第八 面试题实战 二@(shell脚本)[学习]
+[toc]
+前言本章内容来自《跟老男孩学Linux运维：Shell编程实战》第19章内容第二部分">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'G4C6YE99H8',
+      apiKey: '182f47199e4bbdce9f0dc969df5eab50',
+      indexName: 'summingyu',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://summingyu.github.io/2017/04/05/Oldboy_Shell/8day_2/"/>
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script> 
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style> 
+ .pace .pace-progress { 
+     background:#1e92fb; /*进度条颜色*/ 
+     height:3px; 
+ }
+.pace .pace-progress-inner { 
+    box-shadow:0 0 10px #1e92fb, 0 0 5px #1e92fb; /*阴影颜色*/ 
+}
+.pace .pace-activity { 
+    border-top-color:#1e92fb; /*上边框颜色*/ 
+    border-left-color:#1e92fb; /*左边框颜色*/ 
+}
+</style>
+
+  <title> 第八 面试题实战 二 | 余苏明的幻想乡 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">余苏明的幻想乡</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">summingyu's blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://summingyu.github.io/2017/04/05/Oldboy_Shell/8day_2/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Summingyu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="余苏明的幻想乡">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="余苏明的幻想乡" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第八 面试题实战 二
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-05T11:47:35+08:00">
+              2017-04-05
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2017-05-08T08:59:21+08:00">
+              2017-05-08
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/Linux-oldboy-shell/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux_oldboy_shell</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/04/05/Oldboy_Shell/8day_2/" class="leancloud_visitors" data-flag-title="第八 面试题实战 二">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">临幸次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#第八 面试题实战 二<br>@(shell脚本)[学习]</p>
+<p>[toc]</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本章内容来自《跟老男孩学Linux运维：Shell编程实战》第19章内容第二部分<br><a id="more"></a></p>
+<h2 id="面试题12：Web及MySQL服务异常监测"><a href="#面试题12：Web及MySQL服务异常监测" class="headerlink" title="面试题12：Web及MySQL服务异常监测"></a>面试题12：Web及MySQL服务异常监测</h2><h2 id="面试题13：监控Memcached缓存服务"><a href="#面试题13：监控Memcached缓存服务" class="headerlink" title="面试题13：监控Memcached缓存服务"></a>面试题13：监控Memcached缓存服务</h2><h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>使用nc命令加上set/get来模拟监测</p>
+<h2 id="面试题14：开发脚本实现入侵检测与报警"><a href="#面试题14：开发脚本实现入侵检测与报警" class="headerlink" title="面试题14：开发脚本实现入侵检测与报警"></a>面试题14：开发脚本实现入侵检测与报警</h2><h3 id="问题分析-1"><a href="#问题分析-1" class="headerlink" title="问题分析"></a>问题分析</h3><ol>
+<li>思考过程的积累比实际代码开发能力积累更重要</li>
+<li>什么是恶意篡改，只要是为经过许可的改动都是篡改</li>
+<li>文件内容被改动会有如下特征<ul>
+<li>大小可能会改变</li>
+<li>修改时间会改变</li>
+<li>文件内容会改变，利用md5sum指纹校验</li>
+<li>增加或删除文件，比对每次检查前后的文件数量</li>
+</ul>
+</li>
+</ol>
+<p>第一步，建立基础指纹库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find /var/html/www -type f|xargs md5sum &gt; /opt/zhiwen.db.ori</div></pre></td></tr></table></figure></p>
+<p>第二步，建立基础文件库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find /var/html/www -type f  &gt;/opt/wenjian.db.ori</div></pre></td></tr></table></figure></p>
+<p>第三步，比较文件内容和文件数量变化<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">md5sum -c --quiet /opt/zhiwen.db.ori</div><div class="line"><span class="comment">#获取检测前的所有文件数量及文件名</span></div><div class="line">find /var/html/www -type f &gt; /opt/wenjian.db_curr.ori</div><div class="line"><span class="comment">#比较新旧文件数量</span></div><div class="line">diff /opt/wenjian.db*</div></pre></td></tr></table></figure></p>
+<p>脚本如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">RETVAL=0</div><div class="line"><span class="built_in">export</span> LANG=en</div><div class="line">CHECK_DIR=/var/html/www</div><div class="line">[ <span class="_">-e</span> <span class="variable">$CHECK_DIR</span> ] ||<span class="built_in">exit</span> 1</div><div class="line">ZhiWenDbOri=<span class="string">"/opt/zhiwen.db.ori"</span></div><div class="line">FileCountDbOri=<span class="string">"/opt/wenjian.db.ori"</span></div><div class="line">FileCountDbCurrOri=<span class="string">"/opt/wenjian.db_Curr.ori"</span></div><div class="line">ErrLog=<span class="string">"/opt/err.log"</span></div><div class="line">[ <span class="_">-e</span> <span class="variable">$ZhiWenDbOri</span> ]|| <span class="built_in">exit</span> 1</div><div class="line">[ <span class="_">-e</span> <span class="variable">$FileCountDbOri</span> ] || <span class="built_in">exit</span> 1</div><div class="line"></div><div class="line"><span class="comment">#jude file content</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"md5sum -c --quiet <span class="variable">$ZhiWenDbOri</span> "</span>&gt;<span class="variable">$ErrLog</span></div><div class="line">md5sum -c --quiet <span class="variable">$ZhiWenDbOri</span> &amp;&gt;&gt;<span class="variable">$ErrLog</span></div><div class="line">RETVAL=$?</div><div class="line"></div><div class="line"><span class="comment">#com file count</span></div><div class="line">find <span class="variable">$CHECK_DIR</span> -type f &gt; <span class="variable">$FileCountDbCurrOri</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"diff <span class="variable">$FileCountDbCurrOri</span> <span class="variable">$FileCountDbOri</span>"</span> &amp;&gt;&gt;<span class="variable">$ErrLog</span></div><div class="line">diff <span class="variable">$FileCountDbCurrOri</span> <span class="variable">$FileCountDbOri</span> &amp;&gt;&gt;<span class="variable">$ErrLog</span></div><div class="line">ErroCount=`diff <span class="variable">$FileCountDbCurrOri</span> <span class="variable">$FileCountDbOri</span>|wc <span class="_">-l</span>`</div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$RETVAL</span> <span class="_">-ne</span> 0 -o <span class="variable">$ErroCount</span> <span class="_">-ne</span> 0]</div><div class="line">	<span class="keyword">then</span></div><div class="line">	  mail <span class="_">-s</span> <span class="string">"`uname -n <span class="variable">$(date +%F)</span> err`"</span> 31333741-@qq.com &lt;<span class="variable">$ErrLog</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure></p>
+<p>然后可以加入定时任务</p>
+<h2 id="面试题15：开发Rsync服务启动脚本"><a href="#面试题15：开发Rsync服务启动脚本" class="headerlink" title="面试题15：开发Rsync服务启动脚本"></a>面试题15：开发Rsync服务启动脚本</h2><h3 id="问题分析-2"><a href="#问题分析-2" class="headerlink" title="问题分析"></a>问题分析</h3><ol>
+<li>要使用系统函数库技巧</li>
+<li>要用函数</li>
+<li>可被chkconfig管理</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment"># chkconfig: 2345 20 80</span></div><div class="line"><span class="comment"># description: Rsyncd Startup scripts by oldboy.</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> <span class="_">-ne</span> 1 ]</div><div class="line">	<span class="keyword">then</span></div><div class="line">	  <span class="built_in">echo</span> $<span class="string">"usage:<span class="variable">$0</span> &#123;start|stop|restart&#125;"</span></div><div class="line">	  <span class="built_in">exit</span> 1</div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$1</span>"</span> = <span class="string">"start"</span> ]</div><div class="line">	<span class="keyword">then</span></div><div class="line">	  rsync --daemon</div><div class="line">	  sleep 2</div><div class="line">	  <span class="keyword">if</span> [ `netstat -lntup|grep rsync|wc <span class="_">-l</span>` <span class="_">-gt</span> 1 ]</div><div class="line">		  <span class="keyword">then</span></div><div class="line">		    <span class="built_in">echo</span> <span class="string">"rsyncd is started."</span></div><div class="line">		    <span class="built_in">exit</span> 0</div><div class="line">	  <span class="keyword">fi</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$1</span>"</span> = <span class="string">"stop"</span> ]</div><div class="line">	<span class="keyword">then</span></div><div class="line">	  killall rsync &amp;&gt;/dev/null</div><div class="line">	  sleep 2</div><div class="line">	  <span class="keyword">if</span> [ `netstat -lntup|grep rsync|wc <span class="_">-l</span>` <span class="_">-eq</span> 0 ]</div><div class="line">		  <span class="keyword">then</span></div><div class="line">		    <span class="built_in">echo</span> <span class="string">"rsyncd is stopped"</span></div><div class="line">		    <span class="built_in">exit</span> 0</div><div class="line">	  <span class="keyword">fi</span></div><div class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$1</span>"</span> = <span class="string">"restart"</span> ]</div><div class="line">	<span class="keyword">then</span></div><div class="line">	  killall rsync</div><div class="line">	  sleep 2</div><div class="line">	  killpro=`netstat -lntup|grep rsync|wc <span class="_">-l</span>`</div><div class="line">	  rsync --daemon</div><div class="line">	  sleep 2</div><div class="line">	  startpro=`netstat -lntup|grep rsync|wc <span class="_">-l</span>`</div><div class="line">	  <span class="keyword">if</span> [ <span class="variable">$killpro</span> <span class="_">-eq</span> 0 <span class="_">-a</span> <span class="variable">$startpro</span> -ge 1 ]</div><div class="line">		  <span class="keyword">then</span></div><div class="line">		    <span class="built_in">echo</span> <span class="string">"rsyncd is restarted"</span></div><div class="line">		    <span class="built_in">exit</span> 0</div><div class="line">	  <span class="keyword">fi</span></div><div class="line"><span class="keyword">else</span></div><div class="line">	<span class="built_in">echo</span> $<span class="string">"usage:<span class="variable">$0</span> &#123;start|stop|restart&#125;"</span></div><div class="line">	<span class="built_in">exit</span> 1</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<h2 id="面试题16：开发MySQL多实例启动脚本"><a href="#面试题16：开发MySQL多实例启动脚本" class="headerlink" title="面试题16：开发MySQL多实例启动脚本"></a>面试题16：开发MySQL多实例启动脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">###################</span></div><div class="line"><span class="comment">#this scripts is created by oldboy at 2007-06-09</span></div><div class="line"><span class="comment">#blog:http://oldboy.blog.51cto.com</span></div><div class="line"><span class="comment">###################</span></div><div class="line"><span class="comment">#init</span></div><div class="line">Port=3306</div><div class="line">MysqlUser=<span class="string">"root"</span></div><div class="line">MysqlPass=<span class="string">"oldboy123"</span></div><div class="line">CmdPath=<span class="string">"/appliction/mysql/bin"</span></div><div class="line"></div><div class="line"><span class="comment">#startup function</span></div><div class="line"><span class="function"><span class="title">start</span></span>()</div><div class="line">&#123;</div><div class="line">	<span class="keyword">if</span> [ `netstat -lnt|grep <span class="string">"<span class="variable">$Port</span>"</span>|wc <span class="_">-l</span>` <span class="_">-eq</span> 0 ]</div><div class="line">		<span class="keyword">then</span></div><div class="line">			<span class="built_in">printf</span> <span class="string">"Starting MySQL...\n"</span></div><div class="line">			/bin/sh <span class="variable">$&#123;CmdPath&#125;</span>/mysqld_safe --defaults-file=/data/<span class="variable">$&#123;Port&#125;</span>/my.cnf 2&gt;&amp;1 &gt; /dev/null &amp;</div><div class="line">	<span class="keyword">else</span></div><div class="line">		<span class="built_in">printf</span> <span class="string">"MySQL is running...\n"</span></div><div class="line">	<span class="keyword">fi</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">#stop function</span></div><div class="line"><span class="function"><span class="title">stop</span></span>()</div><div class="line">&#123;</div><div class="line">	<span class="keyword">if</span> [ `netstat -lnt|grep <span class="string">"<span class="variable">$Port</span>"</span>|wc <span class="_">-l</span>` <span class="_">-eq</span> 0 ]</div><div class="line">		<span class="keyword">then</span></div><div class="line">			<span class="built_in">printf</span> <span class="string">"Stoping MySQL...\n"</span></div><div class="line">			<span class="variable">$&#123;CmdPath&#125;</span>/mysqladmin -u <span class="variable">$&#123;MysqlUser&#125;</span> -p<span class="variable">$&#123;MysqlPass&#125;</span> -S /data/<span class="variable">$&#123;Port&#125;</span>/mysql.sock shutdown</div><div class="line">	<span class="keyword">else</span></div><div class="line">		<span class="built_in">printf</span> <span class="string">"MySQL is stopped...\n"</span></div><div class="line">	<span class="keyword">fi</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">#restart function</span></div><div class="line"><span class="function"><span class="title">restart</span></span>()</div><div class="line">&#123;</div><div class="line">	<span class="built_in">printf</span> <span class="string">"Restarting MySQL...\n"</span></div><div class="line">	stop</div><div class="line">	sleep 2</div><div class="line">	start</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></div><div class="line">start)</div><div class="line">	start</div><div class="line">	;;</div><div class="line">stop)</div><div class="line">	stop</div><div class="line">	;;</div><div class="line">restart)</div><div class="line">	restart</div><div class="line">	;;</div><div class="line">*)</div><div class="line">	<span class="built_in">printf</span> <span class="string">"Usage: <span class="variable">$0</span> &#123;start|stop|restart&#125;\n"</span></div><div class="line"><span class="keyword">esac</span></div></pre></td></tr></table></figure>
+<h2 id="面试题21：开发脚本管理服务端LVS"><a href="#面试题21：开发脚本管理服务端LVS" class="headerlink" title="面试题21：开发脚本管理服务端LVS"></a>面试题21：开发脚本管理服务端LVS</h2><p>在LVS负载均衡主节点上，开发管理LVS服务的脚本ip_vs</p>
+<h3 id="问题分析-3"><a href="#问题分析-3" class="headerlink" title="问题分析"></a>问题分析</h3><p>利用<code>ipvsadm</code>可以启动并配置好LVS服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment"># Written by oldboy</span></div><div class="line"><span class="comment"># QQ:31333741</span></div><div class="line"><span class="comment"># description: Config Director vip and ipvs</span></div><div class="line">. /etc/init.d/<span class="built_in">functions</span></div><div class="line">VIP=10.0.0.3</div><div class="line">INTERFACE=eth0</div><div class="line">SubINTERFACE=<span class="variable">$&#123;INTERFACE&#125;</span>:`<span class="built_in">echo</span> <span class="variable">$VIP</span>|cut -d. <span class="_">-f</span>4`</div><div class="line">PORT=80</div><div class="line">GW=10.0.0.254</div><div class="line">RETVER=0</div><div class="line"></div><div class="line">IP=/sbin/ip</div><div class="line">ROUTE=/sbin/route</div><div class="line">IPVSADM=/sbin/ipvsadm</div><div class="line">ARPING=/sbin/arping</div><div class="line"></div><div class="line">RIPS=(    <span class="comment">#&lt;==定义realserver节点IP数组</span></div><div class="line">		10.0.0.7</div><div class="line">		10.0.0.8</div><div class="line">	)</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">usage</span></span> ()&#123;</div><div class="line">	<span class="built_in">echo</span> <span class="string">"Usgae : <span class="variable">$0</span> &#123;start|stop|restart&#125;"</span></div><div class="line">	<span class="built_in">return</span> 1</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">ipvsStart</span></span>()&#123;    <span class="comment">#&lt;==配置ipvs</span></div><div class="line">	<span class="variable">$IP</span> addr add <span class="variable">$VIP</span>/24 dev <span class="variable">$&#123;INTERFACE&#125;</span> label <span class="variable">$SubINTERFACE</span> <span class="comment">#&lt;==添加VIP。</span></div><div class="line">	<span class="variable">$ROUTE</span> add -host <span class="variable">$VIP</span> <span class="variable">$SubINTERFACE</span>    <span class="comment">#&lt;==添加VIP对应主机路由</span></div><div class="line">	<span class="variable">$IPVSADM</span> -C</div><div class="line">	<span class="variable">$IPVSADM</span> -A -t <span class="variable">$VIP</span>:<span class="variable">$PORT</span> <span class="_">-s</span> wrr -p 60    <span class="comment">#&lt;==生成ipvs实例</span></div><div class="line">	<span class="keyword">for</span> ((i=0; i&lt;`<span class="built_in">echo</span> <span class="variable">$&#123;\#RIPS[*]&#125;</span>`;i++))</div><div class="line">	<span class="keyword">do</span></div><div class="line">		<span class="variable">$IPVSADM</span> <span class="_">-a</span> -t <span class="variable">$VIP</span>:<span class="variable">$PORT</span> -r <span class="variable">$&#123;RIPS[$i]&#125;</span>:<span class="variable">$PORT</span> -g -w 1</div><div class="line">		<span class="comment">#&lt;==添加节点</span></div><div class="line">	<span class="keyword">done</span></div><div class="line">	RETVAR=$?</div><div class="line">	</div><div class="line">	<span class="comment"># update MAC</span></div><div class="line">	<span class="variable">$ARPING</span> -c 1 -I <span class="variable">$&#123;INTERFACE&#125;</span> <span class="_">-s</span> <span class="variable">$VIP</span> <span class="variable">$GW</span> &amp;&gt;/dev/null </div><div class="line">	<span class="keyword">if</span> [ <span class="variable">$RETVAR</span> <span class="_">-eq</span> 0 ]</div><div class="line">	  <span class="keyword">then</span></div><div class="line">		action <span class="string">"Ipvsadm started."</span> /bin/<span class="literal">true</span></div><div class="line">	<span class="keyword">else</span></div><div class="line">		action <span class="string">"Ipvsadm stopped."</span> /bin/<span class="literal">false</span></div><div class="line">	<span class="keyword">fi</span></div><div class="line">	<span class="built_in">return</span> <span class="variable">$RETVAR</span>		</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="title">main</span></span> ()</div><div class="line">&#123;</div><div class="line">	<span class="comment">#judge argv num</span></div><div class="line">	<span class="keyword">if</span> [ $\<span class="comment"># -ne 1 ]; then</span></div><div class="line">		usage <span class="variable">$0</span></div><div class="line">	<span class="keyword">fi</span></div><div class="line">	<span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></div><div class="line">		start)</div><div class="line">			ipvsStart</div><div class="line">			;;</div><div class="line">		stop)</div><div class="line">			ipvsStop</div><div class="line">			;;</div><div class="line">		restart)</div><div class="line">			ipvsStop</div><div class="line">			ipvsStart</div><div class="line">			;;</div><div class="line">		*)</div><div class="line">			usage <span class="variable">$0</span></div><div class="line">			;;</div><div class="line">	<span class="keyword">esac</span></div><div class="line">&#125;</div><div class="line"><span class="comment">#start operating</span></div><div class="line">main $*</div></pre></td></tr></table></figure></p>
+<h2 id="面试题-22：LVS节点健康检查及管理脚本"><a href="#面试题-22：LVS节点健康检查及管理脚本" class="headerlink" title="面试题 22：LVS节点健康检查及管理脚本"></a>面试题 22：LVS节点健康检查及管理脚本</h2><p>模拟keepalived健康检查功能管理LVS节点，当节点挂掉时从服务器池中将其剔除，好了后再将其加入到服务器池中来.</p>
+<h3 id="问题分析-4"><a href="#问题分析-4" class="headerlink" title="问题分析"></a>问题分析</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#created by oldboy 201308</span></div><div class="line">IPVSADM=/sbin/ipvsadm</div><div class="line">VIP=10.0.0.3</div><div class="line">PORT=80</div><div class="line">RIPS=(</div><div class="line">10.0.0.7</div><div class="line">10.0.0.8</div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">while</span> <span class="literal">true</span></div><div class="line"><span class="keyword">do</span> </div><div class="line">	<span class="keyword">for</span>((i=0;i&lt;<span class="variable">$&#123;\#RIPS[*]&#125;</span>;i++))</div><div class="line">	<span class="keyword">do</span></div><div class="line">		PORT_COUNT=`nmap <span class="variable">$&#123;RIPS[$i]&#125;</span> -p <span class="variable">$PORT</span>|grep open|wc <span class="_">-l</span>`</div><div class="line">		<span class="keyword">if</span> [ <span class="variable">$PORT_COUNT</span> <span class="_">-ne</span> 1 ];<span class="keyword">then</span></div><div class="line">			<span class="keyword">if</span> [ `<span class="variable">$IPVSADM</span> -Ln|grep <span class="variable">$&#123;RIPS[$i]&#125;</span>|wc <span class="_">-l</span>` <span class="_">-ne</span> 0 ];<span class="keyword">then</span></div><div class="line">				<span class="variable">$IPVSADM</span> <span class="_">-d</span> -t <span class="variable">$VIP</span>:<span class="variable">$PORT</span> -r <span class="variable">$&#123;RIPS[$i]&#125;</span>:<span class="variable">$PORT</span> &gt;/dev/null 2&gt;&amp;1</div><div class="line">			<span class="keyword">fi</span></div><div class="line">		<span class="keyword">else</span></div><div class="line">			<span class="keyword">if</span> [ `<span class="variable">$IPVSADM</span> -Ln|grep <span class="variable">$&#123;RIPS[$i]&#125;</span>|wc <span class="_">-l</span>` <span class="_">-eq</span> 0 ];<span class="keyword">then</span></div><div class="line">				<span class="variable">$IPVSADM</span> <span class="_">-a</span> -t <span class="variable">$VIP</span>:<span class="variable">$PORT</span> -r <span class="variable">$&#123;RIPS[$I]&#125;</span>:<span class="variable">$PORT</span> &gt;/dev/null 2&gt;&amp;1</div><div class="line">			<span class="keyword">fi</span></div><div class="line">		<span class="keyword">fi</span></div><div class="line">	<span class="keyword">done</span></div><div class="line">	sleep 5</div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<h2 id="面试题-23-LVS客户端配置脚本"><a href="#面试题-23-LVS客户端配置脚本" class="headerlink" title="面试题 23: LVS客户端配置脚本"></a>面试题 23: LVS客户端配置脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment"># Written by oldboy</span></div><div class="line"><span class="comment"># description: Config realserver lo and apply noarp</span></div><div class="line">RETVAR=0</div><div class="line">VIP=(</div><div class="line">	10.0.0.3</div><div class="line">	10.0.0.4</div><div class="line">)</div><div class="line">. /etc/init.d/<span class="built_in">functions</span></div><div class="line"></div><div class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></div><div class="line">	start)</div><div class="line">		<span class="keyword">for</span> ((i=0;i&lt;`<span class="built_in">echo</span> <span class="variable">$&#123;\#VIP[*]&#125;</span>`;i++))</div><div class="line">		<span class="keyword">do</span></div><div class="line">			interface=<span class="string">"lo:`echo <span class="variable">$&#123;VIP[$i]&#125;</span>|awk -F . '&#123;print <span class="variable">$4</span>&#125;'`"</span></div><div class="line">			/sbin/ip addr add <span class="variable">$&#123;VIP[$i]&#125;</span>/24 dev lo label <span class="variable">$interface</span></div><div class="line">			REVTAR=$?</div><div class="line">		<span class="keyword">done</span></div><div class="line">		<span class="built_in">echo</span> <span class="string">"1"</span> &gt;/proc/sys/net/ipv4/conf/lo/arp_ignore</div><div class="line">		<span class="built_in">echo</span> <span class="string">"2"</span> &gt;/proc/sys/net/ipv4/conf/lo/arp_announce</div><div class="line">		<span class="built_in">echo</span> <span class="string">"1"</span> &gt;/proc/sys/net/ipv4/conf/all/arp_ignore</div><div class="line">		<span class="built_in">echo</span> <span class="string">"2"</span> &gt;/proc/sys/net/ipv4/conf/all/arp_announce</div><div class="line">		<span class="keyword">if</span> [ <span class="variable">$RETVAR</span> <span class="_">-eq</span> 0 ];<span class="keyword">then</span></div><div class="line">			action <span class="string">"Start LVS Config of RearServer."</span> /bin/<span class="literal">true</span></div><div class="line">		<span class="keyword">else</span></div><div class="line">			action <span class="string">"Start LVS Config of RearServer."</span> /bin/<span class="literal">false</span></div><div class="line">		<span class="keyword">fi</span></div><div class="line">		;;</div><div class="line">	stop)</div><div class="line">		<span class="keyword">for</span> ((i=0;i&lt;`<span class="built_in">echo</span> <span class="variable">$&#123;\#VIP[*]&#125;</span>`;i++))</div><div class="line">		<span class="keyword">do</span></div><div class="line">			interface=<span class="string">"lo:`echo <span class="variable">$&#123;VIP[$i]&#125;</span>|awk -F . '&#123;print <span class="variable">$4</span>&#125;'`"</span></div><div class="line">			/sbin/ip addr del <span class="variable">$&#123;VIP[$i]&#125;</span>/24 dev lo label <span class="variable">$interface</span> &gt; /dev/null 2&gt;&amp;1</div><div class="line">		<span class="keyword">done</span></div><div class="line">		<span class="built_in">echo</span> <span class="string">"0"</span> &gt;/proc/sys/net/ipv4/conf/lo/arp_ignore</div><div class="line">		<span class="built_in">echo</span> <span class="string">"0"</span> &gt;/proc/sys/net/ipv4/conf/lo/arp_announce</div><div class="line">		<span class="built_in">echo</span> <span class="string">"0"</span> &gt;/proc/sys/net/ipv4/conf/all/arp_ignore</div><div class="line">		<span class="built_in">echo</span> <span class="string">"0"</span> &gt;/proc/sys/net/ipv4/conf/all/arp_announce</div><div class="line">		<span class="keyword">if</span> [ <span class="variable">$RETVAR</span> <span class="_">-eq</span> 0 ];<span class="keyword">then</span></div><div class="line">			action <span class="string">"Close LVS Config of RearServer."</span> /bin/<span class="literal">true</span></div><div class="line">		<span class="keyword">else</span></div><div class="line">			action <span class="string">"Close LVS Config of RearServer."</span> /bin/<span class="literal">false</span></div><div class="line">		<span class="keyword">fi</span></div><div class="line">		;;</div><div class="line">	*)</div><div class="line">		<span class="built_in">echo</span> <span class="string">"Usage: <span class="variable">$0</span> &#123;start|stop&#125;"</span></div><div class="line">		<span class="built_in">exit</span> 1</div><div class="line"><span class="keyword">esac</span></div><div class="line"><span class="built_in">exit</span> <span class="variable">$RETVAR</span></div></pre></td></tr></table></figure>
+<h2 id="面试题24-模拟Keepalived软件高可用"><a href="#面试题24-模拟Keepalived软件高可用" class="headerlink" title="面试题24 : 模拟Keepalived软件高可用"></a>面试题24 : 模拟Keepalived软件高可用</h2><p>在LVS服务端备用节点上,模拟keepalived vrrp功能,监听主节点,如果主节点不可访问,则启动备节点并配置LVS服务,接管主节点的资源并对用户提供服务(注意ARP缓存)</p>
+<h3 id="问题分析-5"><a href="#问题分析-5" class="headerlink" title="问题分析"></a>问题分析</h3><ol>
+<li>监测主节点是否宕机,可以使用ping或nmap命令</li>
+<li>如果主节点宕机,则调用管理LVS的服务脚本,执行LVS配置<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment"># Author:oldboy training</span></div><div class="line"><span class="comment"># Blog:http://oldboy.blog.51cto.com</span></div><div class="line">VIP=10.0.0.3</div><div class="line">PORT=80</div><div class="line">ipvs_tools=`rpm -qa ipvsadm|wc <span class="_">-l</span>`</div><div class="line"><span class="keyword">if</span> [ <span class="variable">$ipvs_tools</span> <span class="_">-ne</span> 1 ]</div><div class="line">	<span class="keyword">then</span></div><div class="line">		yum install ipvsadm -y</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> <span class="literal">true</span></div><div class="line"><span class="keyword">do</span></div><div class="line">	ping -w2 -c2 <span class="variable">$&#123;VIP&#125;</span> &gt;/dev/null 2&gt;&amp;1</div><div class="line">	<span class="keyword">if</span> [ $? <span class="_">-ne</span> 0 ];<span class="keyword">then</span></div><div class="line">		/bin/sh ./19_21_1.sh start &gt;/dev/null 2&gt;&amp;1</div><div class="line">	<span class="keyword">else</span></div><div class="line">		/bin/sh ./19_21_1.sh stop &gt;/dev/null 2&gt;&amp;1</div><div class="line">	<span class="keyword">fi</span></div><div class="line">	sleep 5</div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="面试题-26-编写等腰三角形图形字符"><a href="#面试题-26-编写等腰三角形图形字符" class="headerlink" title="面试题 26:编写等腰三角形图形字符"></a>面试题 26:编写等腰三角形图形字符</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="built_in">read</span> -p <span class="string">"Please Enter a number:"</span> Line</div><div class="line"><span class="keyword">for</span> ((i=1;i&lt;=Line;i++))</div><div class="line"><span class="keyword">do</span></div><div class="line">	<span class="keyword">for</span> ((j=<span class="variable">$Line</span>-<span class="variable">$i</span>;j&gt;0;j--));</div><div class="line">	<span class="keyword">do</span></div><div class="line">		<span class="built_in">echo</span> -n <span class="string">' '</span></div><div class="line">	<span class="keyword">done</span></div><div class="line">	<span class="keyword">for</span> ((h=1;h&lt;=$((2*<span class="variable">$i</span>-1));h++))</div><div class="line">	<span class="keyword">do</span></div><div class="line">		<span class="built_in">echo</span> -n <span class="string">'*'</span></div><div class="line">	<span class="keyword">done</span></div><div class="line">	<span class="built_in">echo</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<h2 id="面试题29-Nginx-负载节点状态监测"><a href="#面试题29-Nginx-负载节点状态监测" class="headerlink" title="面试题29 Nginx 负载节点状态监测"></a>面试题29 Nginx 负载节点状态监测</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">RIPS=(</div><div class="line">	10.0.0.7</div><div class="line">	10.0.0.8</div><div class="line">)</div><div class="line">file_location=/var/html/test.html</div><div class="line">[ <span class="_">-e</span> <span class="string">"<span class="variable">$file_location</span>"</span> ]|| mkdir `dirname <span class="variable">$file_location</span>` -p</div><div class="line"></div><div class="line"><span class="keyword">function</span> web_result &#123;</div><div class="line">	rs=`curl -I <span class="_">-s</span> <span class="variable">$1</span>|awk <span class="string">'NR==1&#123;print $2&#125;'</span>`</div><div class="line">	<span class="built_in">return</span> <span class="variable">$rs</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">function</span> new_row &#123;</div><div class="line">	cat &gt;&gt; <span class="variable">$file_location</span> &lt;&lt;eof</div><div class="line">	&lt;tr&gt;</div><div class="line">	&lt;td bgcolor=<span class="string">"<span class="variable">$4</span>"</span>&gt;<span class="variable">$1</span>&lt;/td&gt;</div><div class="line">	&lt;td bgcolor=<span class="string">"<span class="variable">$4</span>"</span>&gt;<span class="variable">$2</span>&lt;/td&gt;</div><div class="line">	&lt;td bgcolor=<span class="string">"<span class="variable">$4</span>"</span>&gt;<span class="variable">$3</span>&lt;/td&gt;</div><div class="line">	&lt;/tr&gt;</div><div class="line"></div><div class="line">eof</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">function</span> auto_html &#123;</div><div class="line">	web_result <span class="variable">$2</span></div><div class="line">	rs=$?</div><div class="line">	<span class="keyword">if</span> [ <span class="variable">$rs</span> <span class="_">-eq</span> 200 ]</div><div class="line">	  <span class="keyword">then</span></div><div class="line">		new_row <span class="variable">$1</span> <span class="variable">$2</span> up green</div><div class="line">	<span class="keyword">else</span></div><div class="line">		new_row <span class="variable">$1</span> <span class="variable">$2</span> down red</div><div class="line">	<span class="keyword">fi</span></div><div class="line">	</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">main</span></span>()&#123;</div><div class="line">	<span class="keyword">while</span> <span class="literal">true</span></div><div class="line">	<span class="keyword">do</span></div><div class="line">	cat &gt;&gt; <span class="variable">$file_location</span> &lt;&lt;eof</div><div class="line">	&lt;h4&gt;Oldboy Nginx Service Status Of RS :&lt;/h4&gt;</div><div class="line">	&lt;meta http-equiv=<span class="string">"refresh"</span> content=<span class="string">"1"</span>&gt;</div><div class="line">	&lt;table border=<span class="string">"1"</span>&gt;</div><div class="line">	&lt;tr&gt;</div><div class="line">	&lt;th&gt;NO:&lt;/th&gt;</div><div class="line">	&lt;th&gt;IP:&lt;/th&gt;</div><div class="line">	&lt;th&gt;Status:&lt;/th&gt;</div><div class="line">	&lt;/tr&gt;</div><div class="line"></div><div class="line">eof</div><div class="line">	<span class="keyword">for</span> ((i=0;i&lt;<span class="variable">$&#123;\#RIPS[*]&#125;</span>;i++));<span class="keyword">do</span></div><div class="line">		auto_html <span class="variable">$i</span> <span class="variable">$&#123;RIPS[$i]&#125;</span></div><div class="line">	<span class="keyword">done</span></div><div class="line"></div><div class="line">	cat &gt;&gt; <span class="variable">$file_location</span> &lt;&lt;eof</div><div class="line">	&lt;/table&gt;</div><div class="line">eof</div><div class="line"></div><div class="line">	sleep 2</div><div class="line">	&gt; <span class="variable">$file_location</span></div><div class="line">	<span class="keyword">done</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">main $*</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/基础/" rel="tag"># 基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/29/Oldboy_Shell/8day_1/" rel="next" title="第八 面试题实战 一">
+                <i class="fa fa-chevron-left"></i> 第八 面试题实战 一
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+<div class="page-footer">
+    
+      <div id="eof" class="print-invisible">
+        <hr class="eof">
+      </div>
+
+      <div class="copyright" style="clear:both;">
+         <p><span>本文标题:</span><a href="/2017/04/05/Oldboy_Shell/8day_2/">第八 面试题实战 二</a></p>
+         <p><span>文章作者:</span><a href="/" title="访问 Summingyu 的个人博客">Summingyu</a></p>
+         <p><span>发布时间:</span>2017年4月5日 - 11时04分</p>
+         <p><span>最后更新:</span>2017年5月8日 - 08时05分</p>
+         <p><span>原始链接:</span><a href="/2017/04/05/Oldboy_Shell/8day_2/" title="第八 面试题实战 二">https://summingyu.github.io/2017/04/05/Oldboy_Shell/8day_2/</a></p>
+         <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)">Attribution-NonCommercial 4.0</a></p>
+         <p><span>转载请保留以上信息。</span></p>
+      </div>
+    
+
+    
+
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Summingyu" />
+          <p class="site-author-name" itemprop="name">Summingyu</p>
+          <p class="site-description motion-element" itemprop="description">“Talk is cheap. Show me the code.”————多说无益，看代码</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/summingyu" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1891527110" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="1007226049" target="_blank" title="qq">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  qq
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://quericy.me/" title="quericy" target="_blank">quericy</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/opsdba" title="fenge" target="_blank">fenge</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题12：Web及MySQL服务异常监测"><span class="nav-number">2.</span> <span class="nav-text">面试题12：Web及MySQL服务异常监测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题13：监控Memcached缓存服务"><span class="nav-number">3.</span> <span class="nav-text">面试题13：监控Memcached缓存服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题分析"><span class="nav-number">3.1.</span> <span class="nav-text">问题分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题14：开发脚本实现入侵检测与报警"><span class="nav-number">4.</span> <span class="nav-text">面试题14：开发脚本实现入侵检测与报警</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题分析-1"><span class="nav-number">4.1.</span> <span class="nav-text">问题分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题15：开发Rsync服务启动脚本"><span class="nav-number">5.</span> <span class="nav-text">面试题15：开发Rsync服务启动脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题分析-2"><span class="nav-number">5.1.</span> <span class="nav-text">问题分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题16：开发MySQL多实例启动脚本"><span class="nav-number">6.</span> <span class="nav-text">面试题16：开发MySQL多实例启动脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题21：开发脚本管理服务端LVS"><span class="nav-number">7.</span> <span class="nav-text">面试题21：开发脚本管理服务端LVS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题分析-3"><span class="nav-number">7.1.</span> <span class="nav-text">问题分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题-22：LVS节点健康检查及管理脚本"><span class="nav-number">8.</span> <span class="nav-text">面试题 22：LVS节点健康检查及管理脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题分析-4"><span class="nav-number">8.1.</span> <span class="nav-text">问题分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题-23-LVS客户端配置脚本"><span class="nav-number">9.</span> <span class="nav-text">面试题 23: LVS客户端配置脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题24-模拟Keepalived软件高可用"><span class="nav-number">10.</span> <span class="nav-text">面试题24 : 模拟Keepalived软件高可用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题分析-5"><span class="nav-number">10.1.</span> <span class="nav-text">问题分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题-26-编写等腰三角形图形字符"><span class="nav-number">11.</span> <span class="nav-text">面试题 26:编写等腰三角形图形字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题29-Nginx-负载节点状态监测"><span class="nav-number">12.</span> <span class="nav-text">面试题29 Nginx 负载节点状态监测</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Summingyu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("z9eCjRBlwX07Thdsg58l5Dwr-gzGzoHsz", "mtlF0oEHECJgSoguu45AbcSr");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+</body>
+</html>

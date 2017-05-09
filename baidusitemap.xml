@@ -5,11 +5,36 @@
     
   <url>
     <loc>https://summingyu.github.io/2017/03/29/Oldboy_Shell/8day_1/</loc>
-    <lastmod>2017-04-05T07:22:51.305Z</lastmod>
+    <lastmod>2017-05-09T03:44:12.957Z</lastmod>
     <data>
         <display>
         <title>第八 面试题实战 一</title>
         <pubTime>2017-03-29T00:30:35.000Z</pubTime>
+        
+        <tag>学习</tag>
+         
+        <tag>基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+             
+              <breadCrumb title="Linux_oldboy_shell" url="https://summingyu.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Linux-oldboy-shell/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://summingyu.github.io/2017/04/05/Oldboy_Shell/8day_2/</loc>
+    <lastmod>2017-05-08T00:59:21.000Z</lastmod>
+    <data>
+        <display>
+        <title>第八 面试题实战 二</title>
+        <pubTime>2017-04-05T03:47:35.000Z</pubTime>
         
         <tag>学习</tag>
          
